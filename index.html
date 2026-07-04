@@ -96,6 +96,11 @@
             font-size: 0.9rem;
         }
 
+        .long-label {
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
         input[type="text"],
         input[type="email"],
         input[type="tel"],
@@ -187,7 +192,6 @@
 <body>
 
     <div class="header">
-        <!-- Logo Syarikat Dimasukkan Di Sini -->
         <img src="company_logo.JPG" alt="PruBSN Takaful Logo" class="logo">
         
         <h1>Borang Pendaftaran Jarak Jauh</h1>
@@ -202,7 +206,6 @@
                     Sila lengkapkan butiran di bawah dengan tepat untuk melancarkan proses permohonan Takaful anda.
                 </div>
 
-                <!-- MAKLUMAT PERIBADI -->
                 <div class="section-title">1. Maklumat Peribadi</div>
                 <div class="form-group">
                     <label>Nama Penuh (Seperti dalam MyKad) *</label>
@@ -232,6 +235,29 @@
 
                 <div class="form-row">
                     <div class="form-group">
+                        <label>Warganegara *</label>
+                        <select id="warganegara" required>
+                            <option value="">Sila Pilih...</option>
+                            <option value="Malaysia">Malaysia</option>
+                            <option value="Penduduk Tetap">Penduduk Tetap</option>
+                            <option value="Bukan Warganegara">Bukan Warganegara</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Agama *</label>
+                        <select id="agama" required>
+                            <option value="">Sila Pilih...</option>
+                            <option value="Islam">Islam</option>
+                            <option value="Buddhist">Buddhist</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Kristian">Kristian</option>
+                            <option value="Lain-lain">Lain-lain</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
                         <label>Tinggi (cm) *</label>
                         <input type="number" id="tinggi" required placeholder="Contoh: 170">
                     </div>
@@ -250,7 +276,6 @@
                     </select>
                 </div>
 
-                <!-- MAKLUMAT PEKERJAAN -->
                 <div class="section-title">2. Maklumat Pekerjaan</div>
                 <div class="form-row">
                     <div class="form-group">
@@ -278,7 +303,6 @@
                     <input type="number" id="pendapatan" required placeholder="Contoh: 45000">
                 </div>
 
-                <!-- MAKLUMAT BANK & PEMBAYARAN -->
                 <div class="section-title">3. Maklumat Kewangan & Pembayaran</div>
                 <div class="form-row">
                     <div class="form-group">
@@ -301,7 +325,6 @@
                     </select>
                 </div>
 
-                <!-- MAKLUMAT PENAMA -->
                 <div class="section-title">4. Maklumat Penama / Pewaris</div>
                 <div class="form-row">
                     <div class="form-group">
@@ -314,7 +337,6 @@
                     </div>
                 </div>
 
-                <!-- REKOD KESIHATAN -->
                 <div class="section-title">5. Rekod Kesihatan (Isi jika ada)</div>
                 <div class="note-box" style="background-color: #f0f7fc; border-color: #00615F; color: #333;">
                     Abaikan bahagian ini jika anda tidak mempunyai sebarang rekod penyakit atau kemasukan ke wad sebelum ini.
@@ -350,8 +372,13 @@
                     </select>
                 </div>
 
-                <!-- DOKUMEN SOKONGAN -->
-                <div class="section-title">6. Dokumen Sokongan</div>
+                <div class="section-title">6. Sejarah Kesihatan Keluarga (Penyakit Keturunan)</div>
+                <div class="form-group">
+                    <label class="long-label">Adakah dikalangan keluarga terdekat (ibu, ayah atau adik-beradik kandung) disahkan menghidapi penyakit keturunan atau penyakit kritikal (contoh: darah tinggi, kencing manis, kegagalan buah pinggang, serangan jantung, kanser atau lain-lain)? Jika ada, sila nyatakan di bawah.</label>
+                    <textarea id="sejarah_keluarga" placeholder="Contoh: Bapa - Kencing Manis, Ibu - Darah Tinggi. (Tulis 'Tiada' jika tidak berkaitan)"></textarea>
+                </div>
+
+                <div class="section-title">7. Dokumen Sokongan</div>
                 <div class="document-checklist">
                     <p>📸 ARAHAN PENTING:</p>
                     Sebagai pengesahan keselamatan identiti, sila sediakan gambar-gambar berikut untuk dihantar <strong>di dalam ruang sembang WhatsApp</strong> selepas anda menekan butang Hantar di bawah:
@@ -384,6 +411,8 @@
             const noTel = val("no_tel");
             const emel = val("emel");
             const alamat = val("alamat");
+            const warganegara = val("warganegara");
+            const agama = val("agama");
             const tinggi = val("tinggi");
             const berat = val("berat");
             const merokok = val("merokok");
@@ -407,6 +436,8 @@
             const rawatan = val("jenis_rawatan");
             const statusPulih = val("status_pulih");
 
+            const sejarahKeluarga = val("sejarah_keluarga");
+
             // Construct Message
             const whatsappMessage = `*PERMOHONAN PRUBSN - REMOTE ENROLLMENT*
 
@@ -416,6 +447,8 @@ Tarikh Lahir: ${tarikhLahir}
 No. Tel: ${noTel}
 Emel: ${emel}
 Alamat: ${alamat}
+Warganegara: ${warganegara}
+Agama: ${agama}
 Tinggi: ${tinggi} cm
 Berat: ${berat} kg
 Status: ${merokok}
@@ -443,7 +476,10 @@ Jumlah Hari Diwadkan: ${hariWad}
 Jenis Rawatan: ${rawatan}
 Status Terkini: ${statusPulih}
 
-*6. DOKUMEN*
+*6. SEJARAH KESIHATAN KELUARGA*
+Rekod / Penyakit Keturunan: ${sejarahKeluarga}
+
+*7. DOKUMEN*
 _Pelanggan akan menghantar lampiran MyKad (Depan, Belakang & Selfie) di dalam chat ini sebentar lagi._`;
 
             // Encode string to URL format
