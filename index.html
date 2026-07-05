@@ -84,6 +84,7 @@
 
         .form-group {
             margin-bottom: 20px;
+            min-width: 0; /* FIX: Forces grid columns to respect boundaries and prevents overlapping */
         }
 
         .form-row {
@@ -113,6 +114,7 @@
         select,
         textarea {
             width: 100%;
+            max-width: 100%; /* FIX: Ensures input boxes never stretch past their parent container */
             padding: 12px;
             border: 1px solid var(--border-color);
             border-radius: 6px;
