@@ -220,9 +220,7 @@
 <body>
 
     <div class="header">
-        <!-- Logo Syarikat Dimasukkan Di Sini -->
         <img src="company_logo.JPG" alt="PruBSN Takaful Logo" class="logo">
-        
         <h1>Borang Pendaftaran Takaful</h1>
         <p>PruBSN Takaful Enrollment Form</p>
     </div>
@@ -582,7 +580,8 @@
                         </div>
                         <div class="form-group">
                             <label>Sila nyatakan bulan dan tahun disahkan positif (BB/TTTT) *</label>
-                            <input type="text" id="tarikh_covid" placeholder="Contoh: 08/2021">
+                            <!-- Ditambah maxlength="7" di sini -->
+                            <input type="text" id="tarikh_covid" placeholder="Contoh: 08/2021" maxlength="7">
                         </div>
                     </div>
                     
@@ -669,6 +668,19 @@
                     document.getElementById('tarikh_lahir').value = formattedDate;
                 }
             }
+        });
+
+        // Auto-format Tarikh COVID-19 untuk letak slash "/" (BB/TTTT)
+        document.getElementById('tarikh_covid').addEventListener('input', function(e) {
+            // Buang semua aksara yang bukan nombor
+            let val = e.target.value.replace(/\D/g, '');
+            
+            // Tambah slash selepas 2 digit pertama
+            if (val.length > 2) {
+                val = val.substring(0, 2) + '/' + val.substring(2, 6);
+            }
+            
+            e.target.value = val;
         });
 
         // Dynamic Nominee Fields Toggler
