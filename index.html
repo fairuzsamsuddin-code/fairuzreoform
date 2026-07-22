@@ -550,9 +550,15 @@
                 <!-- REKOD KESIHATAN 1 -->
                 <div id="rekod_1_section" class="sub-section-box" style="display: none;">
                     <h4 class="sub-title">Rekod Kesihatan 1</h4>
-                    <div class="form-group">
-                        <label>Penyakit Dihidapi <span style="color: var(--pru-red)">*</span></label>
-                        <input type="text" id="penyakit_1">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Penyakit Dihidapi <span style="color: var(--pru-red)">*</span></label>
+                            <input type="text" id="penyakit_1">
+                        </div>
+                        <div class="form-group">
+                            <label>Tarikh Disahkan / Diwadkan <span style="color: var(--pru-red)">*</span></label>
+                            <input type="date" id="tarikh_penyakit_1">
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -581,9 +587,15 @@
                 <!-- REKOD KESIHATAN 2 -->
                 <div id="rekod_2_section" class="sub-section-box" style="display: none;">
                     <h4 class="sub-title">Rekod Kesihatan 2</h4>
-                    <div class="form-group">
-                        <label>Penyakit Dihidapi <span style="color: var(--pru-red)">*</span></label>
-                        <input type="text" id="penyakit_2">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Penyakit Dihidapi <span style="color: var(--pru-red)">*</span></label>
+                            <input type="text" id="penyakit_2">
+                        </div>
+                        <div class="form-group">
+                            <label>Tarikh Disahkan / Diwadkan <span style="color: var(--pru-red)">*</span></label>
+                            <input type="date" id="tarikh_penyakit_2">
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -612,9 +624,15 @@
                 <!-- REKOD KESIHATAN 3 -->
                 <div id="rekod_3_section" class="sub-section-box" style="display: none;">
                     <h4 class="sub-title">Rekod Kesihatan 3</h4>
-                    <div class="form-group">
-                        <label>Penyakit Dihidapi <span style="color: var(--pru-red)">*</span></label>
-                        <input type="text" id="penyakit_3">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Penyakit Dihidapi <span style="color: var(--pru-red)">*</span></label>
+                            <input type="text" id="penyakit_3">
+                        </div>
+                        <div class="form-group">
+                            <label>Tarikh Disahkan / Diwadkan <span style="color: var(--pru-red)">*</span></label>
+                            <input type="date" id="tarikh_penyakit_3">
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -744,7 +762,7 @@
         Pengantara Takaful Berdaftar dengan Prudential BSN Takaful Berhad.</p>
     </div>
 
-    <!-- SCRIPT (Identical functionality) -->
+    <!-- SCRIPT (Identical functionality + newly added Tarikh field support) -->
     <script>
         // Auto-fill Tarikh Lahir from No. IC
         document.getElementById('ic').addEventListener('input', function(e) {
@@ -862,6 +880,7 @@
             for (let i = 1; i <= 3; i++) {
                 const section = document.getElementById(`rekod_${i}_section`);
                 const p = document.getElementById(`penyakit_${i}`);
+                const tp = document.getElementById(`tarikh_penyakit_${i}`);
                 const h = document.getElementById(`hospital_${i}`);
                 const hw = document.getElementById(`hari_wad_${i}`);
                 const jr = document.getElementById(`jenis_rawatan_${i}`);
@@ -869,11 +888,11 @@
                 
                 if (count >= i) {
                     section.style.display = 'block';
-                    p.required = true; h.required = true; hw.required = true; jr.required = true; sp.required = true;
+                    p.required = true; tp.required = true; h.required = true; hw.required = true; jr.required = true; sp.required = true;
                 } else {
                     section.style.display = 'none';
-                    p.required = false; h.required = false; hw.required = false; jr.required = false; sp.required = false;
-                    p.value = ''; h.value = ''; hw.value = ''; jr.value = ''; sp.value = '';
+                    p.required = false; tp.required = false; h.required = false; hw.required = false; jr.required = false; sp.required = false;
+                    p.value = ''; tp.value = ''; h.value = ''; hw.value = ''; jr.value = ''; sp.value = '';
                 }
             }
         }
@@ -987,6 +1006,7 @@
                 for (let i = 1; i <= healthCount; i++) {
                     healthDetails += `\n[Rekod ${i}]\n`;
                     healthDetails += `Penyakit: ${val(`penyakit_${i}`)}\n`;
+                    healthDetails += `Tarikh Disahkan: ${val(`tarikh_penyakit_${i}`)}\n`;
                     healthDetails += `Hospital Dirawat: ${val(`hospital_${i}`)}\n`;
                     healthDetails += `Jumlah Hari Diwadkan: ${val(`hari_wad_${i}`)}\n`;
                     healthDetails += `Jenis Rawatan: ${val(`jenis_rawatan_${i}`)}\n`;
