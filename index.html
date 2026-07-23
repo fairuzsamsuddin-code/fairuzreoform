@@ -352,6 +352,36 @@
         }
         .submit-btn:hover { background-color: #c81625; }
 
+        /* --- Floating WhatsApp Button --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            text-decoration: none;
+            animation: pulse-glow 2s infinite;
+            transition: transform 0.3s ease;
+        }
+        .floating-wa:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
         /* --- Footer --- */
         .footer { 
             background-color: white;
@@ -385,7 +415,7 @@
                 gap: 10px;
             }
             .nav-links a span {
-                display: none; /* Hide text on small screens, show icons only */
+                display: none; 
             }
             .nav-links a i {
                 font-size: 20px;
@@ -397,17 +427,23 @@
             .form-container { padding: 25px 20px; }
             .page-header { padding: 20px; }
             .header-subtitle { font-size: 20px; }
+            .floating-wa { bottom: 20px; right: 20px; width: 55px; height: 55px; font-size: 28px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/60176213432?text=Hi%20Fairuz%2C%20saya%20ingin%20mendapatkan%20konsultasi%20lanjut%20berkenaan%20takaful." class="floating-wa" target="_blank" title="WhatsApp Fairuz">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- Top Navigation Bar -->
     <nav class="top-nav">
         <div class="nav-brand">
             <div class="brand-icon"><i class="fas fa-headset"></i></div>
             <div class="brand-text">
-                <strong>TAKAFUL SERVICES</strong>
+                <strong>FAIRUZ SERVICES</strong>
                 <span>by Fairuz Samsuddin</span>
             </div>
         </div>
@@ -450,7 +486,7 @@
 
                 <div class="form-group">
                     <label>No. IC <span style="color: var(--pru-red)">*</span></label>
-                    <input type="text" id="ic" required placeholder="Contoh: 090724-14-2784">
+                    <input type="text" id="ic" required placeholder="Contoh: 090724-14-2784" maxlength="14">
                 </div>
                 
                 <div class="form-row">
@@ -833,8 +869,8 @@
                             <input type="number" id="kekerapan_covid" min="1" placeholder="Contoh: 2">
                         </div>
                         <div class="form-group">
-                            <label>Bulan/Tahun disahkan positif (BB/TTTT) <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="tarikh_covid" placeholder="Contoh: 08/2021" maxlength="7">
+                            <label>Bulan/Tahun disahkan positif <span style="color: var(--pru-red)">*</span></label>
+                            <input type="month" id="tarikh_covid">
                         </div>
                     </div>
                     
@@ -911,13 +947,26 @@
     </div>
 
     <script>
-        // Auto-fill Tarikh Lahir from No. IC
+        // Auto-format No. IC and Auto-fill Tarikh Lahir
         document.getElementById('ic').addEventListener('input', function(e) {
-            let icVal = e.target.value.replace(/\D/g, '');
-            if (icVal.length >= 6) {
-                let yy = icVal.substring(0, 2);
-                let mm = icVal.substring(2, 4);
-                let dd = icVal.substring(4, 6);
+            // Remove all non-digits
+            let rawVal = e.target.value.replace(/\D/g, ''); 
+            let formattedVal = rawVal;
+            
+            // Format IC visually with hyphens (XXXXXX-XX-XXXX)
+            if (rawVal.length > 6) {
+                formattedVal = rawVal.substring(0, 6) + '-' + rawVal.substring(6);
+            }
+            if (rawVal.length > 8) {
+                formattedVal = formattedVal.substring(0, 9) + '-' + rawVal.substring(8, 12);
+            }
+            e.target.value = formattedVal;
+
+            // Process DOB Auto-fill
+            if (rawVal.length >= 6) {
+                let yy = rawVal.substring(0, 2);
+                let mm = rawVal.substring(2, 4);
+                let dd = rawVal.substring(4, 6);
 
                 if (parseInt(mm) > 0 && parseInt(mm) <= 12 && parseInt(dd) > 0 && parseInt(dd) <= 31) {
                     let currentYear = new Date().getFullYear();
@@ -983,15 +1032,6 @@
                 tahunVape.required = false; tahunVape.value = '';
             }
         }
-
-        // Auto-format Tarikh COVID-19 untuk letak slash "/" (BB/TTTT)
-        document.getElementById('tarikh_covid').addEventListener('input', function(e) {
-            let val = e.target.value.replace(/\D/g, '');
-            if (val.length > 2) {
-                val = val.substring(0, 2) + '/' + val.substring(2, 6);
-            }
-            e.target.value = val;
-        });
 
         // Dynamic Nominee Fields Toggler
         function updateNomineeFields() {
@@ -1169,7 +1209,7 @@
             
             if (positifCovid === "Ya") {
                 covidDetails += `Kekerapan Positif: ${val("kekerapan_covid")} kali\n`;
-                covidDetails += `Bulan/Tahun Positif (BB/TTTT): ${val("tarikh_covid")}\n`;
+                covidDetails += `Bulan/Tahun Positif: ${val("tarikh_covid")}\n`;
                 covidDetails += `Tahap: ${val("tahap_covid")}\n`;
                 covidDetails += `Dimasukkan ke Hospital: ${val("masuk_hospital_covid")}\n`;
                 
