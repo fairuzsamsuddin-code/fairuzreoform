@@ -1,1082 +1,1011 @@
 <!DOCTYPE html>
-<html lang="ms">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PruBSN Takaful - Pendaftaran Takaful (Takaful Enrollment Form)</title>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portal Servis PruBSN Takaful</title>
+    <meta name="author" content="Fairuz Samsuddin" />
+    <meta name="description" content="Semak tempoh menunggu (waiting period), bantuan tuntutan dan khidmat sijil takaful/polisi dalam satu portal." />
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <style>
-        :root {
-            --pru-red: #D9000D;
-            --pru-teal: #008183;
-            --bg-color: #fdfcfc;
-            --form-bg: #ffffff;
-            --border-color: #e1e4e8;
-            --text-color: #333333;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            align-items: center;
-        }
-
-        /* --- Page Header Section (Portal Header Look) --- */
-        .page-header {
-            background-color: #f8f9fa;
-            width: 100%;
-            padding: 20px 40px;
-            box-sizing: border-box;
-            border-bottom: 2px solid var(--pru-red);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .header-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin: 0 0 5px 0;
-            color: #555;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .header-subtitle {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 0 0 15px 0;
-            color: #1a1a1a;
-        }
-        .logo {
-            max-width: 180px;
-            height: auto;
-        }
-
-        /* --- Main Container --- */
-        .container {
-            width: 100%;
-            max-width: 900px;
-            padding: 40px 20px;
-            box-sizing: border-box;
-            flex-grow: 1;
-        }
-
-        /* --- Form Container (Structured Card Look) --- */
-        .form-container {
-            background: var(--form-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border: 1px solid #eaeaea;
-            box-sizing: border-box;
-        }
-
-        /* --- Section Titles --- */
-        .section-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1a1a1a;
-            border-bottom: 2px solid var(--pru-red);
-            padding-bottom: 10px;
-            margin-top: 40px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .section-title:first-child { margin-top: 0; }
-
-        /* --- Form Elements --- */
-        .form-group {
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        label {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
-            display: block;
-        }
-        .long-label {
-            line-height: 1.5;
-            font-weight: 500;
-            color: #555;
-            margin-bottom: 12px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="number"],
-        input[type="date"],
-        input[type="month"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 14px;
-            box-sizing: border-box;
-            transition: all 0.2s ease;
-            background-color: #fff;
-            color: #333;
-        }
-        input::placeholder, textarea::placeholder { color: #adb5bd; }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--pru-teal);
-            box-shadow: 0 0 0 3px rgba(0, 129, 131, 0.1);
-        }
-        textarea { resize: vertical; min-height: 100px; }
-
-        /* --- Note Boxes & Alerts --- */
-        .note-box {
-            background-color: #fbd8db;
-            color: var(--pru-red);
-            border-left: 4px solid var(--pru-red);
-            padding: 15px 20px;
-            margin-bottom: 25px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 500;
-        }
-        .note-box.teal-note {
-            background-color: #e6f6f5;
-            color: var(--pru-teal);
-            border-left-color: var(--pru-teal);
-        }
-
-        .document-checklist {
-            background-color: #fafafa;
-            border: 1px solid #eaeaea;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-        }
-        .document-checklist p {
-            margin-top: 0;
-            font-weight: 700;
-            color: #1a1a1a;
-            font-size: 15px;
-            margin-bottom: 15px;
-        }
-        .document-checklist ul {
-            margin-bottom: 0;
-            padding-left: 20px;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .ekyc-note {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #555;
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 3px solid var(--pru-teal);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            border: 1px solid #eaeaea;
-            border-left: 4px solid var(--pru-teal);
-        }
-        .ekyc-note a {
-            color: var(--pru-teal);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 8px;
-            transition: color 0.2s;
-        }
-        .ekyc-note a:hover { color: #005a5c; text-decoration: underline; }
-
-        /* --- Sub-sections --- */
-        .sub-title {
-            font-size: 15px;
-            color: #1a1a1a;
-            margin-bottom: 15px;
-            margin-top: 0;
-            font-weight: 700;
-        }
-        .divider {
-            border: 0;
-            border-top: 1px solid #eaeaea;
-            margin: 25px 0;
-        }
-        .sub-section-box {
-            background-color: #fafafa;
-            border: 1px solid #eaeaea;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-
-        /* --- Submit Button --- */
-        .submit-btn {
-            background-color: var(--pru-red);
-            color: #fff;
-            border: none;
-            padding: 16px 20px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 8px;
-            width: 100%;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .submit-btn:hover { background-color: #c81625; }
-
-        /* --- Footer --- */
-        .footer { 
-            background-color: white;
-            border-top: 1px solid #eaeaea; 
-            padding: 40px 20px; 
-            box-sizing: border-box;
-            width: 100%;
-            font-size: 12px; 
-            color: #777; 
-            line-height: 1.6; 
-            text-align: center;
-            margin-top: auto;
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .form-row { grid-template-columns: 1fr; gap: 0; }
-            .form-container { padding: 25px 20px; }
-            .page-header { padding: 15px 20px; }
-            .header-subtitle { font-size: 20px; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Page Header (New Portal Header Theme) -->
-    <div class="page-header">
-        <p class="header-title">Portal Servis</p>
-        <h1 class="header-subtitle">BORANG PENDAFTARAN TAKAFUL</h1>
-        <img src="company_logo.JPG" alt="PruBSN Takaful Logo" class="logo" onerror="this.style.display='none'">
-    </div>
-
-    <div class="container">
-        <div class="form-container">
-            <form id="takafulForm" onsubmit="submitToWhatsApp(event)">
-                
-                <div class="note-box">
-                    <i class="fas fa-info-circle"></i> Sila lengkapkan butiran di bawah dengan tepat untuk melancarkan proses permohonan Takaful anda.
-                </div>
-
-                <!-- MAKLUMAT PERIBADI -->
-                <div class="section-title">1. Maklumat Peribadi</div>
-                <div class="form-group">
-                    <label>Nama Penuh (Seperti dalam MyKad) <span style="color: var(--pru-red)">*</span></label>
-                    <input type="text" id="nama" required>
-                </div>
-
-                <div class="form-group">
-                    <label>No. IC <span style="color: var(--pru-red)">*</span></label>
-                    <input type="text" id="ic" required placeholder="Contoh: 090724-14-2784">
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Tarikh Lahir <span style="color: var(--pru-red)">*</span></label>
-                        <input type="date" id="tarikh_lahir" required>
-                    </div>
-                    <div class="form-group">
-                        <label>No. Telefon <span style="color: var(--pru-red)">*</span></label>
-                        <input type="tel" id="no_tel" required placeholder="Contoh: 0123456789">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Emel <span style="color: var(--pru-red)">*</span></label>
-                    <input type="email" id="emel" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Alamat Rumah <span style="color: var(--pru-red)">*</span></label>
-                    <textarea id="alamat" required></textarea>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Warganegara <span style="color: var(--pru-red)">*</span></label>
-                        <select id="warganegara" required>
-                            <option value="" disabled selected>Sila Pilih...</option>
-                            <option value="Malaysia">Malaysia</option>
-                            <option value="Penduduk Tetap">Penduduk Tetap</option>
-                            <option value="Bukan Warganegara">Bukan Warganegara</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Agama <span style="color: var(--pru-red)">*</span></label>
-                        <select id="agama" required>
-                            <option value="" disabled selected>Sila Pilih...</option>
-                            <option value="Islam">Islam</option>
-                            <option value="Buddhist">Buddhist</option>
-                            <option value="Hindu">Hindu</option>
-                            <option value="Kristian">Kristian</option>
-                            <option value="Lain-lain">Lain-lain</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Tinggi (cm) <span style="color: var(--pru-red)">*</span></label>
-                        <input type="number" id="tinggi" required placeholder="Contoh: 170">
-                    </div>
-                    <div class="form-group">
-                        <label>Berat (kg) <span style="color: var(--pru-red)">*</span></label>
-                        <input type="number" id="berat" required placeholder="Contoh: 70">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Status Merokok <span style="color: var(--pru-red)">*</span></label>
-                    <select id="merokok" required onchange="updateMerokokFields()">
-                        <option value="" disabled selected>Sila Pilih...</option>
-                        <option value="Merokok">Merokok</option>
-                        <option value="Tidak Merokok">Tidak Merokok</option>
-                    </select>
-                </div>
-
-                <!-- Butiran Merokok (Hanya Muncul Jika "Merokok") -->
-                <div id="merokok_details_section" class="sub-section-box" style="display: none;">
-                    <div class="form-group">
-                        <label>Rokok / Vape? <span style="color: var(--pru-red)">*</span></label>
-                        <select id="jenis_merokok" onchange="updateJenisMerokokFields()">
-                            <option value="" disabled selected>Sila Pilih...</option>
-                            <option value="Rokok">Rokok</option>
-                            <option value="Vape">Vape</option>
-                        </select>
-                    </div>
-
-                    <!-- Jika Rokok -->
-                    <div id="rokok_details" class="form-row" style="display: none;">
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Berapa batang sehari? <span style="color: var(--pru-red)">*</span></label>
-                            <input type="number" id="bilangan_rokok" min="1" placeholder="Contoh: 10">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Sudah berapa tahun anda merokok? <span style="color: var(--pru-red)">*</span></label>
-                            <input type="number" id="tahun_merokok" min="1" placeholder="Contoh: 5">
-                        </div>
-                    </div>
-
-                    <!-- Jika Vape -->
-                    <div id="vape_details" style="display: none;">
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Sudah berapa tahun vape? <span style="color: var(--pru-red)">*</span></label>
-                            <input type="number" id="tahun_vape" min="1" placeholder="Contoh: 3">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MAKLUMAT PEKERJAAN -->
-                <div class="section-title">2. Maklumat Pekerjaan</div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Nama Majikan / Syarikat <span style="color: var(--pru-red)">*</span></label>
-                        <input type="text" id="majikan" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Jawatan <span style="color: var(--pru-red)">*</span></label>
-                        <input type="text" id="jawatan" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Keterangan Ringkas Pekerjaan <span style="color: var(--pru-red)">*</span></label>
-                    <textarea id="keterangan_kerja" required placeholder="Contoh: Membuat kerja-kerja admin di pejabat..."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Alamat Majikan <span style="color: var(--pru-red)">*</span></label>
-                    <textarea id="alamat_majikan" required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Pendapatan Tahunan (RM) <span style="color: var(--pru-red)">*</span></label>
-                    <input type="number" id="pendapatan" required placeholder="Contoh: 45000">
-                </div>
-
-                <!-- MAKLUMAT BANK & PEMBAYARAN -->
-                <div class="section-title">3. Maklumat Kewangan & Pembayaran</div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Nama Bank (Untuk tujuan tuntutan) <span style="color: var(--pru-red)">*</span></label>
-                        <input type="text" id="nama_bank" required placeholder="Contoh: Maybank">
-                    </div>
-                    <div class="form-group">
-                        <label>No. Akaun Bank <span style="color: var(--pru-red)">*</span></label>
-                        <input type="text" id="no_akaun" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Jenis Akaun <span style="color: var(--pru-red)">*</span></label>
-                        <select id="jenis_akaun" required>
-                            <option value="" disabled selected>Sila Pilih...</option>
-                            <option value="Islamik">Islamik</option>
-                            <option value="Konvensional">Konvensional</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Cara Bayaran Sumbangan Bulanan <span style="color: var(--pru-red)">*</span></label>
-                        <select id="cara_bayaran" required>
-                            <option value="" disabled selected>Sila Pilih...</option>
-                            <option value="Autodebit Akaun">Autodebit Akaun</option>
-                            <option value="Kad Debit">Kad Debit</option>
-                            <option value="Kad Kredit">Kad Kredit</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- MAKLUMAT PENAMA -->
-                <div class="section-title">4. Maklumat Penama / Pewaris</div>
-                
-                <div class="form-group">
-                    <label>Berapa Orang Penama? <span style="color: var(--pru-red)">*</span></label>
-                    <select id="bilangan_penama" required onchange="updateNomineeFields()">
-                        <option value="1">1 Penama (100%)</option>
-                        <option value="2">2 Penama</option>
-                        <option value="3">3 Penama</option>
-                    </select>
-                </div>
-
-                <!-- PENAMA 1 -->
-                <div id="nominee_1_section" class="sub-section-box">
-                    <h4 class="sub-title">Penama 1</h4>
-                    <div class="form-row">
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Nama Penama <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="penama_1" required>
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Hubungan <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="hubungan_penama_1" required placeholder="Contoh: Isteri / Suami / Anak">
-                        </div>
-                    </div>
-                    <div class="form-group" style="margin-top: 20px;">
-                        <label>Peratusan (%) <span style="color: var(--pru-red)">*</span></label>
-                        <input type="number" id="peratus_penama_1" required min="1" max="100" value="100" placeholder="Contoh: 100">
-                    </div>
-                </div>
-
-                <!-- PENAMA 2 -->
-                <div id="nominee_2_section" class="sub-section-box" style="display: none;">
-                    <h4 class="sub-title">Penama 2</h4>
-                    <div class="form-row">
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Nama Penama <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="penama_2">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Hubungan <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="hubungan_penama_2" placeholder="Contoh: Isteri / Suami / Anak">
-                        </div>
-                    </div>
-                    <div class="form-group" style="margin-top: 20px;">
-                        <label>Peratusan (%) <span style="color: var(--pru-red)">*</span></label>
-                        <input type="number" id="peratus_penama_2" min="1" max="100" placeholder="Contoh: 50">
-                    </div>
-                </div>
-
-                <!-- PENAMA 3 -->
-                <div id="nominee_3_section" class="sub-section-box" style="display: none;">
-                    <h4 class="sub-title">Penama 3</h4>
-                    <div class="form-row">
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Nama Penama <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="penama_3">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label>Hubungan <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="hubungan_penama_3" placeholder="Contoh: Isteri / Suami / Anak">
-                        </div>
-                    </div>
-                    <div class="form-group" style="margin-top: 20px;">
-                        <label>Peratusan (%) <span style="color: var(--pru-red)">*</span></label>
-                        <input type="number" id="peratus_penama_3" min="1" max="100" placeholder="Contoh: 30">
-                    </div>
-                </div>
-
-                <!-- REKOD KESIHATAN -->
-                <div class="section-title">5. Rekod Kesihatan & Kemasukan Wad</div>
-                <div class="note-box teal-note">
-                    <i class="fas fa-info-circle"></i> Pilih "Tiada" jika anda tidak mempunyai sebarang rekod penyakit atau kemasukan ke wad sebelum ini.
-                </div>
-                
-                <div class="form-group">
-                    <label>Jumlah Rekod untuk Diisytiharkan <span style="color: var(--pru-red)">*</span></label>
-                    <select id="bilangan_rekod" required onchange="updateHealthFields()">
-                        <option value="0">Tiada</option>
-                        <option value="1">1 Rekod</option>
-                        <option value="2">2 Rekod</option>
-                        <option value="3">3 Rekod</option>
-                    </select>
-                </div>
-
-                <!-- REKOD KESIHATAN 1 -->
-                <div id="rekod_1_section" class="sub-section-box" style="display: none;">
-                    <h4 class="sub-title">Rekod Kesihatan 1</h4>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Penyakit Dihidapi <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="penyakit_1">
-                        </div>
-                        <div class="form-group">
-                            <label>Bulan/Tahun Disahkan <span style="color: var(--pru-red)">*</span></label>
-                            <input type="month" id="tarikh_penyakit_1">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Diwadkan di hospital mana? <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="hospital_1">
-                        </div>
-                        <div class="form-group">
-                            <label>Berapa hari di dalam wad? <span style="color: var(--pru-red)">*</span></label>
-                            <input type="number" id="hari_wad_1">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan) <span style="color: var(--pru-red)">*</span></label>
-                        <textarea id="jenis_rawatan_1" placeholder="Contoh: Makan ubat darah tinggi setiap hari / Pembedahan membuang apendiks pada tahun 2020..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Status Terkini <span style="color: var(--pru-red)">*</span></label>
-                        <select id="status_pulih_1">
-                            <option value="" disabled selected>Sila Pilih...</option>
-                            <option value="Sudah pulih sepenuhnya">Sudah pulih sepenuhnya</option>
-                            <option value="Masih mendapatkan rawatan susulan">Masih mendapatkan rawatan susulan</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- REKOD KESIHATAN 2 -->
-                <div id="rekod_2_section" class="sub-section-box" style="display: none;">
-                    <h4 class="sub-title">Rekod Kesihatan 2</h4>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Penyakit Dihidapi <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="penyakit_2">
-                        </div>
-                        <div class="form-group">
-                            <label>Bulan/Tahun Disahkan <span style="color: var(--pru-red)">*</span></label>
-                            <input type="month" id="tarikh_penyakit_2">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Diwadkan di hospital mana? <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="hospital_2">
-                        </div>
-                        <div class="form-group">
-                            <label>Berapa hari di dalam wad? <span style="color: var(--pru-red)">*</span></label>
-                            <input type="number" id="hari_wad_2">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan) <span style="color: var(--pru-red)">*</span></label>
-                        <textarea id="jenis_rawatan_2" placeholder="Contoh: Makan ubat mengikut preskripsi doktor..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Status Terkini <span style="color: var(--pru-red)">*</span></label>
-                        <select id="status_pulih_2">
-                            <option value="" disabled selected>Sila Pilih...</option>
-                            <option value="Sudah pulih sepenuhnya">Sudah pulih sepenuhnya</option>
-                            <option value="Masih mendapatkan rawatan susulan">Masih mendapatkan rawatan susulan</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- REKOD KESIHATAN 3 -->
-                <div id="rekod_3_section" class="sub-section-box" style="display: none;">
-                    <h4 class="sub-title">Rekod Kesihatan 3</h4>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Penyakit Dihidapi <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="penyakit_3">
-                        </div>
-                        <div class="form-group">
-                            <label>Bulan/Tahun Disahkan <span style="color: var(--pru-red)">*</span></label>
-                            <input type="month" id="tarikh_penyakit_3">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Diwadkan di hospital mana? <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="hospital_3">
-                        </div>
-                        <div class="form-group">
-                            <label>Berapa hari di dalam wad? <span style="color: var(--pru-red)">*</span></label>
-                            <input type="number" id="hari_wad_3">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan) <span style="color: var(--pru-red)">*</span></label>
-                        <textarea id="jenis_rawatan_3" placeholder="Contoh: Rawatan susulan fisioterapi..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Status Terkini <span style="color: var(--pru-red)">*</span></label>
-                        <select id="status_pulih_3">
-                            <option value="" disabled selected>Sila Pilih...</option>
-                            <option value="Sudah pulih sepenuhnya">Sudah pulih sepenuhnya</option>
-                            <option value="Masih mendapatkan rawatan susulan">Masih mendapatkan rawatan susulan</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- SEJARAH KESIHATAN KELUARGA -->
-                <div class="section-title">6. Sejarah Kesihatan Keluarga (Penyakit Keturunan)</div>
-                <div class="form-group">
-                    <label class="long-label">Adakah dikalangan keluarga terdekat (ibu, ayah atau adik-beradik kandung) disahkan menghidapi penyakit keturunan atau penyakit kritikal (contoh: darah tinggi, kencing manis, kegagalan buah pinggang, serangan jantung, kanser atau lain-lain)? Jika ada, sila nyatakan di bawah.</label>
-                    <textarea id="sejarah_keluarga" placeholder="Contoh: Bapa - Kencing Manis, Ibu - Darah Tinggi. (Tulis 'Tiada' jika tidak berkaitan)"></textarea>
-                </div>
-
-                <!-- SEJARAH COVID-19 -->
-                <div class="section-title">7. Sejarah COVID-19</div>
-                
-                <div class="form-group">
-                    <label>Pernahkah anda disahkan positif COVID-19? <span style="color: var(--pru-red)">*</span></label>
-                    <select id="positif_covid" required onchange="updateCovidFields()">
-                        <option value="" disabled selected>Sila Pilih...</option>
-                        <option value="Ya">Ya</option>
-                        <option value="Tidak">Tidak</option>
-                    </select>
-                </div>
-
-                <!-- Kandungan Lanjut COVID (Hanya Muncul Jika Pilih "Ya") -->
-                <div id="covid_details_section" class="sub-section-box" style="display: none;">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Berapa kalikah anda disahkan positif COVID-19? <span style="color: var(--pru-red)">*</span></label>
-                            <input type="number" id="kekerapan_covid" min="1" placeholder="Contoh: 2">
-                        </div>
-                        <div class="form-group">
-                            <label>Bulan/Tahun disahkan positif (BB/TTTT) <span style="color: var(--pru-red)">*</span></label>
-                            <input type="text" id="tarikh_covid" placeholder="Contoh: 08/2021" maxlength="7">
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Tahap COVID-19? <span style="color: var(--pru-red)">*</span></label>
-                            <select id="tahap_covid">
-                                <option value="" disabled selected>Sila Pilih...</option>
-                                <option value="Tahap 1">1</option>
-                                <option value="Tahap 2">2</option>
-                                <option value="Tahap 3">3</option>
-                                <option value="Tahap 4">4</option>
-                                <option value="Tahap 5">5</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Pernah masuk hospital untuk sebab ini? <span style="color: var(--pru-red)">*</span></label>
-                            <select id="masuk_hospital_covid" onchange="updateCovidHospitalFields()">
-                                <option value="" disabled selected>Sila Pilih...</option>
-                                <option value="Ya">Ya</option>
-                                <option value="Tidak">Tidak</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="rawatan_covid_section" style="display: none;">
-                        <label>Jika Ya, apakah rawatan yang telah dijalankan? <span style="color: var(--pru-red)">*</span></label>
-                        <select id="rawatan_covid">
-                            <option value="" disabled selected>Sila Pilih...</option>
-                            <option value="Bantuan Alat Pernafasan">Bantuan Alat Pernafasan</option>
-                            <option value="HDU / ICU / ITU / CCU">HDU, ICU, ITU, CCU</option>
-                            <option value="Ubat Anti-Viral">Ubat Anti-Viral</option>
-                            <option value="Kuarantin di Wad atau Pusat Kuarantin">Kuarantin di Wad atau Pusat Kuarantin</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Adakah anda sedang mengalami sebarang kondisi sekarang disebabkan oleh COVID-19? <span style="color: var(--pru-red)">*</span></label>
-                        <textarea id="kondisi_semasa_covid" placeholder="Contoh: Kerap sesak nafas. (Tulis 'Tiada' jika tidak berkaitan)"></textarea>
-                    </div>
-                </div>
-
-                <!-- DOKUMEN SOKONGAN -->
-                <div class="section-title">8. Dokumen Sokongan</div>
-                <div class="document-checklist">
-                    <p><i class="fas fa-camera"></i> ARAHAN PENTING:</p>
-                    Sebagai pengesahan keselamatan identiti, sila sediakan gambar-gambar berikut untuk dihantar <strong>di dalam ruang chat WhatsApp</strong> selepas anda menekan butang Hantar di bawah:
-                    <ul>
-                        <li>Gambar MyKad (Muka Depan)</li>
-                        <li>Gambar MyKad (Muka Belakang)</li>
-                        <li>Gambar Selfie anda memegang MyKad</li>
-                    </ul>
-                    
-                    <div class="ekyc-note">
-                        <strong>*Nota:</strong> Langkah penyerahan gambar MyKad dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori <strong>eKYC (Electronic Know Your Customer)</strong> bagi tujuan pengesahan identiti secara digital yang selamat dan sah di sisi undang-undang.
-                        <br>
-                        <a href="https://www.bnm.gov.my/-/electronic-know-your-customer-e-kyc-" target="_blank" rel="noopener noreferrer">
-                            &rarr; Ketahui lebih lanjut mengenai polisi eKYC di portal rasmi Bank Negara Malaysia (BNM)
-                        </a>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn">
-                    Hantar Permohonan Melalui WhatsApp <i class="fab fa-whatsapp" style="font-size: 18px; margin-left: 5px;"></i>
-                </button>
-            </form>
-        </div>
-    </div>
-    
-    <!-- Footer (Formal Styled) -->
-    <div class="footer">
-        <p>&copy; 2026 Fairuz Samsuddin. Hak Cipta Terpelihara.<br>
-        Pengantara Takaful Berdaftar dengan Prudential BSN Takaful Berhad.</p>
-    </div>
-
-    <!-- SCRIPT (Identical functionality + newly added Tarikh field support) -->
+    <!-- Tailwind CSS via CDN for standalone file -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Auto-fill Tarikh Lahir from No. IC
-        document.getElementById('ic').addEventListener('input', function(e) {
-            let icVal = e.target.value.replace(/\D/g, '');
-            if (icVal.length >= 6) {
-                let yy = icVal.substring(0, 2);
-                let mm = icVal.substring(2, 4);
-                let dd = icVal.substring(4, 6);
-
-                if (parseInt(mm) > 0 && parseInt(mm) <= 12 && parseInt(dd) > 0 && parseInt(dd) <= 31) {
-                    let currentYear = new Date().getFullYear();
-                    let currentTwoDigitYear = currentYear % 100;
-                    let numYy = parseInt(yy);
-                    
-                    let fullYear = (numYy <= currentTwoDigitYear) ? (2000 + numYy) : (1900 + numYy);
-                    let formattedDate = `${fullYear}-${mm}-${dd}`;
-                    
-                    document.getElementById('tarikh_lahir').value = formattedDate;
-                }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              background: '#ffffff',
+              foreground: '#0f172a',
+              primary: { DEFAULT: '#ea2227', foreground: '#ffffff', glow: '#ef4444', 10: 'rgba(234, 34, 39, 0.1)' },
+              turquoise: { DEFAULT: '#0d9488', soft: '#ccfbf1', foreground: '#ffffff', 15: 'rgba(13, 148, 136, 0.15)' },
+              muted: { DEFAULT: '#f1f5f9', foreground: '#64748b' },
+              border: '#e2e8f0',
+              card: { DEFAULT: '#ffffff', foreground: '#0f172a' },
+              secondary: { DEFAULT: '#f8fafc' },
+              accent: { DEFAULT: '#f1f5f9', foreground: '#0f172a' }
             }
-        });
-
-        // Dynamic Merokok Fields
-        function updateMerokokFields() {
-            const isMerokok = document.getElementById('merokok').value === 'Merokok';
-            const section = document.getElementById('merokok_details_section');
-            const jenisField = document.getElementById('jenis_merokok');
-
-            if (isMerokok) {
-                section.style.display = 'block';
-                jenisField.required = true;
-            } else {
-                section.style.display = 'none';
-                jenisField.required = false;
-                jenisField.value = '';
-                updateJenisMerokokFields(); // Reset sub-fields
-            }
+          }
         }
-
-        function updateJenisMerokokFields() {
-            const jenis = document.getElementById('jenis_merokok').value;
-            const rokokSection = document.getElementById('rokok_details');
-            const vapeSection = document.getElementById('vape_details');
-            
-            const bilRokok = document.getElementById('bilangan_rokok');
-            const tahunRokok = document.getElementById('tahun_merokok');
-            const tahunVape = document.getElementById('tahun_vape');
-
-            if (jenis === 'Rokok') {
-                rokokSection.style.display = 'grid'; // Grid untuk .form-row
-                vapeSection.style.display = 'none';
-                bilRokok.required = true;
-                tahunRokok.required = true;
-                
-                tahunVape.required = false;
-                tahunVape.value = '';
-            } else if (jenis === 'Vape') {
-                vapeSection.style.display = 'block';
-                rokokSection.style.display = 'none';
-                tahunVape.required = true;
-                
-                bilRokok.required = false;
-                bilRokok.value = '';
-                tahunRokok.required = false;
-                tahunRokok.value = '';
-            } else {
-                rokokSection.style.display = 'none';
-                vapeSection.style.display = 'none';
-                bilRokok.required = false; bilRokok.value = '';
-                tahunRokok.required = false; tahunRokok.value = '';
-                tahunVape.required = false; tahunVape.value = '';
-            }
-        }
-
-        // Auto-format Tarikh COVID-19 untuk letak slash "/" (BB/TTTT)
-        document.getElementById('tarikh_covid').addEventListener('input', function(e) {
-            let val = e.target.value.replace(/\D/g, '');
-            if (val.length > 2) {
-                val = val.substring(0, 2) + '/' + val.substring(2, 6);
-            }
-            e.target.value = val;
-        });
-
-        // Dynamic Nominee Fields Toggler
-        function updateNomineeFields() {
-            const count = parseInt(document.getElementById('bilangan_penama').value);
-            
-            for (let i = 2; i <= 3; i++) {
-                const section = document.getElementById(`nominee_${i}_section`);
-                const p = document.getElementById(`penama_${i}`);
-                const h = document.getElementById(`hubungan_penama_${i}`);
-                const pct = document.getElementById(`peratus_penama_${i}`);
-                
-                if (count >= i) {
-                    section.style.display = 'block';
-                    p.required = true; h.required = true; pct.required = true;
-                } else {
-                    section.style.display = 'none';
-                    p.required = false; h.required = false; pct.required = false;
-                    p.value = ''; h.value = ''; pct.value = '';
-                }
-            }
-
-            if(count === 1) {
-                document.getElementById('peratus_penama_1').value = "100";
-            } else {
-                document.getElementById('peratus_penama_1').value = ""; 
-            }
-        }
-
-        // Dynamic Health Records Toggler
-        function updateHealthFields() {
-            const count = parseInt(document.getElementById('bilangan_rekod').value);
-            
-            for (let i = 1; i <= 3; i++) {
-                const section = document.getElementById(`rekod_${i}_section`);
-                const p = document.getElementById(`penyakit_${i}`);
-                const tp = document.getElementById(`tarikh_penyakit_${i}`);
-                const h = document.getElementById(`hospital_${i}`);
-                const hw = document.getElementById(`hari_wad_${i}`);
-                const jr = document.getElementById(`jenis_rawatan_${i}`);
-                const sp = document.getElementById(`status_pulih_${i}`);
-                
-                if (count >= i) {
-                    section.style.display = 'block';
-                    p.required = true; tp.required = true; h.required = true; hw.required = true; jr.required = true; sp.required = true;
-                } else {
-                    section.style.display = 'none';
-                    p.required = false; tp.required = false; h.required = false; hw.required = false; jr.required = false; sp.required = false;
-                    p.value = ''; tp.value = ''; h.value = ''; hw.value = ''; jr.value = ''; sp.value = '';
-                }
-            }
-        }
-
-        // Dynamic COVID-19 Fields Toggler
-        function updateCovidFields() {
-            const isPositif = document.getElementById('positif_covid').value === 'Ya';
-            const section = document.getElementById('covid_details_section');
-            const requiredFields = ['kekerapan_covid', 'tarikh_covid', 'tahap_covid', 'masuk_hospital_covid', 'kondisi_semasa_covid'];
-            
-            if (isPositif) {
-                section.style.display = 'block';
-                requiredFields.forEach(id => document.getElementById(id).required = true);
-            } else {
-                section.style.display = 'none';
-                requiredFields.forEach(id => {
-                    const el = document.getElementById(id);
-                    el.required = false;
-                    el.value = '';
-                });
-                document.getElementById('rawatan_covid').required = false;
-                document.getElementById('rawatan_covid').value = '';
-                document.getElementById('rawatan_covid_section').style.display = 'none';
-            }
-        }
-
-        function updateCovidHospitalFields() {
-            const isHospital = document.getElementById('masuk_hospital_covid').value === 'Ya';
-            const section = document.getElementById('rawatan_covid_section');
-            const field = document.getElementById('rawatan_covid');
-
-            if (isHospital) {
-                section.style.display = 'block';
-                field.required = true;
-            } else {
-                section.style.display = 'none';
-                field.required = false;
-                field.value = '';
-            }
-        }
-
-        function submitToWhatsApp(event) {
-            event.preventDefault();
-
-            // Validate Nominee Percentages First
-            const nomineeCount = parseInt(document.getElementById('bilangan_penama').value);
-            let totalPercentage = parseInt(document.getElementById('peratus_penama_1').value) || 0;
-            
-            if (nomineeCount >= 2) totalPercentage += parseInt(document.getElementById('peratus_penama_2').value) || 0;
-            if (nomineeCount >= 3) totalPercentage += parseInt(document.getElementById('peratus_penama_3').value) || 0;
-
-            if (totalPercentage !== 100) {
-                alert(`Jumlah peratusan penama mestilah genap 100%. (Jumlah sekarang: ${totalPercentage}%). Sila periksa semula.`);
-                return;
-            }
-
-            // GANTI NOMBOR TELEFON ANDA DI SINI
-            const agentPhone = "60176213432"; 
-
-            const val = (id) => document.getElementById(id).value || "Tiada/Tidak Berkaitan";
-
-            const nama = val("nama");
-            const tarikhLahir = val("tarikh_lahir");
-            const noTel = val("no_tel");
-            const emel = val("emel");
-            const alamat = val("alamat");
-            const warganegara = val("warganegara");
-            const agama = val("agama");
-            const tinggi = val("tinggi");
-            const berat = val("berat");
-            
-            // Smoking Details Builder
-            const merokokStatus = val("merokok");
-            let merokokDetails = merokokStatus;
-            
-            if (merokokStatus === "Merokok") {
-                const jenisMerokok = val("jenis_merokok");
-                if (jenisMerokok === "Rokok") {
-                    merokokDetails += ` (Jenis: Rokok | Kuantiti: ${val("bilangan_rokok")} batang/hari | Tempoh: ${val("tahun_merokok")} tahun)`;
-                } else if (jenisMerokok === "Vape") {
-                    merokokDetails += ` (Jenis: Vape | Tempoh: ${val("tahun_vape")} tahun)`;
-                }
-            }
-
-            const majikan = val("majikan");
-            const jawatan = val("jawatan");
-            const ketKerja = val("keterangan_kerja");
-            const alamatMajikan = val("alamat_majikan");
-            const pendapatan = val("pendapatan");
-
-            const namaBank = val("nama_bank");
-            const noAkaun = val("no_akaun");
-            const jenisAkaun = val("jenis_akaun");
-            const caraBayaran = val("cara_bayaran");
-
-            // Build Dynamic Nominee String
-            let penamaDetails = `Bilangan Penama: ${nomineeCount}\n`;
-            penamaDetails += `[Penama 1] Nama: ${val("penama_1")} | Hubungan: ${val("hubungan_penama_1")} | Bahagian: ${val("peratus_penama_1")}%\n`;
-            if (nomineeCount >= 2) {
-                penamaDetails += `[Penama 2] Nama: ${val("penama_2")} | Hubungan: ${val("hubungan_penama_2")} | Bahagian: ${val("peratus_penama_2")}%\n`;
-            }
-            if (nomineeCount >= 3) {
-                penamaDetails += `[Penama 3] Nama: ${val("penama_3")} | Hubungan: ${val("hubungan_penama_3")} | Bahagian: ${val("peratus_penama_3")}%\n`;
-            }
-
-            // Build Dynamic Health Record String
-            const healthCount = parseInt(document.getElementById('bilangan_rekod').value);
-            let healthDetails = `Jumlah Rekod: ${healthCount === 0 ? 'Tiada' : healthCount}\n`;
-            
-            if (healthCount > 0) {
-                for (let i = 1; i <= healthCount; i++) {
-                    healthDetails += `\n[Rekod ${i}]\n`;
-                    healthDetails += `Penyakit: ${val(`penyakit_${i}`)}\n`;
-                    healthDetails += `Bulan/Tahun Disahkan: ${val(`tarikh_penyakit_${i}`)}\n`;
-                    healthDetails += `Hospital Dirawat: ${val(`hospital_${i}`)}\n`;
-                    healthDetails += `Jumlah Hari Diwadkan: ${val(`hari_wad_${i}`)}\n`;
-                    healthDetails += `Jenis Rawatan: ${val(`jenis_rawatan_${i}`)}\n`;
-                    healthDetails += `Status Terkini: ${val(`status_pulih_${i}`)}\n`;
-                }
-            }
-
-            const sejarahKeluarga = val("sejarah_keluarga");
-
-            // Build Dynamic COVID-19 Record String
-            const positifCovid = val("positif_covid");
-            let covidDetails = `Pernah positif COVID-19: ${positifCovid}\n`;
-            
-            if (positifCovid === "Ya") {
-                covidDetails += `Kekerapan Positif: ${val("kekerapan_covid")} kali\n`;
-                covidDetails += `Bulan/Tahun Positif (BB/TTTT): ${val("tarikh_covid")}\n`;
-                covidDetails += `Tahap: ${val("tahap_covid")}\n`;
-                covidDetails += `Dimasukkan ke Hospital: ${val("masuk_hospital_covid")}\n`;
-                
-                if (val("masuk_hospital_covid") === "Ya") {
-                    covidDetails += `Rawatan Diterima: ${val("rawatan_covid")}\n`;
-                }
-                
-                covidDetails += `Kondisi Semasa akibat COVID-19: ${val("kondisi_semasa_covid")}\n`;
-            }
-
-            // Construct Message
-            const whatsappMessage = `*PERMOHONAN PRUBSN - REMOTE ENROLLMENT*
-
-*1. MAKLUMAT PERIBADI*
-Nama: ${nama}
-Tarikh Lahir: ${tarikhLahir}
-No. Tel: ${noTel}
-Emel: ${emel}
-Alamat: ${alamat}
-Warganegara: ${warganegara}
-Agama: ${agama}
-Tinggi: ${tinggi} cm
-Berat: ${berat} kg
-Status Merokok: ${merokokDetails}
-
-*2. MAKLUMAT PEKERJAAN*
-Majikan: ${majikan}
-Jawatan: ${jawatan}
-Deskripsi Tugas: ${ketKerja}
-Alamat Majikan: ${alamatMajikan}
-Pendapatan Tahunan: RM ${pendapatan}
-
-*3. MAKLUMAT BANK & BAYARAN*
-Nama Bank (Tuntutan): ${namaBank}
-No. Akaun: ${noAkaun}
-Jenis Akaun: ${jenisAkaun}
-Cara Bayaran Bulanan: ${caraBayaran}
-
-*4. MAKLUMAT PENAMA*
-${penamaDetails}
-*5. REKOD KESIHATAN*
-${healthDetails}
-*6. SEJARAH KESIHATAN KELUARGA*
-Rekod / Penyakit Keturunan: ${sejarahKeluarga}
-
-*7. SEJARAH COVID-19*
-${covidDetails}
-*8. DOKUMEN*
-_Sila lampirkan MyKad (Depan, Belakang & Selfie sambil memegang MyKad) di dalam chat ini untuk tujuan pengesahan eKYC._`;
-
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappLink = `https://wa.me/${agentPhone}?text=${encodedMessage}`;
-            window.open(whatsappLink, '_blank');
-        }
+      }
     </script>
-</body>
+    
+    <!-- Custom Styles -->
+    <style>
+      :root {
+        --shadow-elegant: 0 10px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        --shadow-soft: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        --shadow-glow-turquoise: 0 0 25px rgba(13, 148, 136, 0.3);
+        --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        --gradient-hero: linear-gradient(135deg, #b91c1c 0%, #ea2227 100%);
+        --gradient-turquoise: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+      }
+      .scrollbar-none::-webkit-scrollbar { display: none; }
+      .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+      .fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary relative">
+    <main>
+      <div id="top"></div>
+      
+      <!-- Hero Section -->
+      <section class="relative overflow-hidden bg-gradient-to-b from-secondary/80 via-background to-background pt-8">
+        <div aria-hidden="true" class="pointer-events-none absolute -left-24 -top-24 hidden h-96 w-96 rounded-full bg-primary/10 blur-[80px] md:block"></div>
+        <div aria-hidden="true" class="pointer-events-none absolute -right-24 top-32 hidden h-96 w-96 rounded-full bg-turquoise/15 blur-[80px] md:block"></div>
+        
+        <div class="mx-auto max-w-3xl px-6 py-24 landscape:py-12 lg:landscape:py-32 text-center md:px-6 md:py-32 transition-all">
+          <h1 class="text-4xl font-extrabold leading-[1.15] tracking-tight text-foreground md:text-5xl">
+            Portal Servis <span class="text-primary">PruBSN Takaful</span>
+          </h1>
+          <p class="mx-auto mt-6 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
+            Semak tempoh menunggu (waiting period), bantuan tuntutan dan khidmat sijil takaful/polisi dalam satu tempat.
+          </p>
+          <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a href="#waiting-period" class="inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer transition-transform hover:scale-[1.02] bg-primary text-white hover:bg-primary/90 h-12 rounded-full px-8 text-sm font-semibold shadow-[var(--shadow-elegant)]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 mr-1">
+                <rect width="16" height="20" x="4" y="2" rx="2"></rect>
+                <line x1="8" x2="16" y1="6" y2="6"></line>
+                <line x1="16" x2="16" y1="14" y2="18"></line>
+                <path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path>
+              </svg>
+              Semak tempoh menunggu (waiting period)
+            </a>
+            <a href="https://wa.me/60176213432?text=Hi%20Fairuz%2C%20saya%20ingin%20mendapatkan%20konsultasi%20takaful%20dan%20semakan%20tempoh%20menunggu%20(waiting%20period)." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer transition-colors border shadow-sm h-12 rounded-full border-turquoise/40 bg-turquoise-soft px-8 text-sm font-semibold text-turquoise hover:bg-turquoise hover:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 mr-1">
+                <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+              </svg>
+              WhatsApp Saya
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <nav class="sticky top-0 z-40 bg-white shadow-sm transition-all border-b border-border/60">
+        <div class="mx-auto flex max-w-6xl flex-col px-4 pt-3 pb-2">
+          <!-- Top Row -->
+          <div class="flex w-full items-center justify-between pb-3 border-b border-gray-100">
+            <a href="#top" class="flex items-center gap-3" aria-label="Top">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-white shadow-sm">
+                <!-- Headset Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                  <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                  <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                </svg>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-[15px] font-black uppercase tracking-tight text-primary leading-none">FAIRUZ SERVICES</span>
+                <span class="mt-1 text-[11px] font-medium text-gray-500 leading-none">by Fairuz Samsuddin</span>
+              </div>
+            </a>
+            <a href="https://wa.me/60176213432?text=Hi%20Fairuz%2C%20saya%20ingin%20mendapatkan%20konsultasi%20takaful%20dan%20semakan%20tempoh%20menunggu%20(waiting%20period)." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 rounded-full bg-primary px-4 py-1.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-primary/90">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+              </svg>
+              WhatsApp
+            </a>
+          </div>
+          
+          <!-- Bottom Row (Icons) -->
+          <div class="flex w-full items-center justify-around pt-3 pb-1">
+            <a href="#polisi-saya" aria-label="Sijil Takaful Saya" class="text-gray-400 hover:text-gray-700 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </a>
+            <a href="#admin-info" aria-label="Kenali Ejen" class="text-gray-400 hover:text-gray-700 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </a>
+            <a href="#perkhidmatan-polisi" aria-label="Perkhidmatan Polisi" class="text-gray-400 hover:text-gray-700 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path></svg>
+            </a>
+            <a href="#cara-claim" aria-label="Cara Claim" class="text-gray-400 hover:text-gray-700 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Sijil Takaful/Polisi Saya Section -->
+      <section id="polisi-saya" class="relative bg-background py-16 md:py-24 landscape:py-12 lg:landscape:py-24 transition-all">
+        <div class="mx-auto max-w-3xl px-4 md:px-6">
+          <div class="flex flex-col items-start gap-2">
+            <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+                <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"></path>
+                <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path>
+              </svg>
+              Simpanan Peribadi
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              Sijil Takaful/Polisi <span class="text-primary">Saya</span>
+            </h2>
+            <p class="text-sm text-muted-foreground md:text-base">
+              Simpan nombor sijil takaful/polisi dan tarikh sijil takaful/polisi aktif anda dalam peranti ini untuk rujukan yang lebih mudah pada masa akan datang.
+            </p>
+          </div>
+          <div class="border bg-card text-card-foreground mt-6 overflow-hidden rounded-3xl border-border/60 shadow-[var(--shadow-soft)]">
+            <div class="p-6 md:p-8">
+              <form id="form-polisi" class="space-y-5">
+                <div class="space-y-2">
+                  <label class="text-sm font-semibold text-gray-700" for="polisi-nama">Nama Pemegang Sijil Takaful/Polisi</label>
+                  <input type="text" id="polisi-nama" class="flex w-full border px-4 py-2 h-11 rounded-xl border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-sm transition-colors bg-gray-50/50" placeholder="Contoh: Abu Bakar" />
+                </div>
+                <div class="grid gap-5 md:grid-cols-2">
+                  <div class="space-y-2">
+                    <label class="text-sm font-semibold text-gray-700" for="polisi-no">Nombor Sijil Takaful/Polisi / Sijil</label>
+                    <input type="text" id="polisi-no" class="flex w-full border px-4 py-2 h-11 rounded-xl border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-sm transition-colors bg-gray-50/50" placeholder="Contoh: 12345678" />
+                  </div>
+                  <div class="space-y-2">
+                    <label class="text-sm font-semibold text-gray-700" for="polisi-tarikh">Tarikh Sijil Takaful/Polisi Mula</label>
+                    <input type="date" id="polisi-tarikh" class="flex w-full border px-4 py-2 h-11 rounded-xl border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-sm transition-colors bg-gray-50/50" />
+                  </div>
+                </div>
+                <button type="submit" class="w-full bg-primary text-white h-12 rounded-xl font-bold mt-2 shadow-[var(--shadow-elegant)] hover:bg-red-700 transition-colors">
+                  Simpan Maklumat Sijil Takaful/Polisi
+                </button>
+                <p class="text-xs text-gray-400 mt-3 text-center leading-relaxed">
+                  * Maklumat ini hanya disimpan dalam peramban peranti anda dan tidak dihantar ke pihak ketiga.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Waiting Period Section -->
+      <section id="waiting-period" class="relative bg-gradient-to-b from-background via-secondary/50 to-background py-20 md:py-28 landscape:py-12 lg:landscape:py-28 transition-all">
+        <div class="mx-auto max-w-6xl px-4 md:px-6">
+          <div class="flex flex-col items-start justify-between gap-3 md:flex-row md:items-end">
+            <div>
+              <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+                  <path d="M16 14v2.2l1.6 1"></path><path d="M16 2v4"></path>
+                  <path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"></path>
+                  <path d="M3 10h5"></path><path d="M8 2v4"></path><circle cx="16" cy="16" r="6"></circle>
+                </svg>
+                Kalkulator Interaktif
+              </div>
+              <h2 class="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                Semak Status tempoh menunggu (waiting period)
+              </h2>
+              <p class="mt-2 text-sm text-muted-foreground md:text-base">
+                Masukkan tarikh sijil takaful/polisi &amp; tarikh rawatan untuk semak kelayakan perlindungan.
+              </p>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              *Rujukan umum. Tertakluk kepada terma sijil takaful/polisi.
+            </p>
+          </div>
+          
+          <div class="border bg-card text-card-foreground mt-8 overflow-hidden rounded-3xl border-border/60 shadow-[var(--shadow-elegant)]">
+            <div class="grid gap-0 p-0 md:grid-cols-[380px_1fr] lg:grid-cols-[420px_1fr]">
+              <div class="space-y-5 px-6 sm:px-10 py-8 text-white relative flex flex-col justify-center box-border" style="background:var(--gradient-hero)">
+                <div class="absolute top-0 right-0 -mr-16 -mt-16 h-40 w-40 rounded-full border-4 border-white/10 opacity-50 pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 -ml-16 -mb-16 h-40 w-40 rounded-full border-4 border-white/10 opacity-50 pointer-events-none"></div>
+                
+                <div class="relative z-10">
+                  <p class="text-xs font-semibold uppercase tracking-wider text-white/70">Maklumat Sijil Takaful/Polisi</p>
+                  <p class="mt-1 text-lg font-semibold">Input Tarikh</p>
+                </div>
+                <div class="space-y-2 relative z-10 w-full max-w-[280px] sm:max-w-[320px]">
+                  <label class="block text-sm font-medium text-white/90" for="policy-date">Tarikh Sijil Takaful/Polisi Lulus (In-Force)</label>
+                  <input type="date" class="block w-full border px-3 py-2 text-base h-11 rounded-xl border-white/30 bg-white/95 text-gray-900 focus:outline-none focus:ring-2 focus:ring-white/50 box-border" id="policy-date" />
+                </div>
+                <div class="space-y-2 relative z-10 w-full max-w-[280px] sm:max-w-[320px]">
+                  <label class="block text-sm font-medium text-white/90" for="event-date">Tarikh Rawatan / Kejadian</label>
+                  <input type="date" class="block w-full border px-3 py-2 text-base h-11 rounded-xl border-white/30 bg-white/95 text-gray-900 focus:outline-none focus:ring-2 focus:ring-white/50 box-border" id="event-date" />
+                </div>
+                <div class="rounded-2xl border border-white/20 bg-white/10 p-4 text-xs leading-relaxed text-white backdrop-blur-md relative z-10 w-full max-w-[280px] sm:max-w-[320px] box-border">
+                  <div class="flex items-center gap-1.5 font-semibold text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                      <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
+                    </svg>
+                    Cara Guna
+                  </div>
+                  <p class="mt-1 opacity-90">Isi kedua-dua tarikh. Hasil akan dipaparkan secara automatik di panel maklumat.</p>
+                </div>
+              </div>
+              
+              <div class="bg-gray-50/50 p-6 md:p-7 flex items-center justify-center min-h-[300px] landscape:min-h-[250px]" id="calc-result-container">
+                <!-- Default State -->
+                <div class="flex flex-col items-center justify-center text-center max-w-sm fade-in">
+                  <div class="flex h-16 w-16 items-center justify-center rounded-full bg-gray-200/60 text-gray-400 mb-4 shadow-sm border border-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7">
+                      <circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>
+                    </svg>
+                  </div>
+                  <p class="text-sm font-medium text-gray-500">
+                    Sila isi tarikh untuk lihat kelayakan dan status perlindungan anda di sini.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Garis Masa Section -->
+      <section id="garis-masa" class="relative overflow-hidden bg-background py-20 md:py-28 landscape:py-12 lg:landscape:py-28 transition-all">
+        <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
+        <div class="mx-auto max-w-6xl px-4 md:px-6">
+          <div class="mx-auto max-w-2xl text-center">
+            <div class="inline-flex items-center gap-2 rounded-full border border-turquoise/30 bg-turquoise-soft px-3 py-1 text-xs font-semibold text-turquoise">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+                <circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>
+              </svg>
+              Garis Masa Perlindungan
+            </div>
+            <h2 class="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              Garis Masa Perlindungan
+            </h2>
+            <p class="mt-3 text-sm text-muted-foreground md:text-base">
+              Fahami bila setiap manfaat takaful anda mula aktif selepas sijil takaful/polisi diluluskan.
+            </p>
+          </div>
+          <div class="relative mt-16 grid gap-8 md:mt-20 md:grid-cols-3 md:gap-6">
+            <div aria-hidden="true" class="absolute left-[16%] right-[16%] top-10 hidden h-1 rounded-full md:block" style="background:var(--gradient-turquoise)"></div>
+            
+            <div class="group relative rounded-3xl border border-border/70 bg-card p-6 pt-12 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-1.5 hover:border-turquoise/40 hover:shadow-[var(--shadow-glow-turquoise)]">
+              <div class="absolute left-1/2 top-0 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-white shadow-[var(--shadow-glow-turquoise)] ring-4 ring-background transition-transform duration-300 group-hover:scale-110" style="background:var(--gradient-turquoise)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-9 w-9">
+                  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="mt-4 text-center">
+                <span class="inline-flex items-center gap-1 rounded-full bg-turquoise-soft px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-turquoise">Fasa 1</span>
+                <p class="mt-3 text-3xl font-bold tabular-nums text-foreground">Hari 1</p>
+                <p class="mt-3 text-base font-semibold text-foreground">Perlindungan Kemalangan Aktif</p>
+                <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Perlindungan kemalangan bermula serta-merta dari hari pertama sijil takaful/polisi diluluskan.</p>
+              </div>
+            </div>
+            
+            <div class="group relative rounded-3xl border border-border/70 bg-card p-6 pt-12 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-1.5 hover:border-turquoise/40 hover:shadow-[var(--shadow-glow-turquoise)]">
+              <div class="absolute left-1/2 top-0 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-white shadow-[var(--shadow-glow-turquoise)] ring-4 ring-background transition-transform duration-300 group-hover:scale-110" style="background:var(--gradient-turquoise)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-9 w-9">
+                  <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path>
+                  <path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"></path>
+                </svg>
+              </div>
+              <div class="mt-4 text-center">
+                <span class="inline-flex items-center gap-1 rounded-full bg-turquoise-soft px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-turquoise">Fasa 2</span>
+                <p class="mt-3 text-3xl font-bold tabular-nums text-foreground">Hari 120</p>
+                <p class="mt-3 text-base font-semibold text-foreground">Perlindungan Penyakit Tertentu Aktif</p>
+                <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Selepas tempoh menunggu (waiting period) 120 hari, perlindungan untuk penyakit tertentu mula aktif.</p>
+              </div>
+            </div>
+            
+            <div class="group relative rounded-3xl border border-border/70 bg-card p-6 pt-12 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-1.5 hover:border-turquoise/40 hover:shadow-[var(--shadow-glow-turquoise)]">
+              <div class="absolute left-1/2 top-0 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-white shadow-[var(--shadow-glow-turquoise)] ring-4 ring-background transition-transform duration-300 group-hover:scale-110" style="background:var(--gradient-turquoise)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-9 w-9">
+                  <path d="M11 2v2"></path><path d="M5 2v2"></path>
+                  <path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"></path>
+                  <path d="M8 15a6 6 0 0 0 12 0v-3"></path><circle cx="20" cy="10" r="2"></circle>
+                </svg>
+              </div>
+              <div class="mt-4 text-center">
+                <span class="inline-flex items-center gap-1 rounded-full bg-turquoise-soft px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-turquoise">Fasa 3</span>
+                <p class="mt-3 text-3xl font-bold tabular-nums text-foreground">Tahun Ke-2</p>
+                <p class="mt-3 text-base font-semibold text-foreground">Semua Manfaat Perubatan Aktif</p>
+                <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Semua manfaat perubatan aktif sepenuhnya tertakluk kepada terma &amp; syarat sijil takaful/polisi.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cara Claim Section -->
+      <section id="cara-claim" class="relative bg-gradient-to-b from-secondary/50 via-background to-secondary/50 py-20 md:py-28 landscape:py-12 lg:landscape:py-28 transition-all">
+        <div class="mx-auto max-w-6xl px-4 md:px-6">
+          <div class="mx-auto max-w-2xl text-center">
+            <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+                <path d="M10.5 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v6"></path>
+                <path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="m14 20 2 2 4-4"></path>
+              </svg>
+              Cara Buat Tuntutan
+            </div>
+            <h2 class="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              Proses Tuntutan Yang Mudah &amp; Telus
+            </h2>
+            <p class="mt-3 text-sm text-muted-foreground md:text-base">
+              Ikuti 5 langkah ini untuk memastikan tuntutan anda diproses dengan lancar.
+            </p>
+          </div>
+          <div class="mt-12 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            <!-- Step 1 -->
+            <div class="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/50 hover:shadow-[var(--shadow-elegant)]">
+              <div aria-hidden="true" class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150"></div>
+              <div class="absolute right-4 top-4 text-5xl font-black leading-none text-primary/10 transition-colors group-hover:text-primary/20">01</div>
+              <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 text-primary shadow-sm ring-1 ring-primary/15 transition-all duration-300 group-hover:from-primary group-hover:to-primary-glow group-hover:text-white group-hover:shadow-[var(--shadow-elegant)]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7"><path d="M13 2a9 9 0 0 1 9 9"></path><path d="M13 6a5 5 0 0 1 5 5"></path><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+              </div>
+              <h3 class="relative mt-5 text-base font-bold text-foreground">Hubungi Ejen</h3>
+              <p class="relative mt-2 text-xs leading-relaxed text-muted-foreground">Hubungi ejen atau pihak Prudential BSN Takaful.</p>
+              <div class="relative mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-primary">Langkah 1</div>
+            </div>
+            <!-- Step 2 -->
+            <div class="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/50 hover:shadow-[var(--shadow-elegant)]">
+              <div aria-hidden="true" class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150"></div>
+              <div class="absolute right-4 top-4 text-5xl font-black leading-none text-primary/10 transition-colors group-hover:text-primary/20">02</div>
+              <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 text-primary shadow-sm ring-1 ring-primary/15 transition-all duration-300 group-hover:from-primary group-hover:to-primary-glow group-hover:text-white group-hover:shadow-[var(--shadow-elegant)]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+              </div>
+              <h3 class="relative mt-5 text-base font-bold text-foreground">Sediakan Dokumen</h3>
+              <p class="relative mt-2 text-xs leading-relaxed text-muted-foreground">Sediakan dokumen yang diperlukan untuk tuntutan.</p>
+              <div class="relative mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-primary">Langkah 2</div>
+            </div>
+            <!-- Step 3 -->
+            <div class="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/50 hover:shadow-[var(--shadow-elegant)]">
+              <div aria-hidden="true" class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150"></div>
+              <div class="absolute right-4 top-4 text-5xl font-black leading-none text-primary/10 transition-colors group-hover:text-primary/20">03</div>
+              <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 text-primary shadow-sm ring-1 ring-primary/15 transition-all duration-300 group-hover:from-primary group-hover:to-primary-glow group-hover:text-white group-hover:shadow-[var(--shadow-elegant)]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+              </div>
+              <h3 class="relative mt-5 text-base font-bold text-foreground">Hantar Tuntutan</h3>
+              <p class="relative mt-2 text-xs leading-relaxed text-muted-foreground">Hantar dokumen dan borang tuntutan kepada pihak Prudential.</p>
+              <div class="relative mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-primary">Langkah 3</div>
+            </div>
+            <!-- Step 4 -->
+            <div class="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/50 hover:shadow-[var(--shadow-elegant)]">
+              <div aria-hidden="true" class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150"></div>
+              <div class="absolute right-4 top-4 text-5xl font-black leading-none text-primary/10 transition-colors group-hover:text-primary/20">04</div>
+              <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 text-primary shadow-sm ring-1 ring-primary/15 transition-all duration-300 group-hover:from-primary group-hover:to-primary-glow group-hover:text-white group-hover:shadow-[var(--shadow-elegant)]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+              </div>
+              <h3 class="relative mt-5 text-base font-bold text-foreground">Semakan &amp; Proses</h3>
+              <p class="relative mt-2 text-xs leading-relaxed text-muted-foreground">Pihak Prudential BSN Takaful akan menyemak dan memproses tuntutan.</p>
+              <div class="relative mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-primary">Langkah 4</div>
+            </div>
+            <!-- Step 5 -->
+            <div class="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/50 hover:shadow-[var(--shadow-elegant)]">
+              <div aria-hidden="true" class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150"></div>
+              <div class="absolute right-4 top-4 text-5xl font-black leading-none text-primary/10 transition-colors group-hover:text-primary/20">05</div>
+              <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 text-primary shadow-sm ring-1 ring-primary/15 transition-all duration-300 group-hover:from-primary group-hover:to-primary-glow group-hover:text-white group-hover:shadow-[var(--shadow-elegant)]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+              </div>
+              <h3 class="relative mt-5 text-base font-bold text-foreground">Keputusan Tuntutan</h3>
+              <p class="relative mt-2 text-xs leading-relaxed text-muted-foreground">Keputusan tuntutan akan dimaklumkan kepada pelanggan.</p>
+              <div class="relative mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-primary">Langkah 5</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Perkhidmatan Sijil Takaful/Polisi Section -->
+      <section id="perkhidmatan-polisi" class="relative bg-background py-20 md:py-28 landscape:py-12 lg:landscape:py-28 transition-all">
+        <div aria-hidden="true" class="pointer-events-none absolute -left-32 top-10 hidden h-80 w-80 rounded-full bg-primary/10 blur-3xl md:block"></div>
+        <div aria-hidden="true" class="pointer-events-none absolute -right-32 bottom-10 hidden h-80 w-80 rounded-full bg-turquoise/15 blur-3xl md:block"></div>
+        
+        <div class="mx-auto max-w-6xl px-4 md:px-6">
+          <div class="mx-auto max-w-2xl text-center">
+            <div class="inline-flex items-center gap-2 rounded-full border border-turquoise/30 bg-turquoise-soft px-3 py-1 text-xs font-semibold text-turquoise">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+                <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
+                <path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle>
+              </svg>
+              Perkhidmatan Pelanggan
+            </div>
+            <h2 class="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              Perkhidmatan <span class="text-primary">Sijil Takaful/Polisi</span>
+            </h2>
+            <p class="mt-3 text-sm text-muted-foreground md:text-base">
+              Akses perkhidmatan sijil takaful/polisi anda secara online dengan mudah dan pantas.
+            </p>
+          </div>
+          
+          <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            
+            <!-- Hantar Dokumen Claim -->
+            <div class="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-border/50 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div aria-hidden="true" class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-red-50 transition-transform duration-500 group-hover:scale-125"></div>
+              <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-[#dc2626] text-white shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10.4 12.6a2 2 0 1 1 3 3L8 21l-4 1 1-4Z"></path><path d="M18 18v-1a2 2 0 0 0-2-2H8"></path><path d="M18 10V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v14"></path></svg>
+              </div>
+              <h3 class="relative mt-6 text-lg font-bold text-foreground">Hantar Dokumen Claim</h3>
+              <p class="relative mt-2 text-sm leading-relaxed text-muted-foreground">Muat naik dokumen tuntutan untuk semakan dan bantuan lanjut.</p>
+              <div class="relative mt-6 flex flex-1 items-end">
+                <button type="button" onclick="toggleClaimForm()" class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#dc2626] px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-red-700">
+                  Hantar Dokumen Claim
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Bayaran Sijil Takaful/Polisi -->
+            <div class="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-border/50 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div aria-hidden="true" class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-red-50 transition-transform duration-500 group-hover:scale-125"></div>
+              <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0d9488] text-white shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>
+              </div>
+              <h3 class="relative mt-6 text-lg font-bold text-foreground">Bayaran Sijil Takaful/Polisi</h3>
+              <p class="relative mt-2 text-sm leading-relaxed text-muted-foreground">Buat bayaran sijil takaful/polisi secara online dengan mudah dan selamat.</p>
+              <div class="relative mt-6 flex flex-1 items-end">
+                <a href="https://app.prubsn.com.my/PruBSNPay/validate" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#dc2626] px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-red-700">
+                  Bayar Sekarang
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                </a>
+              </div>
+            </div>
+            
+            <!-- PRUServices -->
+            <div class="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-border/50 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div aria-hidden="true" class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-red-50 transition-transform duration-500 group-hover:scale-125"></div>
+              <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-[#dc2626] text-white shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg>
+              </div>
+              <h3 class="relative mt-6 text-lg font-bold text-foreground">PRUServices</h3>
+              <p class="relative mt-2 text-sm leading-relaxed text-muted-foreground">Kemaskini maklumat sijil takaful/polisi, semakan sijil takaful/polisi dan urusan servis pelanggan.</p>
+              <div class="relative mt-6 flex flex-1 items-end">
+                <a href="https://pruservices.prubsn.com.my/" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#dc2626] px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-red-700">
+                  Buka PRUServices
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                </a>
+              </div>
+            </div>
+            
+            <!-- Panel Hospital -->
+            <div class="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-border/50 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div aria-hidden="true" class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-red-50 transition-transform duration-500 group-hover:scale-125"></div>
+              <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0d9488] text-white shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M12 7v4"></path><path d="M14 21v-3a2 2 0 0 0-4 0v3"></path><path d="M14 9h-4"></path><path d="M18 11h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h2"></path><path d="M18 21V5a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16"></path></svg>
+              </div>
+              <h3 class="relative mt-6 text-lg font-bold text-foreground">Panel Hospital Prudential BSN</h3>
+              <p class="relative mt-2 text-sm leading-relaxed text-muted-foreground">Semak senarai hospital panel Prudential BSN di seluruh Malaysia.</p>
+              <div class="relative mt-6 flex flex-1 items-end">
+                <a href="https://www.prubsn.com.my/en/claims-and-services/hospital-network/panel-hospitals/" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#dc2626] px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-red-700">
+                  Semak Hospital Panel
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HANTAR DOKUMEN CLAIM FORM (Hidden by default) -->
+      <section id="claim-form-section" class="hidden scroll-mt-24 relative bg-secondary/30 py-16 transition-all duration-500 border-t border-border/50">
+        <div class="mx-auto max-w-3xl px-4 md:px-6 fade-in">
+          <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              Borang Tuntutan (Claim)
+            </h2>
+            <p class="mt-3 text-sm text-muted-foreground md:text-base">
+              Lengkapkan butiran di bawah untuk menghantar dokumen tuntutan kepada saya melalui WhatsApp.
+            </p>
+          </div>
+          
+          <div class="border bg-card text-card-foreground shadow mt-8 overflow-hidden rounded-3xl border-border/60 shadow-[var(--shadow-elegant)]">
+            <div aria-hidden="true" class="h-1.5" style="background:var(--gradient-hero)"></div>
+            <div class="bg-white p-6 md:p-8">
+              <form id="form-hantar-claim" class="grid gap-5 md:grid-cols-2">
+                <div class="space-y-2 md:col-span-2">
+                  <label class="text-sm font-medium text-gray-700" for="claim-nama">Nama Penuh</label>
+                  <input type="text" class="flex w-full border px-4 py-2 text-base h-12 rounded-xl border-gray-300 bg-gray-50/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" id="claim-nama" required placeholder="Nama penuh anda" />
+                </div>
+                
+                <div class="space-y-2">
+                  <label class="text-sm font-medium text-gray-700" for="claim-ic">Nombor IC</label>
+                  <input type="text" class="flex w-full border px-4 py-2 text-base h-12 rounded-xl border-gray-300 bg-gray-50/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" id="claim-ic" required maxlength="14" placeholder="Contoh: 900101-14-5555" />
+                </div>
+                
+                <div class="space-y-2">
+                  <label class="text-sm font-medium text-gray-700" for="claim-telefon">Nombor Telefon</label>
+                  <input type="tel" class="flex w-full border px-4 py-2 text-base h-12 rounded-xl border-gray-300 bg-gray-50/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" id="claim-telefon" required value="01" minlength="10" placeholder="01x-xxx xxxx" />
+                </div>
+
+                <div class="space-y-2 md:col-span-2">
+                  <label class="text-sm font-medium text-gray-700" for="claim-polisi">Nombor Sijil / Sijil Takaful/Polisi</label>
+                  <input type="text" class="flex w-full border px-4 py-2 text-base h-12 rounded-xl border-gray-300 bg-gray-50/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" id="claim-polisi" required placeholder="Masukkan nombor sijil takaful/polisi (jika tahu)" />
+                </div>
+
+                <div class="space-y-2 md:col-span-2">
+                  <label class="text-sm font-medium text-gray-700" for="claim-jenis">Jenis Claim</label>
+                  <select id="claim-jenis" onchange="checkJenisClaim()" class="flex w-full border px-4 py-2 text-base h-12 rounded-xl border-gray-300 bg-gray-50/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" required>
+                    <option value="" disabled selected>-- Sila Pilih Jenis Claim --</option>
+                    <option value="Kemalangan">Kemalangan</option>
+                    <option value="Rawatan Susulan">Rawatan susulan</option>
+                    <option value="Claim Vaksin">Claim vaksin</option>
+                    <option value="Fisioterapi">Fisioterapi</option>
+                    <option value="Lain-lain">Lain-lain</option>
+                  </select>
+                </div>
+
+                <div class="space-y-2 md:col-span-2 hidden" id="claim-lain-container">
+                  <label class="text-sm font-medium text-gray-700" for="claim-jenis-lain">Sila nyatakan jenis claim (Lain-lain)</label>
+                  <input type="text" class="flex w-full border px-4 py-2 text-base h-12 rounded-xl border-gray-300 bg-gray-50/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" id="claim-jenis-lain" placeholder="Nyatakan secara ringkas" />
+                </div>
+
+                <div class="space-y-2 md:col-span-2">
+                  <label class="text-sm font-medium text-gray-700" for="claim-kronologi">Kronologi Ringkas</label>
+                  <textarea class="flex w-full border px-4 py-3 text-base rounded-xl border-gray-300 bg-gray-50/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors min-h-[100px]" id="claim-kronologi" required placeholder="Sila ceritakan kronologi kejadian secara ringkas (contoh: Jatuh motor pada tarikh sekian-sekian dan dirujuk ke klinik...)"></textarea>
+                </div>
+                
+                <div class="md:col-span-2 rounded-xl bg-orange-50 border border-orange-100 p-4 mt-2">
+                  <p class="text-xs md:text-sm text-orange-800 font-medium flex gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    * Lampirkan gambar resit hospital/klinik dan surat doktor (jika ada) melalui mesej WhatsApp selepas borang ini dihantar.
+                  </p>
+                </div>
+
+                <div class="md:col-span-2 mt-4">
+                  <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer bg-[#dc2626] text-white hover:bg-red-700 px-8 h-14 w-full rounded-xl text-base font-semibold shadow-[var(--shadow-elegant)] transition-transform hover:scale-[1.01]" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mr-1">
+                      <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+                    </svg>
+                    Hantar Ke WhatsApp
+                  </button>
+                  <button type="button" onclick="document.getElementById('claim-form-section').classList.add('hidden')" class="w-full text-center text-sm font-medium text-gray-400 hover:text-gray-600 mt-4 underline decoration-gray-300 underline-offset-4">Batal & Tutup Borang</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Admin / Contact Info Section -->
+      <section id="admin-info" class="relative overflow-hidden bg-secondary/70 py-20 md:py-28 landscape:py-12 lg:landscape:py-28 transition-all">
+        <div aria-hidden="true" class="pointer-events-none absolute -left-32 top-10 hidden h-80 w-80 rounded-full bg-primary/10 blur-3xl md:block"></div>
+        <div aria-hidden="true" class="pointer-events-none absolute -right-32 bottom-10 hidden h-80 w-80 rounded-full bg-turquoise/15 blur-3xl md:block"></div>
+        
+        <div class="mx-auto max-w-6xl px-4 md:px-6">
+          <div class="mb-8 text-center md:mb-12">
+            <div class="inline-flex items-center gap-2 rounded-full border border-turquoise/30 bg-turquoise-soft px-3 py-1 text-xs font-semibold text-turquoise">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+                <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
+              </svg>
+              Kenali Ejen Anda
+            </div>
+            <h2 class="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              Ejen <span class="text-primary">Takaful</span> Anda
+            </h2>
+            <p class="mx-auto mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
+              Saya membantu anda dalam semakan tempoh menunggu (waiting period), proses tuntutan takaful dan urusan kemasukan hospital supaya semuanya lebih mudah dan teratur.
+            </p>
+          </div>
+          
+          <div class="group relative overflow-hidden rounded-3xl border border-border/60 bg-white p-8 shadow-[var(--shadow-elegant)] md:p-12">
+            <div aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full opacity-20 blur-2xl" style="background:var(--gradient-turquoise)"></div>
+            <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full opacity-15 blur-2xl" style="background:var(--gradient-hero)"></div>
+            
+            <div class="relative grid gap-8 md:grid-cols-[auto_1fr] md:items-center md:gap-12">
+              <div class="relative mx-auto md:mx-0">
+                <div aria-hidden="true" class="absolute -inset-4 -z-10 rounded-[2rem] opacity-40 blur-2xl" style="background:var(--gradient-hero)"></div>
+                <div class="relative rounded-[2rem] bg-gradient-to-br from-primary/20 via-white to-turquoise/20 p-1.5 shadow-xl">
+                  
+                  <!-- Profile Image Tag -->
+                  <img src="profile.jpg" alt="Fairuz Samsuddin" class="h-56 w-56 sm:h-64 sm:w-64 md:h-72 md:w-72 rounded-[1.65rem] object-cover shadow-md">
+                  
+                </div>
+                <span class="absolute -bottom-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-turquoise px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white shadow-lg">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+                    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                    <path d="m9 12 2 2 4-4"></path>
+                  </svg>
+                  Ejen Bertauliah
+                </span>
+              </div>
+              <div class="flex flex-col text-center md:text-left">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+                  Perunding Takaful Prudential BSN
+                </p>
+                <h3 class="mt-2 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+                  Fairuz Samsuddin
+                </h3>
+                <p class="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  Dengan pengalaman membantu ratusan keluarga Malaysia, saya komited untuk memberikan nasihat takaful yang jujur, telus, dan disesuaikan dengan keperluan serta bajet anda. Pelan yang tepat memberi ketenangan untuk anda dan orang tersayang.
+                </p>
+                
+                <div class="mt-6 grid gap-3 sm:grid-cols-2">
+                  <a href="tel:0176213432" class="group/tile flex items-center gap-3 rounded-2xl border border-border/60 bg-secondary/40 p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-white hover:shadow-[var(--shadow-card)]">
+                    <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover/tile:bg-primary group-hover/tile:text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
+                      </svg>
+                    </span>
+                    <span class="min-w-0">
+                      <span class="block text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Telefon</span>
+                      <span class="block truncate text-sm font-bold text-foreground">017-6213432</span>
+                    </span>
+                  </a>
+                  
+                  <div class="flex items-center gap-3 rounded-2xl border border-border/60 bg-secondary/40 p-4 text-left">
+                    <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-turquoise/15 text-turquoise">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                    </span>
+                    <span class="min-w-0">
+                      <span class="block text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Kawasan Khidmat</span>
+                      <span class="block truncate text-sm font-bold text-foreground">Seluruh Malaysia</span>
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <a href="https://wa.me/60176213432?text=Hi%20Fairuz%2C%20saya%20ingin%20mendapatkan%20konsultasi%20takaful%20dan%20semakan%20tempoh%20menunggu%20(waiting%20period)." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer shadow px-8 h-12 flex-1 rounded-full bg-primary text-sm font-semibold text-white shadow-[var(--shadow-elegant)] transition-transform hover:scale-[1.02]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                      <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+                    </svg>
+                    WhatsApp Sekarang
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kenapa Pilih Saya Section -->
+      <section class="bg-background py-20 md:py-28 landscape:py-12 lg:landscape:py-28 transition-all">
+        <div class="mx-auto max-w-6xl px-4 md:px-6">
+          <div class="mx-auto max-w-2xl text-center">
+            <div class="inline-flex items-center gap-2 rounded-full border border-turquoise/30 bg-turquoise-soft px-3 py-1 text-xs font-semibold text-turquoise">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+                <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
+              </svg>
+              Kenapa Pilih Saya
+            </div>
+            <h2 class="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              Komitmen Profesional Untuk Anda
+            </h2>
+            <p class="mt-3 text-sm text-muted-foreground md:text-base">
+              Komitmen saya adalah memberi perlindungan terbaik untuk anda dan keluarga.
+            </p>
+          </div>
+          <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-[var(--shadow-elegant)]">
+              <div aria-hidden="true" class="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150"></div>
+              <div class="relative flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-md transition-transform duration-300 group-hover:scale-110" style="background:var(--gradient-hero)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M12 7v14"></path><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"></path><rect x="3" y="7" width="18" height="4" rx="1"></rect></svg>
+              </div>
+              <h3 class="relative mt-5 text-lg font-bold text-foreground">Konsultasi Percuma</h3>
+              <p class="relative mt-2 text-sm leading-relaxed text-muted-foreground">Tanpa kos, tanpa obligasi. Dapatkan nasihat profesional secara percuma.</p>
+            </div>
+            
+            <div class="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-[var(--shadow-elegant)]">
+              <div aria-hidden="true" class="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150"></div>
+              <div class="relative flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-md transition-transform duration-300 group-hover:scale-110" style="background:var(--gradient-hero)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+              </div>
+              <h3 class="relative mt-5 text-lg font-bold text-foreground">Respon Pantas</h3>
+              <p class="relative mt-2 text-sm leading-relaxed text-muted-foreground">Setiap pertanyaan dilayan dengan cepat dan profesional.</p>
+            </div>
+            
+            <div class="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-[var(--shadow-elegant)]">
+              <div aria-hidden="true" class="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150"></div>
+              <div class="relative flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-md transition-transform duration-300 group-hover:scale-110" style="background:var(--gradient-hero)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg>
+              </div>
+              <h3 class="relative mt-5 text-lg font-bold text-foreground">Servis Profesional</h3>
+              <p class="relative mt-2 text-sm leading-relaxed text-muted-foreground">Berpengalaman dan bertauliah sebagai ejen Prudential BSN Takaful.</p>
+            </div>
+            
+            <div class="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-[var(--shadow-elegant)]">
+              <div aria-hidden="true" class="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150"></div>
+              <div class="relative flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-md transition-transform duration-300 group-hover:scale-110" style="background:var(--gradient-hero)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg>
+              </div>
+              <h3 class="relative mt-5 text-lg font-bold text-foreground">Bantuan Selepas Jualan</h3>
+              <p class="relative mt-2 text-sm leading-relaxed text-muted-foreground">Khidmat berterusan untuk tuntutan, perubahan sijil takaful/polisi dan sokongan.</p>
+            </div>
+            
+            <div class="group relative overflow-hidden rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-[var(--shadow-elegant)]">
+              <div aria-hidden="true" class="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150"></div>
+              <div class="relative flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-md transition-transform duration-300 group-hover:scale-110" style="background:var(--gradient-hero)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              </div>
+              <h3 class="relative mt-5 text-lg font-bold text-foreground">Pengalaman Pelanggan</h3>
+              <p class="relative mt-2 text-sm leading-relaxed text-muted-foreground">Telah membantu ramai pelanggan menguruskan perlindungan keluarga.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mohon Konsultasi Form Section -->
+      <section id="hubungi" class="bg-gradient-to-b from-secondary/40 to-background py-20 md:py-28 landscape:py-12 lg:landscape:py-28 transition-all">
+        <div class="mx-auto max-w-3xl px-4 md:px-6">
+          <div class="mx-auto max-w-2xl text-center">
+            <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+                <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+              </svg>
+              Konsultasi Percuma
+            </div>
+            <h2 class="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              Mohon Konsultasi Percuma
+            </h2>
+            <p class="mt-3 text-sm text-muted-foreground md:text-base">
+              Isi borang di bawah dan saya akan hubungi anda secepat mungkin.
+            </p>
+          </div>
+          <div class="border bg-card text-card-foreground shadow mt-10 overflow-hidden rounded-3xl border-border/60 shadow-[var(--shadow-elegant)]">
+            <div aria-hidden="true" class="h-1.5" style="background:var(--gradient-hero)"></div>
+            <div class="bg-white p-6 md:p-8">
+              <form id="contact-form" class="grid gap-5 md:grid-cols-2">
+                <div class="space-y-2 md:col-span-2">
+                  <label class="text-sm font-medium text-gray-700" for="nama">Nama</label>
+                  <input type="text" class="flex w-full border px-4 py-2 text-base h-12 rounded-xl border-gray-300 bg-gray-50/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" id="nama" required maxlength="100" placeholder="Nama penuh anda" />
+                </div>
+                <div class="space-y-2">
+                  <label class="text-sm font-medium text-gray-700" for="telefon">No Telefon</label>
+                  <input type="tel" class="flex w-full border px-4 py-2 text-base h-12 rounded-xl border-gray-300 bg-gray-50/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" id="telefon" required value="01" minlength="10" placeholder="01x-xxx xxxx" />
+                </div>
+                <div class="space-y-2">
+                  <label class="text-sm font-medium text-gray-700" for="umur">Umur</label>
+                  <input type="number" class="flex w-full border px-4 py-2 text-base h-12 rounded-xl border-gray-300 bg-gray-50/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" id="umur" required min="1" max="100" placeholder="cth: 30" />
+                </div>
+                <div class="space-y-2 md:col-span-2">
+                  <label class="text-sm font-medium text-gray-700" for="pekerjaan">Pekerjaan</label>
+                  <input type="text" class="flex w-full border px-4 py-2 text-base h-12 rounded-xl border-gray-300 bg-gray-50/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" id="pekerjaan" required maxlength="100" placeholder="cth: Jurutera" />
+                </div>
+                <div class="md:col-span-2 mt-2">
+                  <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer bg-primary text-white hover:bg-red-700 px-8 h-14 w-full rounded-xl text-base font-semibold shadow-[var(--shadow-elegant)] transition-transform hover:scale-[1.01]" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mr-2">
+                      <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path>
+                      <path d="m21.854 2.147-10.94 10.939"></path>
+                    </svg>
+                    Hantar Permohonan
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer Section -->
+      <footer class="border-t border-border bg-background py-10">
+        <div class="mx-auto max-w-6xl px-6">
+          <div class="rounded-2xl bg-secondary p-5 text-xs leading-relaxed text-muted-foreground">
+            <p class="font-semibold text-foreground">Penafian</p>
+            <p class="mt-2">Maklumat ini adalah untuk rujukan umum sahaja dan tertakluk kepada terma dan syarat sijil takaful/polisi yang diluluskan oleh Prudential BSN Takaful.</p>
+          </div>
+          <div class="mt-6 flex flex-col items-center justify-between gap-2 text-xs text-muted-foreground sm:flex-row">
+            <p>© 2026 Fairuz Samsuddin. Hak Cipta Terpelihara.</p>
+            <p>Perunding Takaful Prudential BSN · 017-6213432</p>
+          </div>
+        </div>
+      </footer>
+      
+      <!-- Floating Action Button (Icon-only circle matching reference photo) -->
+      <a href="https://wa.me/60176213432?text=Hi%20Fairuz%2C%20saya%20ingin%20mendapatkan%20konsultasi%20takaful%20dan%20semakan%20tempoh%20menunggu%20(waiting%20period)." target="_blank" rel="noopener noreferrer" aria-label="Hubungi melalui WhatsApp" class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform hover:scale-105">
+        <span class="pointer-events-none absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366] opacity-35"></span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7">
+          <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+        </svg>
+      </a>
+    </main>
+
+    <!-- App Logic for Forms & Calculator -->
+    <script>
+      // Function to toggle the Claim form section visibility
+      function toggleClaimForm() {
+        const claimFormSection = document.getElementById('claim-form-section');
+        claimFormSection.classList.remove('hidden');
+        // Small delay to ensure display:none is removed before scrolling
+        setTimeout(() => {
+          claimFormSection.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      }
+
+      // Function to check if "Lain-lain" is selected in Claim form
+      function checkJenisClaim() {
+        const claimJenis = document.getElementById('claim-jenis').value;
+        const claimLainContainer = document.getElementById('claim-lain-container');
+        const claimLainInput = document.getElementById('claim-jenis-lain');
+        
+        if (claimJenis === 'Lain-lain') {
+          claimLainContainer.classList.remove('hidden');
+          claimLainInput.required = true;
+        } else {
+          claimLainContainer.classList.add('hidden');
+          claimLainInput.required = false;
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // --- AUTO-FORMATTING LOGIC FOR IC & PHONE ---
+        
+        // 1. Format IC Number (xxxxxx-xx-xxxx)
+        const icInput = document.getElementById('claim-ic');
+        if (icInput) {
+          icInput.addEventListener('input', function(e) {
+            // Remove any character that isn't a digit
+            let val = e.target.value.replace(/\D/g, '').substring(0, 12);
+            let formatted = val;
+            
+            // Add first dash
+            if (val.length > 6) {
+              formatted = val.substring(0, 6) + '-' + val.substring(6, 8);
+            }
+            // Add second dash
+            if (val.length > 8) {
+              formatted = val.substring(0, 6) + '-' + val.substring(6, 8) + '-' + val.substring(8, 12);
+            }
+            
+            e.target.value = formatted;
+          });
+        }
+
+        // 2. Lock "01" as prefix for Phone fields
+        const phoneInputs = [document.getElementById('telefon'), document.getElementById('claim-telefon')];
+        phoneInputs.forEach(phoneInput => {
+          if (phoneInput) {
+            phoneInput.addEventListener('input', function(e) {
+              // Strip non-digits
+              let val = e.target.value.replace(/\D/g, '');
+              
+              // Ensure it always starts with 01
+              if (val.length < 2) {
+                 val = '01'; // If they delete too much, reset to 01
+              } else if (!val.startsWith('01')) {
+                 val = '01' + val.substring(2); // If they bypass it, force it back
+              }
+              
+              e.target.value = val;
+            });
+          }
+        });
+
+
+        // --- Sijil Takaful/Polisi SAYA logic ---
+        const btnPolisi = document.getElementById('form-polisi');
+        const inputNama = document.getElementById('polisi-nama');
+        const inputNo = document.getElementById('polisi-no');
+        const inputTarikh = document.getElementById('polisi-tarikh');
+        
+        // Load data on start
+        if(localStorage.getItem('f_polisi_nama')) inputNama.value = localStorage.getItem('f_polisi_nama');
+        if(localStorage.getItem('f_polisi_no')) inputNo.value = localStorage.getItem('f_polisi_no');
+        if(localStorage.getItem('f_polisi_tarikh')) inputTarikh.value = localStorage.getItem('f_polisi_tarikh');
+        
+        btnPolisi.addEventListener('submit', (e) => {
+          e.preventDefault();
+          localStorage.setItem('f_polisi_nama', inputNama.value);
+          localStorage.setItem('f_polisi_no', inputNo.value);
+          localStorage.setItem('f_polisi_tarikh', inputTarikh.value);
+          alert('Maklumat sijil takaful/polisi berjaya disimpan di peranti ini.');
+        });
+
+        // --- tempoh menunggu (waiting period) Calculator logic ---
+        const policyDate = document.getElementById('policy-date');
+        const eventDate = document.getElementById('event-date');
+        const calcResult = document.getElementById('calc-result-container');
+
+        const updateCalculator = () => {
+          if (!policyDate.value || !eventDate.value) return;
+
+          const pDate = new Date(policyDate.value);
+          const eDate = new Date(eventDate.value);
+          const diffDays = Math.ceil((eDate - pDate) / (1000 * 60 * 60 * 24));
+
+          let resultHtml = '';
+
+          if (diffDays < 0) {
+            resultHtml = `
+              <div class="flex flex-col items-center justify-center text-center max-w-sm fade-in">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-red-100 text-red-600 mb-4 shadow-sm border border-red-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800">Tarikh Tidak Sah</h3>
+                <p class="text-sm font-medium text-gray-500 mt-2">
+                  Tarikh rawatan/kejadian tidak boleh sebelum tarikh sijil takaful/polisi lulus. Sila semak semula.
+                </p>
+              </div>`;
+          } else if (diffDays < 120) {
+            resultHtml = `
+              <div class="flex flex-col items-center justify-center text-center max-w-sm fade-in">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-orange-100 text-orange-600 mb-4 shadow-sm border border-orange-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                </div>
+                <span class="inline-flex items-center gap-1 rounded-full bg-orange-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-orange-700 mb-2">Fasa 1</span>
+                <h3 class="text-xl font-bold text-gray-800">Perlindungan Kemalangan</h3>
+                <p class="text-sm font-medium text-gray-500 mt-2">
+                  Sijil takaful/polisi anda baru berusia <strong class="text-gray-900">${diffDays} hari</strong>. Tuntutan hanya terpakai untuk kes kemalangan sahaja pada waktu ini.
+                </p>
+              </div>`;
+          } else if (diffDays >= 120 && diffDays < 365) {
+            resultHtml = `
+              <div class="flex flex-col items-center justify-center text-center max-w-sm fade-in">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-blue-600 mb-4 shadow-sm border border-blue-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path><path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"></path></svg>
+                </div>
+                <span class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-blue-700 mb-2">Fasa 2</span>
+                <h3 class="text-xl font-bold text-gray-800">Perlindungan Penyakit Tertentu</h3>
+                <p class="text-sm font-medium text-gray-500 mt-2">
+                  Sijil takaful/polisi anda berusia <strong class="text-gray-900">${diffDays} hari</strong>. Penyakit tertentu sudah mula dilindungi, namun sesetengah terma mungkin masih diaplikasikan.
+                </p>
+              </div>`;
+          } else {
+            resultHtml = `
+              <div class="flex flex-col items-center justify-center text-center max-w-sm fade-in">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#14b8a6]/20 text-turquoise mb-4 shadow-sm border border-turquoise/30">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8"><path d="M11 2v2"></path><path d="M5 2v2"></path><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"></path><path d="M8 15a6 6 0 0 0 12 0v-3"></path><circle cx="20" cy="10" r="2"></circle></svg>
+                </div>
+                <span class="inline-flex items-center gap-1 rounded-full bg-turquoise-soft px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-turquoise mb-2">Fasa 3</span>
+                <h3 class="text-xl font-bold text-gray-800">Perlindungan Penuh Aktif</h3>
+                <p class="text-sm font-medium text-gray-500 mt-2">
+                  Tahniah, sijil takaful/polisi anda kini menjangkau <strong class="text-gray-900">${Math.floor(diffDays / 365)} Tahun</strong>. Semua manfaat perubatan telah aktif tertakluk kepada terma & syarat.
+                </p>
+              </div>`;
+          }
+
+          calcResult.innerHTML = resultHtml;
+        };
+
+        policyDate.addEventListener('change', updateCalculator);
+        eventDate.addEventListener('change', updateCalculator);
+        
+        // --- WHATSAPP FORM logic (Konsultasi) ---
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+          contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nama = document.getElementById('nama').value;
+            const telefon = document.getElementById('telefon').value;
+            const umur = document.getElementById('umur').value;
+            const pekerjaan = document.getElementById('pekerjaan').value;
+            
+            // Format WhatsApp Message
+            const message = `Hi Fairuz, saya berminat untuk mendapatkan konsultasi percuma.%0A%0ANama: ${nama}%0ANo Telefon: ${telefon}%0AUmur: ${umur}%0APekerjaan: ${pekerjaan}`;
+            
+            // Redirect to WhatsApp
+            const waUrl = `https://wa.me/60176213432?text=${message}`;
+            window.open(waUrl, '_blank');
+          });
+        }
+
+        // --- HANTAR CLAIM FORM logic ---
+        const claimForm = document.getElementById('form-hantar-claim');
+        if (claimForm) {
+          claimForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const nama = document.getElementById('claim-nama').value;
+            const ic = document.getElementById('claim-ic').value;
+            const telefon = document.getElementById('claim-telefon').value;
+            const polisi = document.getElementById('claim-polisi').value;
+            const jenisDropdown = document.getElementById('claim-jenis').value;
+            const kronologi = document.getElementById('claim-kronologi').value;
+            
+            let jenisClaim = jenisDropdown;
+            if(jenisDropdown === 'Lain-lain') {
+              jenisClaim = document.getElementById('claim-jenis-lain').value;
+            }
+            
+            // Format WhatsApp Message for Claim
+            const message = `Hi Fairuz, saya ingin menghantar dokumen untuk tuntutan (claim).%0A%0A*Nama Penuh:* ${nama}%0A*No. IC:* ${ic}%0A*No. Telefon:* ${telefon}%0A*No. Sijil/Sijil Takaful/Polisi:* ${polisi}%0A*Jenis Claim:* ${jenisClaim}%0A%0A*Kronologi Ringkas:*%0A${kronologi}%0A%0A_Saya akan lampirkan gambar resit hospital/klinik dan surat doktor selepas mesej ini._`;
+            
+            // Redirect to WhatsApp
+            const waUrl = `https://wa.me/60176213432?text=${message}`;
+            window.open(waUrl, '_blank');
+          });
+        }
+      });
+    </script>
+  </body>
 </html>
