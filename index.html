@@ -352,35 +352,13 @@
         }
         .submit-btn:hover { background-color: #c81625; }
 
-        /* --- Floating WhatsApp Button --- */
-        .floating-wa {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
-            z-index: 9999;
-            text-decoration: none;
-            animation: pulse-glow 2s infinite;
-            transition: transform 0.3s ease;
-        }
-        .floating-wa:hover {
-            transform: scale(1.1);
-            color: white;
-        }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
+        /* --- Floating WhatsApp Button (Replaced) --- */
+        <a href="https://wa.me/60176213432?text=Hi%20Fairuz%2C%20saya%20ingin%20mendapatkan%20konsultasi%20takaful%20dan%20semakan%20tempoh%20menunggu%20(waiting%20period)." target="_blank" rel="noopener noreferrer" aria-label="Hubungi melalui WhatsApp" class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform hover:scale-105">
+          <span class="pointer-events-none absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366] opacity-35"></span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7">
+            <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+          </svg>
+        </a>
 
         /* --- Footer --- */
         .footer { 
@@ -433,9 +411,12 @@
 </head>
 <body>
 
-    <!-- Floating WhatsApp Button with Outlined Message Bubble Icon -->
-    <a href="https://wa.me/60176213432?text=Hi%20Fairuz%2C%20saya%20ingin%20mendapatkan%20konsultasi%20lanjut%20berkenaan%20takaful." class="floating-wa" target="_blank" title="WhatsApp Fairuz">
-        <i class="far fa-comment-dots"></i>
+    <!-- Floating Action Button (Replaced) -->
+    <a href="https://wa.me/60176213432?text=Hi%20Fairuz%2C%20saya%20ingin%20mendapatkan%20konsultasi%20takaful%20dan%20semakan%20tempoh%20menunggu%20(waiting%20period)." target="_blank" rel="noopener noreferrer" aria-label="Hubungi melalui WhatsApp" class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform hover:scale-105" style="position: fixed; bottom: 24px; right: 24px; z-index: 9999;">
+      <span class="pointer-events-none absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366] opacity-35"></span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7" style="width: 28px; height: 28px;">
+        <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+      </svg>
     </a>
 
     <!-- Top Navigation Bar -->
@@ -1261,8 +1242,8 @@ ${covidDetails}
 _Sila lampirkan MyKad (Depan, Belakang & Selfie sambil memegang MyKad) di dalam chat ini untuk tujuan pengesahan eKYC._`;
 
             const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappLink = `https://wa.me/${agentPhone}?text=${encodedMessage}`;
-            window.open(whatsappLink, '_blank');
+            const waUrl = `https://wa.me/${agentPhone}?text=${encodedMessage}`;
+            window.open(waUrl, '_blank');
         }
     </script>
 </body>
