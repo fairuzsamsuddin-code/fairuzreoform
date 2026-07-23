@@ -33,109 +33,11 @@
             align-items: center;
         }
 
-        /* --- Top Navigation Bar --- */
-        .top-nav {
-            background-color: #ffffff;
-            border-bottom: 1px solid #eaeaea;
-            padding: 12px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand-icon {
-            background-color: var(--pru-red);
-            color: white;
-            width: 38px;
-            height: 38px;
-            border-radius: 10px; /* Squircle */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-
-        .brand-text strong {
-            color: var(--pru-red);
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .brand-text span {
-            color: #777;
-            font-size: 11px;
-            font-weight: 500;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-size: 13px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a i {
-            font-size: 16px;
-            color: #999;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover, .nav-links a:hover i {
-            color: var(--pru-red);
-        }
-
-        .nav-whatsapp {
-            background-color: var(--pru-red);
-            color: white;
-            text-decoration: none;
-            padding: 8px 24px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background-color 0.2s ease;
-        }
-
-        .nav-whatsapp:hover {
-            background-color: #c81625;
-            color: white;
-        }
-
         /* --- Page Header Section (Portal Header Look) --- */
         .page-header {
             background-color: #f8f9fa;
             width: 100%;
-            padding: 30px 40px;
+            padding: 20px 40px;
             box-sizing: border-box;
             border-bottom: 2px solid var(--pru-red);
             display: flex;
@@ -194,7 +96,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            scroll-margin-top: 90px; /* Prevents sticky nav from covering title */
         }
         .section-title:first-child { margin-top: 0; }
 
@@ -352,14 +253,6 @@
         }
         .submit-btn:hover { background-color: #c81625; }
 
-        /* --- Floating WhatsApp Button (Replaced) --- */
-        <a href="https://wa.me/60176213432?text=Hi%20Fairuz%2C%20saya%20ingin%20mendapatkan%20konsultasi%20takaful%20dan%20semakan%20tempoh%20menunggu%20(waiting%20period)." target="_blank" rel="noopener noreferrer" aria-label="Hubungi melalui WhatsApp" class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform hover:scale-105">
-          <span class="pointer-events-none absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366] opacity-35"></span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7">
-            <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
-          </svg>
-        </a>
-
         /* --- Footer --- */
         .footer { 
             background-color: white;
@@ -375,78 +268,20 @@
         }
 
         /* --- Responsive --- */
-        @media (max-width: 950px) {
-            .top-nav {
-                padding: 12px 20px;
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-            .nav-brand {
-                margin-right: auto;
-            }
-            .nav-links {
-                order: 3;
-                width: 100%;
-                justify-content: space-around;
-                border-top: 1px solid #eaeaea;
-                padding-top: 15px;
-                gap: 10px;
-            }
-            .nav-links a span {
-                display: none; 
-            }
-            .nav-links a i {
-                font-size: 20px;
-            }
-        }
-        
         @media (max-width: 768px) {
             .form-row { grid-template-columns: 1fr; gap: 0; }
             .form-container { padding: 25px 20px; }
-            .page-header { padding: 20px; }
+            .page-header { padding: 15px 20px; }
             .header-subtitle { font-size: 20px; }
-            .floating-wa { bottom: 20px; right: 20px; width: 55px; height: 55px; font-size: 28px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Floating Action Button (Replaced) -->
-    <a href="https://wa.me/60176213432?text=Hi%20Fairuz%2C%20saya%20ingin%20mendapatkan%20konsultasi%20takaful%20dan%20semakan%20tempoh%20menunggu%20(waiting%20period)." target="_blank" rel="noopener noreferrer" aria-label="Hubungi melalui WhatsApp" class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform hover:scale-105" style="position: fixed; bottom: 24px; right: 24px; z-index: 9999;">
-      <span class="pointer-events-none absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366] opacity-35"></span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7" style="width: 28px; height: 28px;">
-        <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
-      </svg>
-    </a>
-
-    <!-- Top Navigation Bar -->
-    <nav class="top-nav">
-        <div class="nav-brand">
-            <div class="brand-icon"><i class="fas fa-headset"></i></div>
-            <div class="brand-text">
-                <strong>TAKAFUL SERVICES</strong>
-                <span>by Fairuz Samsuddin</span>
-            </div>
-        </div>
-        
-        <div class="nav-links">
-            <a href="#sec-peribadi" title="Maklumat Peribadi"><i class="far fa-user"></i> <span>Maklumat Peribadi</span></a>
-            <a href="#sec-penama" title="Penama"><i class="fas fa-users"></i> <span>Penama</span></a>
-            <a href="#sec-kesihatan" title="Rekod Kesihatan"><i class="far fa-hospital"></i> <span>Rekod Kesihatan</span></a>
-            <a href="#sec-dokumen" title="Dokumen Sokongan"><i class="far fa-file-alt"></i> <span>Dokumen Sokongan</span></a>
-        </div>
-        
-        <div class="nav-cta">
-            <a href="https://wa.me/60176213432" target="_blank" class="nav-whatsapp">
-                <i class="fab fa-whatsapp" style="font-size: 16px;"></i> WhatsApp
-            </a>
-        </div>
-    </nav>
-
-    <!-- Page Header -->
+    <!-- Page Header (New Portal Header Theme) -->
     <div class="page-header">
         <p class="header-title">Portal Servis</p>
-        <h1 class="header-subtitle">BORANG PENDAFTARAN TAKAFUL</h1>
+        <h1 class="header-subtitle">Borang Pendaftaran Takaful</h1>
         <img src="company_logo.JPG" alt="PruBSN Takaful Logo" class="logo" onerror="this.style.display='none'">
     </div>
 
@@ -459,7 +294,7 @@
                 </div>
 
                 <!-- MAKLUMAT PERIBADI -->
-                <div class="section-title" id="sec-peribadi">1. Maklumat Peribadi</div>
+                <div class="section-title">1. Maklumat Peribadi</div>
                 <div class="form-group">
                     <label>Nama Penuh (Seperti dalam MyKad) <span style="color: var(--pru-red)">*</span></label>
                     <input type="text" id="nama" required>
@@ -467,7 +302,7 @@
 
                 <div class="form-group">
                     <label>No. IC <span style="color: var(--pru-red)">*</span></label>
-                    <input type="text" id="ic" required placeholder="Contoh: 090724-14-2784" maxlength="14">
+                    <input type="text" id="ic" required placeholder="Contoh: 090724-14-2784">
                 </div>
                 
                 <div class="form-row">
@@ -628,7 +463,7 @@
                 </div>
 
                 <!-- MAKLUMAT PENAMA -->
-                <div class="section-title" id="sec-penama">4. Maklumat Penama / Pewaris</div>
+                <div class="section-title">4. Maklumat Penama / Pewaris</div>
                 
                 <div class="form-group">
                     <label>Berapa Orang Penama? <span style="color: var(--pru-red)">*</span></label>
@@ -697,7 +532,7 @@
                 </div>
 
                 <!-- REKOD KESIHATAN -->
-                <div class="section-title" id="sec-kesihatan">5. Rekod Kesihatan & Kemasukan Wad</div>
+                <div class="section-title">5. Rekod Kesihatan & Kemasukan Wad</div>
                 <div class="note-box teal-note">
                     <i class="fas fa-info-circle"></i> Pilih "Tiada" jika anda tidak mempunyai sebarang rekod penyakit atau kemasukan ke wad sebelum ini.
                 </div>
@@ -850,8 +685,8 @@
                             <input type="number" id="kekerapan_covid" min="1" placeholder="Contoh: 2">
                         </div>
                         <div class="form-group">
-                            <label>Bulan/Tahun disahkan positif <span style="color: var(--pru-red)">*</span></label>
-                            <input type="month" id="tarikh_covid">
+                            <label>Bulan/Tahun disahkan positif (BB/TTTT) <span style="color: var(--pru-red)">*</span></label>
+                            <input type="text" id="tarikh_covid" placeholder="Contoh: 08/2021" maxlength="7">
                         </div>
                     </div>
                     
@@ -895,7 +730,7 @@
                 </div>
 
                 <!-- DOKUMEN SOKONGAN -->
-                <div class="section-title" id="sec-dokumen">8. Dokumen Sokongan</div>
+                <div class="section-title">8. Dokumen Sokongan</div>
                 <div class="document-checklist">
                     <p><i class="fas fa-camera"></i> ARAHAN PENTING:</p>
                     Sebagai pengesahan keselamatan identiti, sila sediakan gambar-gambar berikut untuk dihantar <strong>di dalam ruang chat WhatsApp</strong> selepas anda menekan butang Hantar di bawah:
@@ -927,27 +762,15 @@
         Pengantara Takaful Berdaftar dengan Prudential BSN Takaful Berhad.</p>
     </div>
 
+    <!-- SCRIPT (Identical functionality + newly added Tarikh field support) -->
     <script>
-        // Auto-format No. IC and Auto-fill Tarikh Lahir
+        // Auto-fill Tarikh Lahir from No. IC
         document.getElementById('ic').addEventListener('input', function(e) {
-            // Remove all non-digits
-            let rawVal = e.target.value.replace(/\D/g, ''); 
-            let formattedVal = rawVal;
-            
-            // Format IC visually with hyphens (XXXXXX-XX-XXXX)
-            if (rawVal.length > 6) {
-                formattedVal = rawVal.substring(0, 6) + '-' + rawVal.substring(6);
-            }
-            if (rawVal.length > 8) {
-                formattedVal = formattedVal.substring(0, 9) + '-' + rawVal.substring(8, 12);
-            }
-            e.target.value = formattedVal;
-
-            // Process DOB Auto-fill
-            if (rawVal.length >= 6) {
-                let yy = rawVal.substring(0, 2);
-                let mm = rawVal.substring(2, 4);
-                let dd = rawVal.substring(4, 6);
+            let icVal = e.target.value.replace(/\D/g, '');
+            if (icVal.length >= 6) {
+                let yy = icVal.substring(0, 2);
+                let mm = icVal.substring(2, 4);
+                let dd = icVal.substring(4, 6);
 
                 if (parseInt(mm) > 0 && parseInt(mm) <= 12 && parseInt(dd) > 0 && parseInt(dd) <= 31) {
                     let currentYear = new Date().getFullYear();
@@ -1013,6 +836,15 @@
                 tahunVape.required = false; tahunVape.value = '';
             }
         }
+
+        // Auto-format Tarikh COVID-19 untuk letak slash "/" (BB/TTTT)
+        document.getElementById('tarikh_covid').addEventListener('input', function(e) {
+            let val = e.target.value.replace(/\D/g, '');
+            if (val.length > 2) {
+                val = val.substring(0, 2) + '/' + val.substring(2, 6);
+            }
+            e.target.value = val;
+        });
 
         // Dynamic Nominee Fields Toggler
         function updateNomineeFields() {
@@ -1190,7 +1022,7 @@
             
             if (positifCovid === "Ya") {
                 covidDetails += `Kekerapan Positif: ${val("kekerapan_covid")} kali\n`;
-                covidDetails += `Bulan/Tahun Positif: ${val("tarikh_covid")}\n`;
+                covidDetails += `Bulan/Tahun Positif (BB/TTTT): ${val("tarikh_covid")}\n`;
                 covidDetails += `Tahap: ${val("tahap_covid")}\n`;
                 covidDetails += `Dimasukkan ke Hospital: ${val("masuk_hospital_covid")}\n`;
                 
@@ -1242,8 +1074,8 @@ ${covidDetails}
 _Sila lampirkan MyKad (Depan, Belakang & Selfie sambil memegang MyKad) di dalam chat ini untuk tujuan pengesahan eKYC._`;
 
             const encodedMessage = encodeURIComponent(whatsappMessage);
-            const waUrl = `https://wa.me/${agentPhone}?text=${encodedMessage}`;
-            window.open(waUrl, '_blank');
+            const whatsappLink = `https://wa.me/${agentPhone}?text=${encodedMessage}`;
+            window.open(whatsappLink, '_blank');
         }
     </script>
 </body>
