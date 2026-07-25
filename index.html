@@ -46,33 +46,33 @@
         
         .btn-primary { @apply inline-flex items-center justify-center gap-2 cursor-pointer transition-transform hover:-translate-y-0.5 bg-primary text-white hover:bg-primary-hover min-h-[3.5rem] py-3 rounded-full px-4 md:px-8 text-sm md:text-base font-semibold shadow-elegant w-full text-center leading-tight; }
         
-        .section-header { @apply text-lg font-bold text-gray-900 border-b-2 border-primary pb-2 mt-12 mb-6 flex items-center gap-2 scroll-mt-28; }
+        .section-header { @apply text-lg font-bold text-gray-900 border-b-2 border-primary pb-2 mt-12 mb-6 flex items-center gap-2 scroll-mt-10; }
         .sub-box { @apply bg-gray-50 border border-gray-200 p-6 rounded-2xl mb-5; }
       }
     </style>
 </head>
 <body class="bg-background text-gray-800 antialiased min-h-screen flex flex-col">
 
-    <!-- Unified Top Navigation Bar -->
-    <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
-        <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 gap-4 overflow-x-auto scrollbar-none">
+    <!-- Unified Navigation Bar (Static, non-sticky) -->
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="mx-auto flex max-w-6xl items-center px-4 py-3 gap-5 overflow-x-auto scrollbar-none">
             
-            <div class="flex items-center gap-4 shrink-0">
-                <!-- Moved Language Button to the First Position -->
-                <button onclick="toggleLanguage()" id="langBtn" class="flex items-center gap-1.5 rounded-full border border-gray-300 bg-gray-50 px-3 py-2 text-xs font-bold text-gray-700 shadow-sm transition-colors hover:bg-gray-100">
-                    <i class="fas fa-globe text-primary"></i> <span id="langText">EN</span>
-                </button>
-                
-                <a href="#" class="flex items-center gap-3 shrink-0">
-                    <img src="FS-logo.png" alt="FS Logo" class="h-10 w-10 object-contain">
-                    <div class="flex flex-col">
-                        <span class="text-[14px] font-black uppercase tracking-tight text-primary leading-none" data-translate="brand_title">TAKAFUL SERVICES</span>
-                        <span class="mt-1 text-[11px] font-medium text-gray-500 leading-none" data-translate="brand_sub">by Fairuz Samsuddin</span>
-                    </div>
-                </a>
-            </div>
+            <!-- 1. Logo First -->
+            <a href="#" class="flex items-center gap-3 shrink-0">
+                <img src="FS-logo.png" alt="FS Logo" class="h-10 w-10 object-contain">
+                <div class="flex flex-col">
+                    <span class="text-[14px] font-black uppercase tracking-tight text-primary leading-none" data-translate="brand_title">TAKAFUL SERVICES</span>
+                    <span class="mt-1 text-[11px] font-medium text-gray-500 leading-none" data-translate="brand_sub">by Fairuz Samsuddin</span>
+                </div>
+            </a>
+
+            <!-- 2. Language Button Second (Based on image reference) -->
+            <button onclick="toggleLanguage()" id="langBtn" class="flex items-center gap-1.5 rounded-full border border-gray-300 bg-gray-50 px-3 py-2 text-xs font-bold text-gray-700 shadow-sm transition-colors hover:bg-gray-100 shrink-0">
+                <i class="fas fa-globe text-primary"></i> <span id="langText">EN</span>
+            </button>
             
-            <div class="flex items-center gap-6 shrink-0">
+            <!-- 3. Nav Links Third -->
+            <div class="flex items-center gap-5 shrink-0">
                 <a href="#sec-peribadi" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
                     <i class="far fa-user text-gray-400 text-lg"></i>
                     <span class="text-xs font-bold whitespace-nowrap" data-translate="nav_personal">Peribadi</span>
@@ -91,7 +91,8 @@
                 </a>
             </div>
             
-            <div class="flex items-center gap-3 shrink-0">
+            <!-- 4. WhatsApp Button Last -->
+            <div class="ml-auto flex items-center shrink-0">
                 <a href="https://wa.me/60176213432" target="_blank" class="flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-primary-hover">
                     <i class="fab fa-whatsapp text-base"></i> WhatsApp
                 </a>
@@ -123,7 +124,6 @@
                         <input type="text" id="nama" class="form-input" required>
                     </div>
 
-                    <!-- Moved Citizenship Here with Dynamic IC/Passport Field -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
                             <label class="form-label"><span data-translate="lbl_citizen">Warganegara</span> <span class="text-primary">*</span></label>
