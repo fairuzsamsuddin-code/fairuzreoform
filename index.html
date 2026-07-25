@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendaftaran Takaful - TAKAFUL SERVICES - Fairuz Samsuddin</title>
+    <title>TAKAFUL SERVICES - Fairuz Samsuddin</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+    
     <link rel="apple-touch-icon" href="FS-logo.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/FS-logo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/FS-logo.png">
@@ -41,14 +41,13 @@
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
         
         .form-input { @apply block w-full border px-4 py-2 h-12 rounded-xl border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-sm transition-colors; }
-        .form-textarea { @apply block w-full border px-4 py-3 min-h-[100px] rounded-xl border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-sm transition-colors; }
         .form-label { @apply text-sm font-semibold text-gray-700 mb-2 block; }
+        .btn-primary { @apply inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer transition-transform hover:-translate-y-0.5 bg-primary text-white hover:bg-primary-hover h-12 rounded-xl px-8 text-sm font-semibold shadow-elegant; }
         
-        /* Updated btn-primary to allow text wrapping on mobile */
-        .btn-primary { @apply inline-flex items-center justify-center gap-2 cursor-pointer transition-transform hover:-translate-y-0.5 bg-primary text-white hover:bg-primary-hover min-h-[3.5rem] py-3 rounded-xl px-4 md:px-8 text-sm md:text-base font-semibold shadow-elegant w-full text-center leading-tight; }
-        
-        .section-header { @apply text-lg font-bold text-gray-900 border-b-2 border-primary pb-2 mt-12 mb-6 flex items-center gap-2 scroll-mt-28; }
-        .sub-box { @apply bg-gray-50 border border-gray-200 p-6 rounded-2xl mb-5; }
+        .grid-card { @apply bg-white border border-gray-200 p-6 rounded-2xl flex flex-col items-center gap-3 shadow-sm transition-all cursor-pointer hover:-translate-y-1 hover:border-primary; text-align: center; }
+        .grid-card i { @apply text-3xl text-primary; }
+        .grid-card span { @apply font-semibold text-sm text-gray-800; }
+        .grid-card.active { @apply border-primary bg-red-50 shadow-md transform -translate-y-1; }
       }
     </style>
 </head>
@@ -57,35 +56,32 @@
     <!-- Unified Top Navigation Bar -->
     <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
         <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 gap-4 overflow-x-auto scrollbar-none">
-            <a href="#" class="flex items-center gap-3 shrink-0">
-                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-sm">
-                    <i class="fas fa-headset text-lg"></i>
-                </div>
+            <!-- Brand -->
+            <a href="#top" class="flex items-center gap-3 shrink-0">
+                <img src="FS-logo.png" alt="FS Logo" class="h-10 w-10 object-contain">
                 <div class="flex flex-col">
                     <span class="text-[14px] font-black uppercase tracking-tight text-primary leading-none">TAKAFUL SERVICES</span>
                     <span class="mt-1 text-[11px] font-medium text-gray-500 leading-none">by Fairuz Samsuddin</span>
                 </div>
             </a>
             
+            <!-- Navigation Links -->
             <div class="flex items-center gap-6 shrink-0">
-                <a href="#sec-peribadi" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
+                <a href="#profil" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
                     <i class="far fa-user text-gray-400 text-lg"></i>
-                    <span class="text-xs font-bold whitespace-nowrap">Peribadi</span>
+                    <span class="text-xs font-bold whitespace-nowrap">Profil</span>
                 </a>
-                <a href="#sec-penama" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
-                    <i class="fas fa-users text-gray-400 text-lg"></i>
-                    <span class="text-xs font-bold whitespace-nowrap">Penama</span>
+                <a href="#pilihan-pelan" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
+                    <i class="fas fa-hand-holding-heart text-gray-400 text-lg"></i>
+                    <span class="text-xs font-bold whitespace-nowrap">Pilihan Pelan</span>
                 </a>
-                <a href="#sec-kesihatan" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
-                    <i class="far fa-hospital text-gray-400 text-lg"></i>
-                    <span class="text-xs font-bold whitespace-nowrap">Kesihatan</span>
-                </a>            
-                <a href="#sec-dokumen" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
-                    <i class="far fa-file-alt text-gray-400 text-lg"></i>
-                    <span class="text-xs font-bold whitespace-nowrap">Dokumen</span>
+                <a href="#borang-semakan" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
+                    <i class="far fa-clipboard text-gray-400 text-lg"></i>
+                    <span class="text-xs font-bold whitespace-nowrap">Borang Semakan</span>
                 </a>
             </div>
             
+            <!-- CTA -->
             <div class="shrink-0">
                 <a href="https://wa.me/60176213432" target="_blank" class="flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-primary-hover">
                     <i class="fab fa-whatsapp text-base"></i> WhatsApp
@@ -94,491 +90,202 @@
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <header class="bg-white border-b-2 border-primary py-8 text-center px-4">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">BORANG PENDAFTARAN TAKAFUL</h1>
-    </header>
+    <!-- Main Content -->
+    <main class="flex-grow max-w-5xl mx-auto w-full px-4 py-10 space-y-16">
 
-    <!-- Main Form Container -->
-    <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-10">
-        <div class="bg-white rounded-3xl shadow-elegant border border-gray-100 p-6 md:p-10">
-            <form id="takafulForm" onsubmit="submitToWhatsApp(event)">
+        <!-- Profile Section -->
+        <section id="profil" class="bg-white rounded-3xl shadow-elegant border border-gray-100 p-8 md:p-10 flex flex-col md:flex-row gap-10 items-center scroll-mt-24">
+            <div class="w-48 h-48 md:w-56 md:h-56 shrink-0 rounded-[2rem] overflow-hidden border-4 border-white shadow-lg relative">
+                <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-teal/20 rounded-[2rem]"></div>
+                <img src="profile.jpg" alt="Profile Picture" class="w-full h-full object-cover relative z-10 rounded-[1.8rem]">
+            </div>
+            
+            <div class="text-center md:text-left flex-1">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900">FAIRUZ SAMSUDDIN</h1>
+                <p class="text-primary font-semibold text-base md:text-lg mt-1 tracking-wide uppercase">Perunding Takaful Berdaftar PruBSN</p>
                 
-                <div class="bg-red-50 border-l-4 border-primary p-4 rounded-r-xl text-sm font-medium text-primary mb-8 flex items-start gap-3">
-                    <i class="fas fa-info-circle mt-0.5"></i> 
-                    <span>Sila lengkapkan butiran di bawah dengan tepat untuk melancarkan proses permohonan Takaful anda.</span>
+                <div class="flex justify-center md:justify-start gap-3 mt-4">
+                    <a href="https://www.facebook.com/fairuz.samsuddin" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition-all hover:scale-110"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/rigidius/" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition-all hover:scale-110"><i class="fab fa-instagram"></i></a>
+                    <a href="https://threads.net/@rigidius" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition-all hover:scale-110"><i class="fa-brands fa-threads"></i></a>
+                    <a href="https://tiktok.com/@rigidius" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition-all hover:scale-110"><i class="fab fa-tiktok"></i></a>
                 </div>
 
-                <!-- MAKLUMAT PERIBADI -->
-                <h3 class="section-header" id="sec-peribadi">1. Maklumat Peribadi</h3>
+                <p class="text-gray-500 mt-5 text-sm md:text-base leading-relaxed">Membantu anda mendapatkan pelan perlindungan Takaful yang lengkap dan jelas bersesuaian dengan bajet keluarga anda.</p>
                 
-                <div class="space-y-5">
-                    <div>
-                        <label class="form-label">Nama Penuh (Seperti dalam MyKad) <span class="text-primary">*</span></label>
-                        <input type="text" id="nama" class="form-input" required>
-                    </div>
+                <div class="flex flex-col sm:flex-row gap-4 mt-8">
+                    <a href="#borang-semakan" class="btn-primary flex-1 !rounded-full">
+                        <i class="fas fa-clipboard-check text-lg"></i> Semak Pelan Sesuai
+                    </a>
+                    <a href="https://wa.me/60176213432" target="_blank" class="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap cursor-pointer transition-colors border shadow-sm h-12 rounded-full border-teal/40 bg-teal-soft px-8 text-sm font-semibold text-teal hover:bg-teal hover:text-white">
+                        <i class="fab fa-whatsapp text-lg"></i> WhatsApp Saya
+                    </a>
+                </div>
+            </div>
+        </section>
 
-                    <div>
-                        <label class="form-label">No. IC <span class="text-primary">*</span></label>
-                        <input type="text" id="ic" class="form-input" required placeholder="Contoh: 090724-14-2784" maxlength="14">
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Features Section -->
+        <section class="bg-white rounded-3xl shadow-soft border border-gray-100 p-8 md:p-12 text-center">
+            <div class="relative flex flex-col md:flex-row justify-center gap-10 md:gap-5 items-center">
+                <!-- Line background for desktop -->
+                <div class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-teal -translate-y-1/2 z-0"></div>
+                <!-- Line background for mobile -->
+                <div class="block md:hidden absolute top-[10%] bottom-[10%] left-1/2 w-0.5 bg-teal -translate-x-1/2 z-0"></div>
+
+                <div class="flex flex-col items-center gap-4 flex-1 z-10 bg-white md:bg-transparent px-4">
+                    <div class="w-14 h-14 rounded-full bg-teal text-white flex items-center justify-center text-xl shadow-md"><i class="fas fa-shield-halved"></i></div>
+                    <span class="font-semibold text-gray-700 bg-white px-3 py-1 rounded-lg text-sm">Patuh Syariah</span>
+                </div>
+                <div class="flex flex-col items-center gap-4 flex-1 z-10 bg-white md:bg-transparent px-4">
+                    <div class="w-14 h-14 rounded-full bg-teal text-white flex items-center justify-center text-xl shadow-md"><i class="fas fa-mug-hot"></i></div>
+                    <span class="font-semibold text-gray-700 bg-white px-3 py-1 rounded-lg text-sm">Sesi Santai</span>
+                </div>
+                <div class="flex flex-col items-center gap-4 flex-1 z-10 bg-white md:bg-transparent px-4">
+                    <div class="w-14 h-14 rounded-full bg-teal text-white flex items-center justify-center text-xl shadow-md"><i class="fas fa-wallet"></i></div>
+                    <span class="font-semibold text-gray-700 bg-white px-3 py-1 rounded-lg text-sm">Bajet Mesra</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selection Grid Section -->
+        <section id="pilihan-pelan" class="scroll-mt-24">
+            <div class="mb-6 text-center md:text-left">
+                <h2 class="text-2xl font-bold text-gray-900">Pilihan Yang Boleh Disemak</h2>
+                <p class="text-sm text-gray-500 mt-1"><i class="fas fa-hand-pointer text-primary"></i> Klik kad di bawah untuk memilih</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="planGrid">
+                <div class="grid-card" onclick="selectPlan('Medical Card', this)">
+                    <i class="fas fa-heartbeat"></i><span>Medical Card</span>
+                </div>
+                <div class="grid-card" onclick="selectPlan('Hibah Takaful', this)">
+                    <i class="fas fa-gift"></i><span>Hibah</span>
+                </div>
+                <div class="grid-card" onclick="selectPlan('Income Protection', this)">
+                    <i class="fas fa-briefcase"></i><span>Income Protection</span>
+                </div>
+                <div class="grid-card" onclick="selectPlan('Sakit Kritikal', this)">
+                    <i class="fas fa-user-md"></i><span>Sakit Kritikal</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Section -->
+        <section id="borang-semakan" class="bg-white rounded-3xl shadow-elegant border border-gray-100 overflow-hidden scroll-mt-24">
+            <div class="bg-gradient-to-r from-primary to-[#b8000b] text-white p-8 text-center">
+                <span class="bg-white/20 text-white px-4 py-1.5 rounded-full text-xs font-bold inline-block mb-4 backdrop-blur-sm tracking-wider uppercase">Konsultasi Percuma</span>
+                <h3 class="text-2xl md:text-3xl font-bold mb-2">Semak Pelan Takaful Sesuai</h3>
+                <p class="text-sm text-white/90">Isi butiran ringkas. Mesej draf akan dihantar terus ke WhatsApp <strong>Fairuz Samsuddin</strong>.</p>
+            </div>
+            
+            <div class="p-8 md:p-10">
+                <form id="takafulForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="form-label">Nama Penuh <span class="text-primary">*</span></label>
+                            <input type="text" id="clientName" class="form-input" placeholder="Contoh: Ahmad" required>
+                        </div>
                         <div>
                             <label class="form-label">Tarikh Lahir <span class="text-primary">*</span></label>
-                            <input type="date" id="tarikh_lahir" class="form-input" required>
-                        </div>
-                        <div>
-                            <label class="form-label">No. Telefon <span class="text-primary">*</span></label>
-                            <input type="tel" id="no_tel" class="form-input" required placeholder="Contoh: 0123456789">
+                            <input type="text" id="clientDob" class="form-input" placeholder="Contoh: 12/05/1990" maxlength="10" required>
                         </div>
                     </div>
 
                     <div>
-                        <label class="form-label">Emel <span class="text-primary">*</span></label>
-                        <input type="email" id="emel" class="form-input" required>
+                        <label class="form-label">No Telefon <span class="text-primary">*</span></label>
+                        <input type="tel" id="clientPhone" class="form-input" placeholder="Contoh: 0123456789" required>
                     </div>
 
-                    <div>
-                        <label class="form-label">Alamat Rumah <span class="text-primary">*</span></label>
-                        <textarea id="alamat" class="form-textarea" required></textarea>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="form-label">Warganegara <span class="text-primary">*</span></label>
-                            <select id="warganegara" class="form-input" required>
-                                <option value="" disabled selected>Sila Pilih...</option>
-                                <option value="Malaysia">Malaysia</option>
-                                <option value="Penduduk Tetap">Penduduk Tetap</option>
-                                <option value="Bukan Warganegara">Bukan Warganegara</option>
+                            <label class="form-label">Jantina <span class="text-primary">*</span></label>
+                            <select id="clientGender" class="form-input" required>
+                                <option value="" disabled selected>Pilih</option>
+                                <option value="Lelaki">Lelaki</option>
+                                <option value="Perempuan">Perempuan</option>
                             </select>
                         </div>
                         <div>
-                            <label class="form-label">Agama <span class="text-primary">*</span></label>
-                            <select id="agama" class="form-input" required>
-                                <option value="" disabled selected>Sila Pilih...</option>
-                                <option value="Islam">Islam</option>
-                                <option value="Buddhist">Buddhist</option>
-                                <option value="Hindu">Hindu</option>
-                                <option value="Kristian">Kristian</option>
-                                <option value="Lain-lain">Lain-lain</option>
+                            <label class="form-label">Merokok <span class="text-primary">*</span></label>
+                            <select id="clientSmoker" class="form-input" required>
+                                <option value="" disabled selected>Pilih</option>
+                                <option value="Tidak">Tidak</option>
+                                <option value="Ya">Ya</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="form-label">Tinggi (cm) <span class="text-primary">*</span></label>
-                            <input type="number" id="tinggi" class="form-input" required placeholder="Contoh: 170">
+                            <label class="form-label">Pekerjaan <span class="text-primary">*</span></label>
+                            <input type="text" id="clientJob" class="form-input" placeholder="Cth: Executive, Polis" required>
                         </div>
                         <div>
-                            <label class="form-label">Berat (kg) <span class="text-primary">*</span></label>
-                            <input type="number" id="berat" class="form-input" required placeholder="Contoh: 70">
+                            <label class="form-label">Status <span class="text-primary">*</span></label>
+                            <select id="clientStatus" class="form-input" required>
+                                <option value="" disabled selected>Pilih</option>
+                                <option value="Bujang">Bujang</option>
+                                <option value="Berkahwin">Berkahwin</option>
+                            </select>
                         </div>
                     </div>
 
                     <div>
-                        <label class="form-label">Status Merokok <span class="text-primary">*</span></label>
-                        <select id="merokok" class="form-input" required onchange="updateMerokokFields()">
-                            <option value="" disabled selected>Sila Pilih...</option>
-                            <option value="Merokok">Merokok</option>
-                            <option value="Tidak Merokok">Tidak Merokok</option>
+                        <label class="form-label">Pendapatan Tahunan <span class="text-primary">*</span></label>
+                        <select id="clientIncome" class="form-input" required>
+                            <option value="" disabled selected>Pilih Anggaran Pendapatan</option>
+                            <option value="Bawah RM24,000">Bawah RM24,000</option>
+                            <option value="RM24,000 - RM36,000">RM24,000 - RM36,000</option>
+                            <option value="RM36,000 - RM48,000">RM36,000 - RM48,000</option>
+                            <option value="RM48,000 - RM60,000">RM48,000 - RM60,000</option>
+                            <option value="RM60,000 ke atas">RM60,000 ke atas</option>
                         </select>
                     </div>
 
-                    <!-- Butiran Merokok -->
-                    <div id="merokok_details_section" class="sub-box" style="display: none;">
-                        <div class="mb-4">
-                            <label class="form-label">Rokok / Vape? <span class="text-primary">*</span></label>
-                            <select id="jenis_merokok" class="form-input" onchange="updateJenisMerokokFields()">
-                                <option value="" disabled selected>Sila Pilih...</option>
-                                <option value="Rokok">Rokok</option>
-                                <option value="Vape">Vape</option>
-                            </select>
-                        </div>
-
-                        <div id="rokok_details" class="grid grid-cols-1 md:grid-cols-2 gap-5" style="display: none;">
-                            <div>
-                                <label class="form-label">Berapa batang sehari? <span class="text-primary">*</span></label>
-                                <input type="number" id="bilangan_rokok" class="form-input" min="1" placeholder="Contoh: 10">
-                            </div>
-                            <div>
-                                <label class="form-label">Berapa tahun merokok? <span class="text-primary">*</span></label>
-                                <input type="number" id="tahun_merokok" class="form-input" min="1" placeholder="Contoh: 5">
-                            </div>
-                        </div>
-
-                        <div id="vape_details" style="display: none;">
-                            <label class="form-label">Berapa tahun vape? <span class="text-primary">*</span></label>
-                            <input type="number" id="tahun_vape" class="form-input" min="1" placeholder="Contoh: 3">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MAKLUMAT PEKERJAAN -->
-                <h3 class="section-header">2. Maklumat Pekerjaan</h3>
-                <div class="space-y-5">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="form-label">Nama Majikan / Syarikat <span class="text-primary">*</span></label>
-                            <input type="text" id="majikan" class="form-input" required>
-                        </div>
-                        <div>
-                            <label class="form-label">Jawatan <span class="text-primary">*</span></label>
-                            <input type="text" id="jawatan" class="form-input" required>
-                        </div>
-                    </div>
-
                     <div>
-                        <label class="form-label">Keterangan Ringkas Pekerjaan <span class="text-primary">*</span></label>
-                        <textarea id="keterangan_kerja" class="form-textarea" required placeholder="Contoh: Membuat kerja-kerja admin di pejabat..."></textarea>
-                    </div>
-
-                    <div>
-                        <label class="form-label">Alamat Majikan <span class="text-primary">*</span></label>
-                        <textarea id="alamat_majikan" class="form-textarea" required></textarea>
-                    </div>
-
-                    <div>
-                        <label class="form-label">Pendapatan Tahunan (RM) <span class="text-primary">*</span></label>
-                        <input type="number" id="pendapatan" class="form-input" required placeholder="Contoh: 45000">
-                    </div>
-                </div>
-
-                <!-- MAKLUMAT BANK & PEMBAYARAN -->
-                <h3 class="section-header">3. Maklumat Kewangan & Pembayaran</h3>
-                <div class="space-y-5">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="form-label">Nama Bank (Untuk tuntutan) <span class="text-primary">*</span></label>
-                            <input type="text" id="nama_bank" class="form-input" required placeholder="Contoh: Maybank">
-                        </div>
-                        <div>
-                            <label class="form-label">No. Akaun Bank <span class="text-primary">*</span></label>
-                            <input type="text" id="no_akaun" class="form-input" required>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="form-label">Jenis Akaun <span class="text-primary">*</span></label>
-                            <select id="jenis_akaun" class="form-input" required>
-                                <option value="" disabled selected>Sila Pilih...</option>
-                                <option value="Islamik">Islamik</option>
-                                <option value="Konvensional">Konvensional</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="form-label">Cara Bayaran Bulanan <span class="text-primary">*</span></label>
-                            <select id="cara_bayaran" class="form-input" required>
-                                <option value="" disabled selected>Sila Pilih...</option>
-                                <option value="Autodebit Akaun">Autodebit Akaun</option>
-                                <option value="Kad Debit">Kad Debit</option>
-                                <option value="Kad Kredit">Kad Kredit</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MAKLUMAT PENAMA -->
-                <h3 class="section-header" id="sec-penama">4. Maklumat Penama / Pewaris</h3>
-                <div class="space-y-5">
-                    <div>
-                        <label class="form-label">Berapa Orang Penama? <span class="text-primary">*</span></label>
-                        <select id="bilangan_penama" class="form-input" required onchange="updateNomineeFields()">
-                            <option value="1">1 Penama (100%)</option>
-                            <option value="2">2 Penama</option>
-                            <option value="3">3 Penama</option>
+                        <label class="form-label">Bajet Bulanan Selesa <span class="text-primary">*</span></label>
+                        <select id="clientBudget" class="form-input" required>
+                            <option value="" disabled selected>Pilih Anggaran Bajet</option>
+                            <option value="RM50 - RM200">RM50 - RM200</option>
+                            <option value="RM201 - RM300">RM201 - RM300</option>
+                            <option value="RM301 - RM400">RM301 - RM400</option>
+                            <option value="RM401 ke atas">RM401 ke atas</option>
                         </select>
                     </div>
 
-                    <!-- PENAMA 1 -->
-                    <div id="nominee_1_section" class="sub-box">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base">Penama 1</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label">Nama Penama <span class="text-primary">*</span></label>
-                                <input type="text" id="penama_1" class="form-input" required>
-                            </div>
-                            <div>
-                                <label class="form-label">Hubungan <span class="text-primary">*</span></label>
-                                <input type="text" id="hubungan_penama_1" class="form-input" required placeholder="Contoh: Isteri / Suami / Anak">
-                            </div>
-                        </div>
-                        <div class="mt-5">
-                            <label class="form-label">Peratusan (%) <span class="text-primary">*</span></label>
-                            <input type="number" id="peratus_penama_1" class="form-input" required min="1" max="100" value="100" placeholder="Contoh: 100">
-                        </div>
-                    </div>
-
-                    <!-- PENAMA 2 -->
-                    <div id="nominee_2_section" class="sub-box" style="display: none;">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base">Penama 2</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label">Nama Penama <span class="text-primary">*</span></label>
-                                <input type="text" id="penama_2" class="form-input">
-                            </div>
-                            <div>
-                                <label class="form-label">Hubungan <span class="text-primary">*</span></label>
-                                <input type="text" id="hubungan_penama_2" class="form-input" placeholder="Contoh: Isteri / Suami / Anak">
-                            </div>
-                        </div>
-                        <div class="mt-5">
-                            <label class="form-label">Peratusan (%) <span class="text-primary">*</span></label>
-                            <input type="number" id="peratus_penama_2" class="form-input" min="1" max="100" placeholder="Contoh: 50">
-                        </div>
-                    </div>
-
-                    <!-- PENAMA 3 -->
-                    <div id="nominee_3_section" class="sub-box" style="display: none;">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base">Penama 3</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label">Nama Penama <span class="text-primary">*</span></label>
-                                <input type="text" id="penama_3" class="form-input">
-                            </div>
-                            <div>
-                                <label class="form-label">Hubungan <span class="text-primary">*</span></label>
-                                <input type="text" id="hubungan_penama_3" class="form-input" placeholder="Contoh: Isteri / Suami / Anak">
-                            </div>
-                        </div>
-                        <div class="mt-5">
-                            <label class="form-label">Peratusan (%) <span class="text-primary">*</span></label>
-                            <input type="number" id="peratus_penama_3" class="form-input" min="1" max="100" placeholder="Contoh: 30">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- REKOD KESIHATAN -->
-                <h3 class="section-header" id="sec-kesihatan">5. Rekod Kesihatan & Kemasukan Wad</h3>
-                <div class="bg-teal-soft border-l-4 border-teal p-4 rounded-r-xl text-sm font-medium text-teal mb-6 flex items-start gap-3">
-                    <i class="fas fa-info-circle mt-0.5"></i> 
-                    <span>Pilih "Tiada" jika anda tidak mempunyai sebarang rekod penyakit atau kemasukan ke wad sebelum ini.</span>
-                </div>
-                
-                <div class="space-y-5">
                     <div>
-                        <label class="form-label">Jumlah Rekod untuk Diisytiharkan <span class="text-primary">*</span></label>
-                        <select id="bilangan_rekod" class="form-input" required onchange="updateHealthFields()">
-                            <option value="0">Tiada</option>
-                            <option value="1">1 Rekod</option>
-                            <option value="2">2 Rekod</option>
-                            <option value="3">3 Rekod</option>
+                        <label class="form-label">Perlindungan Ingin Disemak <span class="text-primary">*</span></label>
+                        <select id="clientPlan" class="form-input" required>
+                            <option value="" disabled selected>Pilih Perlindungan Utama</option>
+                            <option value="Medical Card">Medical Card</option>
+                            <option value="Hibah Takaful">Hibah Takaful</option>
+                            <option value="Income Protection">Income Protection</option>
+                            <option value="Sakit Kritikal">Sakit Kritikal</option>
+                            <option value="Pendidikan Anak">Pendidikan Anak</option>
+                            <option value="Belum Pasti / Nak Konsultasi">Belum Pasti / Nak Konsultasi</option>
                         </select>
                     </div>
 
-                    <!-- REKOD KESIHATAN 1 -->
-                    <div id="rekod_1_section" class="sub-box" style="display: none;">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base">Rekod Kesihatan 1</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label">Penyakit Dihidapi <span class="text-primary">*</span></label>
-                                <input type="text" id="penyakit_1" class="form-input">
-                            </div>
-                            <div>
-                                <label class="form-label">Bulan/Tahun Disahkan <span class="text-primary">*</span></label>
-                                <input type="month" id="tarikh_penyakit_1" class="form-input">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label">Diwadkan di hospital mana? <span class="text-primary">*</span></label>
-                                <input type="text" id="hospital_1" class="form-input">
-                            </div>
-                            <div>
-                                <label class="form-label">Berapa hari di dalam wad? <span class="text-primary">*</span></label>
-                                <input type="number" id="hari_wad_1" class="form-input">
-                            </div>
-                        </div>
-                        <div class="mb-5">
-                            <label class="form-label">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan) <span class="text-primary">*</span></label>
-                            <textarea id="jenis_rawatan_1" class="form-textarea" placeholder="Contoh: Makan ubat darah tinggi setiap hari..."></textarea>
-                        </div>
-                        <div>
-                            <label class="form-label">Status Terkini <span class="text-primary">*</span></label>
-                            <select id="status_pulih_1" class="form-input">
-                                <option value="" disabled selected>Sila Pilih...</option>
-                                <option value="Sudah pulih sepenuhnya">Sudah pulih sepenuhnya</option>
-                                <option value="Masih mendapatkan rawatan susulan">Masih mendapatkan rawatan susulan</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- REKOD KESIHATAN 2 -->
-                    <div id="rekod_2_section" class="sub-box" style="display: none;">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base">Rekod Kesihatan 2</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label">Penyakit Dihidapi <span class="text-primary">*</span></label>
-                                <input type="text" id="penyakit_2" class="form-input">
-                            </div>
-                            <div>
-                                <label class="form-label">Bulan/Tahun Disahkan <span class="text-primary">*</span></label>
-                                <input type="month" id="tarikh_penyakit_2" class="form-input">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label">Diwadkan di hospital mana? <span class="text-primary">*</span></label>
-                                <input type="text" id="hospital_2" class="form-input">
-                            </div>
-                            <div>
-                                <label class="form-label">Berapa hari di dalam wad? <span class="text-primary">*</span></label>
-                                <input type="number" id="hari_wad_2" class="form-input">
-                            </div>
-                        </div>
-                        <div class="mb-5">
-                            <label class="form-label">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan) <span class="text-primary">*</span></label>
-                            <textarea id="jenis_rawatan_2" class="form-textarea"></textarea>
-                        </div>
-                        <div>
-                            <label class="form-label">Status Terkini <span class="text-primary">*</span></label>
-                            <select id="status_pulih_2" class="form-input">
-                                <option value="" disabled selected>Sila Pilih...</option>
-                                <option value="Sudah pulih sepenuhnya">Sudah pulih sepenuhnya</option>
-                                <option value="Masih mendapatkan rawatan susulan">Masih mendapatkan rawatan susulan</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- REKOD KESIHATAN 3 -->
-                    <div id="rekod_3_section" class="sub-box" style="display: none;">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base">Rekod Kesihatan 3</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label">Penyakit Dihidapi <span class="text-primary">*</span></label>
-                                <input type="text" id="penyakit_3" class="form-input">
-                            </div>
-                            <div>
-                                <label class="form-label">Bulan/Tahun Disahkan <span class="text-primary">*</span></label>
-                                <input type="month" id="tarikh_penyakit_3" class="form-input">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label">Diwadkan di hospital mana? <span class="text-primary">*</span></label>
-                                <input type="text" id="hospital_3" class="form-input">
-                            </div>
-                            <div>
-                                <label class="form-label">Berapa hari di dalam wad? <span class="text-primary">*</span></label>
-                                <input type="number" id="hari_wad_3" class="form-input">
-                            </div>
-                        </div>
-                        <div class="mb-5">
-                            <label class="form-label">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan) <span class="text-primary">*</span></label>
-                            <textarea id="jenis_rawatan_3" class="form-textarea"></textarea>
-                        </div>
-                        <div>
-                            <label class="form-label">Status Terkini <span class="text-primary">*</span></label>
-                            <select id="status_pulih_3" class="form-input">
-                                <option value="" disabled selected>Sila Pilih...</option>
-                                <option value="Sudah pulih sepenuhnya">Sudah pulih sepenuhnya</option>
-                                <option value="Masih mendapatkan rawatan susulan">Masih mendapatkan rawatan susulan</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SEJARAH KESIHATAN KELUARGA -->
-                <h3 class="section-header">6. Sejarah Kesihatan Keluarga (Penyakit Keturunan)</h3>
-                <div>
-                    <label class="form-label font-normal text-gray-600 leading-relaxed mb-4">Adakah dikalangan keluarga terdekat (ibu, ayah atau adik-beradik kandung) disahkan menghidapi penyakit keturunan atau penyakit kritikal (contoh: darah tinggi, kencing manis, kegagalan buah pinggang, serangan jantung, kanser atau lain-lain)? Jika ada, sila nyatakan di bawah.</label>
-                    <textarea id="sejarah_keluarga" class="form-textarea" placeholder="Contoh: Bapa - Kencing Manis, Ibu - Darah Tinggi. (Tulis 'Tiada' jika tidak berkaitan)"></textarea>
-                </div>
-
-                <!-- SEJARAH COVID-19 -->
-                <h3 class="section-header">7. Sejarah COVID-19</h3>
-                <div class="space-y-5">
                     <div>
-                        <label class="form-label">Pernahkah anda disahkan positif COVID-19? <span class="text-primary">*</span></label>
-                        <select id="positif_covid" class="form-input" required onchange="updateCovidFields()">
-                            <option value="" disabled selected>Sila Pilih...</option>
-                            <option value="Ya">Ya</option>
-                            <option value="Tidak">Tidak</option>
-                        </select>
-                    </div>
-
-                    <div id="covid_details_section" class="sub-box" style="display: none;">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label">Berapa kali disahkan positif? <span class="text-primary">*</span></label>
-                                <input type="number" id="kekerapan_covid" class="form-input" min="1" placeholder="Contoh: 2">
-                            </div>
-                            <div>
-                                <label class="form-label">Bulan/Tahun disahkan positif <span class="text-primary">*</span></label>
-                                <input type="month" id="tarikh_covid" class="form-input">
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label">Tahap COVID-19? <span class="text-primary">*</span></label>
-                                <select id="tahap_covid" class="form-input">
-                                    <option value="" disabled selected>Sila Pilih...</option>
-                                    <option value="Tahap 1">1</option>
-                                    <option value="Tahap 2">2</option>
-                                    <option value="Tahap 3">3</option>
-                                    <option value="Tahap 4">4</option>
-                                    <option value="Tahap 5">5</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="form-label">Pernah masuk hospital untuk ini? <span class="text-primary">*</span></label>
-                                <select id="masuk_hospital_covid" class="form-input" onchange="updateCovidHospitalFields()">
-                                    <option value="" disabled selected>Sila Pilih...</option>
-                                    <option value="Ya">Ya</option>
-                                    <option value="Tidak">Tidak</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="mb-5" id="rawatan_covid_section" style="display: none;">
-                            <label class="form-label">Jika Ya, apakah rawatan yang telah dijalankan? <span class="text-primary">*</span></label>
-                            <select id="rawatan_covid" class="form-input">
-                                <option value="" disabled selected>Sila Pilih...</option>
-                                <option value="Bantuan Alat Pernafasan">Bantuan Alat Pernafasan</option>
-                                <option value="HDU / ICU / ITU / CCU">HDU, ICU, ITU, CCU</option>
-                                <option value="Ubat Anti-Viral">Ubat Anti-Viral</option>
-                                <option value="Kuarantin di Wad atau Pusat Kuarantin">Kuarantin di Wad atau Pusat Kuarantin</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="form-label">Sebarang kondisi sekarang disebabkan oleh COVID-19? <span class="text-primary">*</span></label>
-                            <textarea id="kondisi_semasa_covid" class="form-textarea" placeholder="Contoh: Kerap sesak nafas. (Tulis 'Tiada' jika tidak berkaitan)"></textarea>
+                        <label class="form-label">Adakah anda mempunyai polisi aktif?</label>
+                        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-3">
+                            <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700"><input type="radio" name="polisiAktif" value="Ya, sudah ada" class="accent-primary w-4 h-4"> Ya, sudah ada</label>
+                            <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700"><input type="radio" name="polisiAktif" value="Tidak, belum ada" checked class="accent-primary w-4 h-4"> Tidak, belum ada</label>
                         </div>
                     </div>
-                </div>
 
-                <!-- DOKUMEN SOKONGAN -->
-                <h3 class="section-header" id="sec-dokumen">8. Dokumen Sokongan</h3>
-                <div class="bg-gray-50 border border-gray-200 p-6 rounded-2xl mb-8">
-                    <p class="font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="fas fa-camera text-primary text-xl"></i> ARAHAN PENTING:</p>
-                    <p class="text-sm text-gray-700 mb-4 leading-relaxed">Sebagai pengesahan keselamatan identiti, sila sediakan gambar-gambar berikut untuk dihantar <strong>di dalam ruang chat WhatsApp</strong> selepas anda menekan butang Hantar di bawah:</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 mb-6 space-y-1 ml-2">
-                        <li>Gambar MyKad (Muka Depan)</li>
-                        <li>Gambar MyKad (Muka Belakang)</li>
-                        <li>Gambar Selfie anda memegang MyKad</li>
-                    </ul>
-                    
-                    <div class="bg-white p-5 rounded-xl border-l-4 border-teal shadow-sm text-sm text-gray-600">
-                        <strong class="text-gray-900">*Nota:</strong> Langkah penyerahan gambar MyKad dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori <strong>eKYC (Electronic Know Your Customer)</strong> bagi tujuan pengesahan identiti secara digital.
-                        <br>
-                        <a href="https://www.bnm.gov.my/-/pd-ekyc-en" target="_blank" class="text-teal font-semibold hover:underline mt-2 inline-block">
-                            &rarr; Ketahui lebih lanjut mengenai polisi eKYC BNM
-                        </a>
+                    <div>
+                        <label class="form-label">Mesej Tambahan (Optional)</label>
+                        <textarea id="clientMessage" class="form-input h-auto min-h-[100px] py-3" placeholder="Tulis soalan atau nota khas anda di sini..."></textarea>
                     </div>
-                </div>
 
-                <button type="submit" class="btn-primary">
-                    Hantar Permohonan Melalui WhatsApp <i class="fab fa-whatsapp text-lg ml-1"></i>
-                </button>
-            </form>
-        </div>
+                    <button type="submit" class="btn-primary w-full !h-14 mt-4 text-base">Hantar Ke WhatsApp <i class="fab fa-whatsapp ml-1"></i></button>
+                </form>
+            </div>
+        </section>
+
     </main>
-    
+
     <!-- Unified Footer -->
     <footer class="border-t border-border bg-white py-10 mt-auto">
         <div class="mx-auto max-w-6xl px-6">
@@ -592,240 +299,72 @@
 
     <!-- Scripts -->
     <script>
-        document.getElementById('ic').addEventListener('input', function(e) {
-            let rawVal = e.target.value.replace(/\D/g, ''); 
-            let formattedVal = rawVal;
-            
-            if (rawVal.length > 6) {
-                formattedVal = rawVal.substring(0, 6) + '-' + rawVal.substring(6);
-            }
-            if (rawVal.length > 8) {
-                formattedVal = formattedVal.substring(0, 9) + '-' + rawVal.substring(8, 12);
-            }
-            e.target.value = formattedVal;
+        function selectPlan(planName, clickedElement) {
+            var cards = document.querySelectorAll('.grid-card');
+            cards.forEach(function(card) {
+                card.classList.remove('active');
+            });
+            clickedElement.classList.add('active');
 
-            if (rawVal.length >= 6) {
-                let yy = rawVal.substring(0, 2);
-                let mm = rawVal.substring(2, 4);
-                let dd = rawVal.substring(4, 6);
+            var planDropdown = document.getElementById('clientPlan');
+            planDropdown.value = planName;
 
-                if (parseInt(mm) > 0 && parseInt(mm) <= 12 && parseInt(dd) > 0 && parseInt(dd) <= 31) {
-                    let currentYear = new Date().getFullYear();
-                    let currentTwoDigitYear = currentYear % 100;
-                    let numYy = parseInt(yy);
-                    
-                    let fullYear = (numYy <= currentTwoDigitYear) ? (2000 + numYy) : (1900 + numYy);
-                    let formattedDate = `${fullYear}-${mm}-${dd}`;
-                    
-                    document.getElementById('tarikh_lahir').value = formattedDate;
-                }
+            document.getElementById('borang-semakan').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Auto-format Date of Birth field with slashes (DD/MM/YYYY)
+        const dobInput = document.getElementById('clientDob');
+        dobInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); 
+            if (value.length > 8) value = value.slice(0, 8); 
+            if (value.length >= 5) {
+                value = value.slice(0, 2) + '/' + value.slice(2, 4) + '/' + value.slice(4);
+            } else if (value.length >= 3) {
+                value = value.slice(0, 2) + '/' + value.slice(2);
             }
+            e.target.value = value;
         });
 
-        function updateMerokokFields() {
-            const isMerokok = document.getElementById('merokok').value === 'Merokok';
-            const section = document.getElementById('merokok_details_section');
-            const jenisField = document.getElementById('jenis_merokok');
-
-            if (isMerokok) {
-                section.style.display = 'block';
-                jenisField.required = true;
-            } else {
-                section.style.display = 'none';
-                jenisField.required = false;
-                jenisField.value = '';
-                updateJenisMerokokFields(); 
-            }
-        }
-
-        function updateJenisMerokokFields() {
-            const jenis = document.getElementById('jenis_merokok').value;
-            const rokokSection = document.getElementById('rokok_details');
-            const vapeSection = document.getElementById('vape_details');
-            const bilRokok = document.getElementById('bilangan_rokok');
-            const tahunRokok = document.getElementById('tahun_merokok');
-            const tahunVape = document.getElementById('tahun_vape');
-
-            if (jenis === 'Rokok') {
-                rokokSection.style.display = 'grid'; 
-                vapeSection.style.display = 'none';
-                bilRokok.required = true; tahunRokok.required = true;
-                tahunVape.required = false; tahunVape.value = '';
-            } else if (jenis === 'Vape') {
-                vapeSection.style.display = 'block';
-                rokokSection.style.display = 'none';
-                tahunVape.required = true;
-                bilRokok.required = false; bilRokok.value = '';
-                tahunRokok.required = false; tahunRokok.value = '';
-            } else {
-                rokokSection.style.display = 'none'; vapeSection.style.display = 'none';
-                bilRokok.required = false; bilRokok.value = '';
-                tahunRokok.required = false; tahunRokok.value = '';
-                tahunVape.required = false; tahunVape.value = '';
-            }
-        }
-
-        function updateNomineeFields() {
-            const count = parseInt(document.getElementById('bilangan_penama').value);
-            for (let i = 2; i <= 3; i++) {
-                const section = document.getElementById(`nominee_${i}_section`);
-                const p = document.getElementById(`penama_${i}`);
-                const h = document.getElementById(`hubungan_penama_${i}`);
-                const pct = document.getElementById(`peratus_penama_${i}`);
-                
-                if (count >= i) {
-                    section.style.display = 'block';
-                    p.required = true; h.required = true; pct.required = true;
-                } else {
-                    section.style.display = 'none';
-                    p.required = false; h.required = false; pct.required = false;
-                    p.value = ''; h.value = ''; pct.value = '';
-                }
-            }
-            if(count === 1) document.getElementById('peratus_penama_1').value = "100";
-            else document.getElementById('peratus_penama_1').value = ""; 
-        }
-
-        function updateHealthFields() {
-            const count = parseInt(document.getElementById('bilangan_rekod').value);
-            for (let i = 1; i <= 3; i++) {
-                const section = document.getElementById(`rekod_${i}_section`);
-                const fields = ['penyakit_', 'tarikh_penyakit_', 'hospital_', 'hari_wad_', 'jenis_rawatan_', 'status_pulih_'].map(id => document.getElementById(id + i));
-                
-                if (count >= i) {
-                    section.style.display = 'block';
-                    fields.forEach(f => f.required = true);
-                } else {
-                    section.style.display = 'none';
-                    fields.forEach(f => { f.required = false; f.value = ''; });
-                }
-            }
-        }
-
-        function updateCovidFields() {
-            const isPositif = document.getElementById('positif_covid').value === 'Ya';
-            const section = document.getElementById('covid_details_section');
-            const requiredFields = ['kekerapan_covid', 'tarikh_covid', 'tahap_covid', 'masuk_hospital_covid', 'kondisi_semasa_covid'];
+        document.getElementById('takafulForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
             
-            if (isPositif) {
-                section.style.display = 'block';
-                requiredFields.forEach(id => document.getElementById(id).required = true);
-            } else {
-                section.style.display = 'none';
-                requiredFields.forEach(id => {
-                    const el = document.getElementById(id);
-                    el.required = false; el.value = '';
-                });
-                document.getElementById('rawatan_covid').required = false;
-                document.getElementById('rawatan_covid').value = '';
-                document.getElementById('rawatan_covid_section').style.display = 'none';
-            }
-        }
-
-        function updateCovidHospitalFields() {
-            const isHospital = document.getElementById('masuk_hospital_covid').value === 'Ya';
-            const section = document.getElementById('rawatan_covid_section');
-            const field = document.getElementById('rawatan_covid');
-
-            if (isHospital) {
-                section.style.display = 'block'; field.required = true;
-            } else {
-                section.style.display = 'none'; field.required = false; field.value = '';
-            }
-        }
-
-        function submitToWhatsApp(event) {
-            event.preventDefault();
-            const nomineeCount = parseInt(document.getElementById('bilangan_penama').value);
-            let totalPercentage = parseInt(document.getElementById('peratus_penama_1').value) || 0;
-            if (nomineeCount >= 2) totalPercentage += parseInt(document.getElementById('peratus_penama_2').value) || 0;
-            if (nomineeCount >= 3) totalPercentage += parseInt(document.getElementById('peratus_penama_3').value) || 0;
-
-            if (totalPercentage !== 100) {
-                alert(`Jumlah peratusan penama mestilah genap 100%. (Jumlah sekarang: ${totalPercentage}%). Sila periksa semula.`);
-                return;
-            }
-
-            const agentPhone = "60176213432"; 
-            const val = (id) => document.getElementById(id).value || "Tiada/Tidak Berkaitan";
-
-            const nama = val("nama"), tarikhLahir = val("tarikh_lahir"), noTel = val("no_tel"), emel = val("emel"), alamat = val("alamat");
-            const warganegara = val("warganegara"), agama = val("agama"), tinggi = val("tinggi"), berat = val("berat");
+            var name = document.getElementById('clientName').value;
+            var dob = document.getElementById('clientDob').value;
+            var phone = document.getElementById('clientPhone').value;
+            var gender = document.getElementById('clientGender').value;
+            var smoker = document.getElementById('clientSmoker').value;
+            var job = document.getElementById('clientJob').value;
+            var status = document.getElementById('clientStatus').value;
+            var income = document.getElementById('clientIncome').value;
+            var budget = document.getElementById('clientBudget').value;
+            var plan = document.getElementById('clientPlan').value;
+            var policy = document.querySelector('input[name="polisiAktif"]:checked').value;
+            var addMessage = document.getElementById('clientMessage').value;
             
-            const merokokStatus = val("merokok");
-            let merokokDetails = merokokStatus;
-            if (merokokStatus === "Merokok") {
-                const jenisMerokok = val("jenis_merokok");
-                if (jenisMerokok === "Rokok") merokokDetails += ` (Jenis: Rokok | Kuantiti: ${val("bilangan_rokok")} batang/hari | Tempoh: ${val("tahun_merokok")} tahun)`;
-                else if (jenisMerokok === "Vape") merokokDetails += ` (Jenis: Vape | Tempoh: ${val("tahun_vape")} tahun)`;
-            }
-
-            const majikan = val("majikan"), jawatan = val("jawatan"), ketKerja = val("keterangan_kerja"), alamatMajikan = val("alamat_majikan"), pendapatan = val("pendapatan");
-            const namaBank = val("nama_bank"), noAkaun = val("no_akaun"), jenisAkaun = val("jenis_akaun"), caraBayaran = val("cara_bayaran");
-
-            let penamaDetails = `Bilangan Penama: ${nomineeCount}\n[Penama 1] Nama: ${val("penama_1")} | Hubungan: ${val("hubungan_penama_1")} | Bahagian: ${val("peratus_penama_1")}%\n`;
-            if (nomineeCount >= 2) penamaDetails += `[Penama 2] Nama: ${val("penama_2")} | Hubungan: ${val("hubungan_penama_2")} | Bahagian: ${val("peratus_penama_2")}%\n`;
-            if (nomineeCount >= 3) penamaDetails += `[Penama 3] Nama: ${val("penama_3")} | Hubungan: ${val("hubungan_penama_3")} | Bahagian: ${val("peratus_penama_3")}%\n`;
-
-            const healthCount = parseInt(document.getElementById('bilangan_rekod').value);
-            let healthDetails = `Jumlah Rekod: ${healthCount === 0 ? 'Tiada' : healthCount}\n`;
-            if (healthCount > 0) {
-                for (let i = 1; i <= healthCount; i++) {
-                    healthDetails += `\n[Rekod ${i}]\nPenyakit: ${val(`penyakit_${i}`)}\nBulan/Tahun Disahkan: ${val(`tarikh_penyakit_${i}`)}\nHospital Dirawat: ${val(`hospital_${i}`)}\nJumlah Hari Diwadkan: ${val(`hari_wad_${i}`)}\nJenis Rawatan: ${val(`jenis_rawatan_${i}`)}\nStatus Terkini: ${val(`status_pulih_${i}`)}\n`;
-                }
-            }
-
-            const sejarahKeluarga = val("sejarah_keluarga");
-            const positifCovid = val("positif_covid");
-            let covidDetails = `Pernah positif COVID-19: ${positifCovid}\n`;
+            var phoneNumber = "60176213432"; 
             
-            if (positifCovid === "Ya") {
-                covidDetails += `Kekerapan Positif: ${val("kekerapan_covid")} kali\nBulan/Tahun Positif: ${val("tarikh_covid")}\nTahap: ${val("tahap_covid")}\nDimasukkan ke Hospital: ${val("masuk_hospital_covid")}\n`;
-                if (val("masuk_hospital_covid") === "Ya") covidDetails += `Rawatan Diterima: ${val("rawatan_covid")}\n`;
-                covidDetails += `Kondisi Semasa akibat COVID-19: ${val("kondisi_semasa_covid")}\n`;
+            var message = "Hai, saya berminat untuk buat semakan pelan Takaful percuma. Ini butiran saya:\n\n" +
+                          "👤 *Nama:* " + name + "\n" +
+                          "📅 *Tarikh Lahir:* " + dob + "\n" +
+                          "📱 *No Telefon:* " + phone + "\n" +
+                          "🚻 *Jantina:* " + gender + " | 🚬 *Merokok:* " + smoker + "\n" +
+                          "💼 *Pekerjaan:* " + job + " | 💍 *Status:* " + status + "\n" +
+                          "💵 *Pendapatan:* " + income + "\n" +
+                          "💰 *Bajet:* " + budget + "\n" +
+                          "🛡️ *Pelan Pilihan:* " + plan + "\n" +
+                          "📋 *Polisi Aktif:* " + policy;
+            
+            if(addMessage.trim() !== "") {
+                message += "\n\n📝 *Nota Tambahan:*\n" + addMessage;
+            } else {
+                message += "\n\nMohon bantu saya untuk sediakan sebut harga yang sesuai.";
             }
-
-            const whatsappMessage = `*PERMOHONAN PRUBSN - REMOTE ENROLLMENT*
-
-*1. MAKLUMAT PERIBADI*
-Nama: ${nama}
-Tarikh Lahir: ${tarikhLahir}
-No. Tel: ${noTel}
-Emel: ${emel}
-Alamat: ${alamat}
-Warganegara: ${warganegara}
-Agama: ${agama}
-Tinggi: ${tinggi} cm
-Berat: ${berat} kg
-Status Merokok: ${merokokDetails}
-
-*2. MAKLUMAT PEKERJAAN*
-Majikan: ${majikan}
-Jawatan: ${jawatan}
-Deskripsi Tugas: ${ketKerja}
-Alamat Majikan: ${alamatMajikan}
-Pendapatan Tahunan: RM ${pendapatan}
-
-*3. MAKLUMAT BANK & BAYARAN*
-Nama Bank (Tuntutan): ${namaBank}
-No. Akaun: ${noAkaun}
-Jenis Akaun: ${jenisAkaun}
-Cara Bayaran Bulanan: ${caraBayaran}
-
-*4. MAKLUMAT PENAMA*
-${penamaDetails}
-*5. REKOD KESIHATAN*
-${healthDetails}
-*6. SEJARAH KESIHATAN KELUARGA*
-Rekod / Penyakit Keturunan: ${sejarahKeluarga}
-
-*7. SEJARAH COVID-19*
-${covidDetails}
-*8. DOKUMEN*
-_Sila lampirkan MyKad (Depan, Belakang & Selfie sambil memegang MyKad) di dalam chat ini untuk tujuan pengesahan eKYC._`;
-
-            window.open(`https://wa.me/${agentPhone}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
-        }
+                          
+            var encodedMessage = encodeURIComponent(message);
+            var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+            
+            window.open(whatsappUrl, '_blank');
+        });
     </script>
 </body>
 </html>
