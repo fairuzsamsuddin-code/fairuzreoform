@@ -56,13 +56,21 @@
     <!-- Unified Top Navigation Bar -->
     <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
         <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 gap-4 overflow-x-auto scrollbar-none">
-            <a href="#" class="flex items-center gap-3 shrink-0">
-                <img src="FS-logo.png" alt="FS Logo" class="h-10 w-10 object-contain">
-                <div class="flex flex-col">
-                    <span class="text-[14px] font-black uppercase tracking-tight text-primary leading-none" data-translate="brand_title">TAKAFUL SERVICES</span>
-                    <span class="mt-1 text-[11px] font-medium text-gray-500 leading-none" data-translate="brand_sub">by Fairuz Samsuddin</span>
-                </div>
-            </a>
+            
+            <div class="flex items-center gap-4 shrink-0">
+                <!-- Moved Language Button to the First Position -->
+                <button onclick="toggleLanguage()" id="langBtn" class="flex items-center gap-1.5 rounded-full border border-gray-300 bg-gray-50 px-3 py-2 text-xs font-bold text-gray-700 shadow-sm transition-colors hover:bg-gray-100">
+                    <i class="fas fa-globe text-primary"></i> <span id="langText">EN</span>
+                </button>
+                
+                <a href="#" class="flex items-center gap-3 shrink-0">
+                    <img src="FS-logo.png" alt="FS Logo" class="h-10 w-10 object-contain">
+                    <div class="flex flex-col">
+                        <span class="text-[14px] font-black uppercase tracking-tight text-primary leading-none" data-translate="brand_title">TAKAFUL SERVICES</span>
+                        <span class="mt-1 text-[11px] font-medium text-gray-500 leading-none" data-translate="brand_sub">by Fairuz Samsuddin</span>
+                    </div>
+                </a>
+            </div>
             
             <div class="flex items-center gap-6 shrink-0">
                 <a href="#sec-peribadi" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
@@ -84,9 +92,6 @@
             </div>
             
             <div class="flex items-center gap-3 shrink-0">
-                <button onclick="toggleLanguage()" id="langBtn" class="flex items-center gap-1.5 rounded-full border border-gray-300 bg-gray-50 px-3 py-2 text-xs font-bold text-gray-700 shadow-sm transition-colors hover:bg-gray-100">
-                    <i class="fas fa-globe text-primary"></i> <span id="langText">EN</span>
-                </button>
                 <a href="https://wa.me/60176213432" target="_blank" class="flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-primary-hover">
                     <i class="fab fa-whatsapp text-base"></i> WhatsApp
                 </a>
@@ -114,13 +119,31 @@
                 
                 <div class="space-y-5">
                     <div>
-                        <label class="form-label"><span data-translate="lbl_fullname">Nama Penuh (Seperti dalam MyKad)</span> <span class="text-primary">*</span></label>
+                        <label class="form-label"><span data-translate="lbl_fullname">Nama Penuh (Seperti dalam MyKad/Passport)</span> <span class="text-primary">*</span></label>
                         <input type="text" id="nama" class="form-input" required>
                     </div>
 
-                    <div>
-                        <label class="form-label"><span data-translate="lbl_ic">No. IC</span> <span class="text-primary">*</span></label>
-                        <input type="text" id="ic" class="form-input" required placeholder="Contoh: 090724-14-2784" maxlength="14">
+                    <!-- Moved Citizenship Here with Dynamic IC/Passport Field -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="form-label"><span data-translate="lbl_citizen">Warganegara</span> <span class="text-primary">*</span></label>
+                            <select id="warganegara" class="form-input" required onchange="updateIdentityFields()">
+                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                <option value="Malaysia" data-translate="opt_malaysia">Malaysia</option>
+                                <option value="Penduduk Tetap" data-translate="opt_pr">Penduduk Tetap</option>
+                                <option value="Bukan Warganegara" data-translate="opt_foreigner">Bukan Warganegara</option>
+                            </select>
+                        </div>
+                        
+                        <div id="ic_container" style="display: none;">
+                            <label class="form-label"><span data-translate="lbl_ic">No. IC</span> <span class="text-primary">*</span></label>
+                            <input type="text" id="ic" class="form-input" placeholder="Contoh: 090724-14-2784" maxlength="14">
+                        </div>
+
+                        <div id="passport_container" style="display: none;">
+                            <label class="form-label"><span data-translate="lbl_passport">No. Pasport</span> <span class="text-primary">*</span></label>
+                            <input type="text" id="passport" class="form-input" placeholder="Contoh: A1234567">
+                        </div>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -134,25 +157,10 @@
                         </div>
                     </div>
 
-                    <div>
-                        <label class="form-label"><span data-translate="lbl_email">Emel</span> <span class="text-primary">*</span></label>
-                        <input type="email" id="emel" class="form-input" required>
-                    </div>
-
-                    <div>
-                        <label class="form-label"><span data-translate="lbl_address">Alamat Rumah</span> <span class="text-primary">*</span></label>
-                        <textarea id="alamat" class="form-textarea" required></textarea>
-                    </div>
-
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
-                            <label class="form-label"><span data-translate="lbl_citizen">Warganegara</span> <span class="text-primary">*</span></label>
-                            <select id="warganegara" class="form-input" required>
-                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                <option value="Malaysia" data-translate="opt_malaysia">Malaysia</option>
-                                <option value="Penduduk Tetap" data-translate="opt_pr">Penduduk Tetap</option>
-                                <option value="Bukan Warganegara" data-translate="opt_foreigner">Bukan Warganegara</option>
-                            </select>
+                            <label class="form-label"><span data-translate="lbl_email">Emel</span> <span class="text-primary">*</span></label>
+                            <input type="email" id="emel" class="form-input" required>
                         </div>
                         <div>
                             <label class="form-label"><span data-translate="lbl_religion">Agama</span> <span class="text-primary">*</span></label>
@@ -165,6 +173,11 @@
                                 <option value="Lain-lain" data-translate="opt_others">Lain-lain</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label"><span data-translate="lbl_address">Alamat Rumah</span> <span class="text-primary">*</span></label>
+                        <textarea id="alamat" class="form-textarea" required></textarea>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -605,8 +618,9 @@
                 page_heading: "BORANG PENDAFTARAN TAKAFUL",
                 form_notice: "Sila lengkapkan butiran di bawah dengan tepat untuk melancarkan proses permohonan Takaful anda.",
                 sec_1_title: "1. Maklumat Peribadi",
-                lbl_fullname: "Nama Penuh (Seperti dalam MyKad)",
+                lbl_fullname: "Nama Penuh (Seperti dalam MyKad/Passport)",
                 lbl_ic: "No. IC",
+                lbl_passport: "No. Pasport",
                 lbl_dob: "Tarikh Lahir",
                 lbl_phone: "No. Telefon",
                 lbl_email: "Emel",
@@ -720,8 +734,9 @@
                 page_heading: "TAKAFUL REGISTRATION FORM",
                 form_notice: "Please complete the details below accurately to facilitate your Takaful application process.",
                 sec_1_title: "1. Personal Information",
-                lbl_fullname: "Full Name (As in MyKad)",
+                lbl_fullname: "Full Name (As in MyKad/Passport)",
                 lbl_ic: "IC No.",
+                lbl_passport: "Passport No.",
                 lbl_dob: "Date of Birth",
                 lbl_phone: "Phone No.",
                 lbl_email: "Email",
@@ -850,6 +865,7 @@
             // Update dynamic placeholders based on language
             if (currentLang === 'en') {
                 document.getElementById('ic').placeholder = "Example: 090724-14-2784";
+                document.getElementById('passport').placeholder = "Example: A1234567";
                 document.getElementById('tarikh_lahir').placeholder = "";
                 document.getElementById('no_tel').placeholder = "Example: 0123456789";
                 document.getElementById('tinggi').placeholder = "Example: 170";
@@ -873,6 +889,7 @@
                 document.getElementById('kondisi_semasa_covid').placeholder = "Example: Frequent shortness of breath. (Write 'None' if not applicable)";
             } else {
                 document.getElementById('ic').placeholder = "Contoh: 090724-14-2784";
+                document.getElementById('passport').placeholder = "Contoh: A1234567";
                 document.getElementById('tarikh_lahir').placeholder = "";
                 document.getElementById('no_tel').placeholder = "Contoh: 0123456789";
                 document.getElementById('tinggi').placeholder = "Contoh: 170";
@@ -897,6 +914,37 @@
             }
         }
 
+        // Dynamic Identity Setup (IC vs Passport)
+        function updateIdentityFields() {
+            const warganegara = document.getElementById('warganegara').value;
+            const icContainer = document.getElementById('ic_container');
+            const passportContainer = document.getElementById('passport_container');
+            const icInput = document.getElementById('ic');
+            const passportInput = document.getElementById('passport');
+
+            if (warganegara === 'Bukan Warganegara') {
+                icContainer.style.display = 'none';
+                icInput.required = false;
+                icInput.value = ''; // Clean up past data
+                
+                passportContainer.style.display = 'block';
+                passportInput.required = true;
+            } else if (warganegara === 'Malaysia' || warganegara === 'Penduduk Tetap') {
+                passportContainer.style.display = 'none';
+                passportInput.required = false;
+                passportInput.value = ''; // Clean up past data
+                
+                icContainer.style.display = 'block';
+                icInput.required = true;
+            } else {
+                icContainer.style.display = 'none';
+                icInput.required = false;
+                passportContainer.style.display = 'none';
+                passportInput.required = false;
+            }
+        }
+
+        // IC formatting and Auto-DOB
         document.getElementById('ic').addEventListener('input', function(e) {
             let rawVal = e.target.value.replace(/\D/g, ''); 
             let formattedVal = rawVal;
@@ -1057,8 +1105,17 @@
             const agentPhone = "60176213432"; 
             const val = (id) => document.getElementById(id).value || (currentLang === 'ms' ? "Tiada/Tidak Berkaitan" : "None/Not Applicable");
 
+            // Determine Identity (IC vs Passport)
+            const warganegara = val("warganegara");
+            let identityType = "";
+            if (warganegara === 'Bukan Warganegara') {
+                identityType = (currentLang === 'ms') ? `No. Pasport: ${val("passport")}` : `Passport No.: ${val("passport")}`;
+            } else {
+                identityType = (currentLang === 'ms') ? `No. IC: ${val("ic")}` : `IC No.: ${val("ic")}`;
+            }
+
             const nama = val("nama"), tarikhLahir = val("tarikh_lahir"), noTel = val("no_tel"), emel = val("emel"), alamat = val("alamat");
-            const warganegara = val("warganegara"), agama = val("agama"), tinggi = val("tinggi"), berat = val("berat");
+            const agama = val("agama"), tinggi = val("tinggi"), berat = val("berat");
             
             const merokokStatus = val("merokok");
             let merokokDetails = merokokStatus;
@@ -1111,8 +1168,8 @@
             }
 
             const whatsappMessage = (currentLang === 'ms') 
-                ? `*PERMOHONAN PRUBSN - REMOTE ENROLLMENT*\n\n*1. MAKLUMAT PERIBADI*\nNama: ${nama}\nTarikh Lahir: ${tarikhLahir}\nNo. Tel: ${noTel}\nEmel: ${emel}\nAlamat: ${alamat}\nWarganegara: ${warganegara}\nAgama: ${agama}\nTinggi: ${tinggi} cm\nBerat: ${berat} kg\nStatus Merokok: ${merokokDetails}\n\n*2. MAKLUMAT PEKERJAAN*\nMajikan: ${majikan}\nJawatan: ${jawatan}\nDeskripsi Tugas: ${ketKerja}\nAlamat Majikan: ${alamatMajikan}\nPendapatan Tahunan: RM ${pendapatan}\n\n*3. MAKLUMAT BANK & BAYARAN*\nNama Bank (Tuntutan): ${namaBank}\nNo. Akaun: ${noAkaun}\nJenis Akaun: ${jenisAkaun}\nCara Bayaran Bulanan: ${caraBayaran}\n\n*4. MAKLUMAT PENAMA*\n${penamaDetails}\n*5. REKOD KESIHATAN*\n${healthDetails}\n*6. SEJARAH KESIHATAN KELUARGA*\nRekod / Penyakit Keturunan: ${sejarahKeluarga}\n\n*7. SEJARAH COVID-19*\n${covidDetails}\n*8. DOKUMEN*\n_Sila lampirkan MyKad (Depan, Belakang & Selfie sambil memegang MyKad) di dalam chat ini untuk tujuan pengesahan eKYC._`
-                : `*PRUBSN APPLICATION - REMOTE ENROLLMENT*\n\n*1. PERSONAL INFORMATION*\nName: ${nama}\nDate of Birth: ${tarikhLahir}\nPhone No.: ${noTel}\nEmail: ${emel}\nAddress: ${alamat}\nCitizenship: ${warganegara}\nReligion: ${agama}\nHeight: ${tinggi} cm\nWeight: ${berat} kg\nSmoking Status: ${merokokDetails}\n\n*2. OCCUPATION INFORMATION*\nEmployer: ${majikan}\nJob Title: ${jawatan}\nJob Description: ${ketKerja}\nEmployer Address: ${alamatMajikan}\nAnnual Income: RM ${pendapatan}\n\n*3. FINANCIAL & PAYMENT INFO*\nBank Name (Claims): ${namaBank}\nAccount No.: ${noAkaun}\nAccount Type: ${jenisAkaun}\nMonthly Payment Method: ${caraBayaran}\n\n*4. NOMINEE INFORMATION*\n${penamaDetails}\n*5. HEALTH RECORDS*\n${healthDetails}\n*6. FAMILY HEALTH HISTORY*\nRecords / Hereditary Diseases: ${sejarahKeluarga}\n\n*7. COVID-19 HISTORY*\n${covidDetails}\n*8. DOCUMENTS*\n_Please attach MyKad (Front, Back & Selfie holding MyKad) in this chat for eKYC verification purposes._`;
+                ? `*PERMOHONAN PRUBSN - REMOTE ENROLLMENT*\n\n*1. MAKLUMAT PERIBADI*\nNama: ${nama}\n${identityType}\nTarikh Lahir: ${tarikhLahir}\nNo. Tel: ${noTel}\nEmel: ${emel}\nAlamat: ${alamat}\nWarganegara: ${warganegara}\nAgama: ${agama}\nTinggi: ${tinggi} cm\nBerat: ${berat} kg\nStatus Merokok: ${merokokDetails}\n\n*2. MAKLUMAT PEKERJAAN*\nMajikan: ${majikan}\nJawatan: ${jawatan}\nDeskripsi Tugas: ${ketKerja}\nAlamat Majikan: ${alamatMajikan}\nPendapatan Tahunan: RM ${pendapatan}\n\n*3. MAKLUMAT BANK & BAYARAN*\nNama Bank (Tuntutan): ${namaBank}\nNo. Akaun: ${noAkaun}\nJenis Akaun: ${jenisAkaun}\nCara Bayaran Bulanan: ${caraBayaran}\n\n*4. MAKLUMAT PENAMA*\n${penamaDetails}\n*5. REKOD KESIHATAN*\n${healthDetails}\n*6. SEJARAH KESIHATAN KELUARGA*\nRekod / Penyakit Keturunan: ${sejarahKeluarga}\n\n*7. SEJARAH COVID-19*\n${covidDetails}\n*8. DOKUMEN*\n_Sila lampirkan MyKad (Depan, Belakang & Selfie sambil memegang MyKad) di dalam chat ini untuk tujuan pengesahan eKYC._`
+                : `*PRUBSN APPLICATION - REMOTE ENROLLMENT*\n\n*1. PERSONAL INFORMATION*\nName: ${nama}\n${identityType}\nDate of Birth: ${tarikhLahir}\nPhone No.: ${noTel}\nEmail: ${emel}\nAddress: ${alamat}\nCitizenship: ${warganegara}\nReligion: ${agama}\nHeight: ${tinggi} cm\nWeight: ${berat} kg\nSmoking Status: ${merokokDetails}\n\n*2. OCCUPATION INFORMATION*\nEmployer: ${majikan}\nJob Title: ${jawatan}\nJob Description: ${ketKerja}\nEmployer Address: ${alamatMajikan}\nAnnual Income: RM ${pendapatan}\n\n*3. FINANCIAL & PAYMENT INFO*\nBank Name (Claims): ${namaBank}\nAccount No.: ${noAkaun}\nAccount Type: ${jenisAkaun}\nMonthly Payment Method: ${caraBayaran}\n\n*4. NOMINEE INFORMATION*\n${penamaDetails}\n*5. HEALTH RECORDS*\n${healthDetails}\n*6. FAMILY HEALTH HISTORY*\nRecords / Hereditary Diseases: ${sejarahKeluarga}\n\n*7. COVID-19 HISTORY*\n${covidDetails}\n*8. DOCUMENTS*\n_Please attach MyKad (Front, Back & Selfie holding MyKad) in this chat for eKYC verification purposes._`;
 
             window.open(`https://wa.me/${agentPhone}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
         }
