@@ -571,13 +571,13 @@
                     <p class="font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="fas fa-camera text-primary text-xl"></i> <span data-translate="doc_instruction_title">ARAHAN PENTING:</span></p>
                     <p class="text-sm text-gray-700 mb-4 leading-relaxed"><span data-translate="doc_instruction_desc">Sebagai pengesahan keselamatan identiti, sila sediakan gambar-gambar berikut untuk dihantar</span> <strong data-translate="doc_chat_text">di dalam ruang chat WhatsApp</strong> <span data-translate="doc_instruction_desc2">selepas anda menekan butang Hantar di bawah:</span></p>
                     <ul class="list-disc list-inside text-sm text-gray-700 mb-6 space-y-1 ml-2">
-                        <li data-translate="doc_li_1">Gambar MyKad (Muka Depan)</li>
-                        <li data-translate="doc_li_2">Gambar MyKad (Muka Belakang)</li>
-                        <li data-translate="doc_li_3">Gambar Selfie anda memegang MyKad</li>
+                        <li id="doc_item_1" data-translate="doc_li_1_mykad">Gambar MyKad (Muka Depan)</li>
+                        <li id="doc_item_2" data-translate="doc_li_2_mykad">Gambar MyKad (Muka Belakang)</li>
+                        <li id="doc_item_3" data-translate="doc_li_3_mykad">Gambar Selfie anda memegang MyKad</li>
                     </ul>
                     
                     <div class="bg-white p-5 rounded-xl border-l-4 border-teal shadow-sm text-sm text-gray-600">
-                        <span data-translate="ekyc_note_1"><strong class="text-gray-900">*Nota:</strong> Langkah penyerahan gambar MyKad dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori eKYC (Electronic Know Your Customer) bagi tujuan pengesahan identiti secara digital.</span>
+                        <span><strong class="text-gray-900" data-translate="note_label">*Nota:</strong> <span id="ekyc_note" data-translate="ekyc_note_1_mykad">Langkah penyerahan gambar MyKad dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori eKYC (Electronic Know Your Customer) bagi tujuan pengesahan identiti secara digital.</span></span>
                         <br>
                         <a href="https://www.bnm.gov.my/-/pd-ekyc-en" target="_blank" class="text-teal font-semibold hover:underline mt-2 inline-block" data-translate="ekyc_link">
                             &rarr; Ketahui lebih lanjut mengenai polisi eKYC BNM
@@ -693,10 +693,15 @@
                 doc_instruction_desc: "Sebagai pengesahan keselamatan identiti, sila sediakan gambar-gambar berikut untuk dihantar",
                 doc_chat_text: "di dalam ruang chat WhatsApp",
                 doc_instruction_desc2: "selepas anda menekan butang Hantar di bawah:",
-                doc_li_1: "Gambar MyKad (Muka Depan)",
-                doc_li_2: "Gambar MyKad (Muka Belakang)",
-                doc_li_3: "Gambar Selfie anda memegang MyKad",
-                ekyc_note_1: "*Nota: Langkah penyerahan gambar MyKad dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori eKYC (Electronic Know Your Customer) bagi tujuan pengesahan identiti secara digital.",
+                doc_li_1_mykad: "Gambar MyKad (Muka Depan)",
+                doc_li_2_mykad: "Gambar MyKad (Muka Belakang)",
+                doc_li_3_mykad: "Gambar Selfie anda memegang MyKad",
+                doc_li_1_passport: "Gambar Muka Surat Butiran Pasport",
+                doc_li_2_passport: "Gambar Muka Surat Visa",
+                doc_li_3_passport: "Gambar Selfie anda memegang Pasport (Muka Surat Butiran)",
+                note_label: "*Nota:",
+                ekyc_note_1_mykad: "Langkah penyerahan gambar MyKad dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori eKYC (Electronic Know Your Customer) bagi tujuan pengesahan identiti secara digital.",
+                ekyc_note_1_passport: "Langkah penyerahan gambar pasport, visa dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori eKYC (Electronic Know Your Customer) bagi tujuan pengesahan identiti secara digital.",
                 ekyc_link: "→ Ketahui lebih lanjut mengenai polisi eKYC BNM",
                 btn_submit: "Hantar Permohonan Melalui WhatsApp",
                 footer_reg: "Perunding Takaful Berdaftar dengan PruBSN Takaful Berhad.",
@@ -809,10 +814,15 @@
                 doc_instruction_desc: "For identity security verification, please prepare the following images to send",
                 doc_chat_text: "inside the WhatsApp chat",
                 doc_instruction_desc2: "after clicking Submit below:",
-                doc_li_1: "MyKad Image (Front)",
-                doc_li_2: "MyKad Image (Back)",
-                doc_li_3: "Selfie holding your MyKad",
-                ekyc_note_1: "*Note: This MyKad and selfie image submission step is part of the mandatory eKYC (Electronic Know Your Customer) process for digital identity verification.",
+                doc_li_1_mykad: "MyKad Image (Front)",
+                doc_li_2_mykad: "MyKad Image (Back)",
+                doc_li_3_mykad: "Selfie holding your MyKad",
+                doc_li_1_passport: "Passport details page image",
+                doc_li_2_passport: "Visa page image",
+                doc_li_3_passport: "Selfie holding your passport details page",
+                note_label: "*Note:",
+                ekyc_note_1_mykad: "This MyKad and selfie image submission step is part of the mandatory eKYC (Electronic Know Your Customer) process for digital identity verification.",
+                ekyc_note_1_passport: "This passport, visa and selfie image submission step is part of the mandatory eKYC (Electronic Know Your Customer) process for digital identity verification.",
                 ekyc_link: "→ Learn more about BNM's eKYC policy",
                 btn_submit: "Submit Application via WhatsApp",
                 footer_reg: "Registered Takaful Consultant with PruBSN Takaful Berhad.",
@@ -921,6 +931,12 @@
             const passportContainer = document.getElementById('passport_container');
             const icInput = document.getElementById('ic');
             const passportInput = document.getElementById('passport');
+            
+            // Document Instruction Elements
+            const docItem1 = document.getElementById('doc_item_1');
+            const docItem2 = document.getElementById('doc_item_2');
+            const docItem3 = document.getElementById('doc_item_3');
+            const ekycNote = document.getElementById('ekyc_note');
 
             if (warganegara === 'Bukan Warganegara') {
                 icContainer.style.display = 'none';
@@ -929,6 +945,13 @@
                 
                 passportContainer.style.display = 'block';
                 passportInput.required = true;
+
+                // Update document attributes to Passport keys
+                docItem1.setAttribute('data-translate', 'doc_li_1_passport');
+                docItem2.setAttribute('data-translate', 'doc_li_2_passport');
+                docItem3.setAttribute('data-translate', 'doc_li_3_passport');
+                ekycNote.setAttribute('data-translate', 'ekyc_note_1_passport');
+
             } else if (warganegara === 'Malaysia' || warganegara === 'Penduduk Tetap') {
                 passportContainer.style.display = 'none';
                 passportInput.required = false;
@@ -936,12 +959,25 @@
                 
                 icContainer.style.display = 'block';
                 icInput.required = true;
+
+                // Revert document attributes to MyKad keys
+                docItem1.setAttribute('data-translate', 'doc_li_1_mykad');
+                docItem2.setAttribute('data-translate', 'doc_li_2_mykad');
+                docItem3.setAttribute('data-translate', 'doc_li_3_mykad');
+                ekycNote.setAttribute('data-translate', 'ekyc_note_1_mykad');
+                
             } else {
                 icContainer.style.display = 'none';
                 icInput.required = false;
                 passportContainer.style.display = 'none';
                 passportInput.required = false;
             }
+
+            // Apply translation immediately without needing to toggle the language button
+            if (docItem1) docItem1.innerText = translations[currentLang][docItem1.getAttribute('data-translate')];
+            if (docItem2) docItem2.innerText = translations[currentLang][docItem2.getAttribute('data-translate')];
+            if (docItem3) docItem3.innerText = translations[currentLang][docItem3.getAttribute('data-translate')];
+            if (ekycNote) ekycNote.innerText = translations[currentLang][ekycNote.getAttribute('data-translate')];
         }
 
         // IC formatting and Auto-DOB
@@ -1108,10 +1144,18 @@
             // Determine Identity (IC vs Passport)
             const warganegara = val("warganegara");
             let identityType = "";
+            let documentInstruction = "";
+
             if (warganegara === 'Bukan Warganegara') {
                 identityType = (currentLang === 'ms') ? `No. Pasport: ${val("passport")}` : `Passport No.: ${val("passport")}`;
+                documentInstruction = (currentLang === 'ms') 
+                    ? "_Sila lampirkan Pasport (Muka Surat Butiran), Visa & Selfie sambil memegang Pasport (Muka Surat Butiran) di dalam chat ini untuk tujuan pengesahan eKYC._"
+                    : "_Please attach Passport (Details Page), Visa & Selfie holding Passport (Details Page) in this chat for eKYC verification purposes._";
             } else {
                 identityType = (currentLang === 'ms') ? `No. IC: ${val("ic")}` : `IC No.: ${val("ic")}`;
+                documentInstruction = (currentLang === 'ms')
+                    ? "_Sila lampirkan MyKad (Depan, Belakang & Selfie sambil memegang MyKad) di dalam chat ini untuk tujuan pengesahan eKYC._"
+                    : "_Please attach MyKad (Front, Back & Selfie holding MyKad) in this chat for eKYC verification purposes._";
             }
 
             const nama = val("nama"), tarikhLahir = val("tarikh_lahir"), noTel = val("no_tel"), emel = val("emel"), alamat = val("alamat");
@@ -1168,8 +1212,8 @@
             }
 
             const whatsappMessage = (currentLang === 'ms') 
-                ? `*PERMOHONAN PRUBSN - REMOTE ENROLLMENT*\n\n*1. MAKLUMAT PERIBADI*\nNama: ${nama}\n${identityType}\nTarikh Lahir: ${tarikhLahir}\nNo. Tel: ${noTel}\nEmel: ${emel}\nAlamat: ${alamat}\nWarganegara: ${warganegara}\nAgama: ${agama}\nTinggi: ${tinggi} cm\nBerat: ${berat} kg\nStatus Merokok: ${merokokDetails}\n\n*2. MAKLUMAT PEKERJAAN*\nMajikan: ${majikan}\nJawatan: ${jawatan}\nDeskripsi Tugas: ${ketKerja}\nAlamat Majikan: ${alamatMajikan}\nPendapatan Tahunan: RM ${pendapatan}\n\n*3. MAKLUMAT BANK & BAYARAN*\nNama Bank (Tuntutan): ${namaBank}\nNo. Akaun: ${noAkaun}\nJenis Akaun: ${jenisAkaun}\nCara Bayaran Bulanan: ${caraBayaran}\n\n*4. MAKLUMAT PENAMA*\n${penamaDetails}\n*5. REKOD KESIHATAN*\n${healthDetails}\n*6. SEJARAH KESIHATAN KELUARGA*\nRekod / Penyakit Keturunan: ${sejarahKeluarga}\n\n*7. SEJARAH COVID-19*\n${covidDetails}\n*8. DOKUMEN*\n_Sila lampirkan MyKad (Depan, Belakang & Selfie sambil memegang MyKad) di dalam chat ini untuk tujuan pengesahan eKYC._`
-                : `*PRUBSN APPLICATION - REMOTE ENROLLMENT*\n\n*1. PERSONAL INFORMATION*\nName: ${nama}\n${identityType}\nDate of Birth: ${tarikhLahir}\nPhone No.: ${noTel}\nEmail: ${emel}\nAddress: ${alamat}\nCitizenship: ${warganegara}\nReligion: ${agama}\nHeight: ${tinggi} cm\nWeight: ${berat} kg\nSmoking Status: ${merokokDetails}\n\n*2. OCCUPATION INFORMATION*\nEmployer: ${majikan}\nJob Title: ${jawatan}\nJob Description: ${ketKerja}\nEmployer Address: ${alamatMajikan}\nAnnual Income: RM ${pendapatan}\n\n*3. FINANCIAL & PAYMENT INFO*\nBank Name (Claims): ${namaBank}\nAccount No.: ${noAkaun}\nAccount Type: ${jenisAkaun}\nMonthly Payment Method: ${caraBayaran}\n\n*4. NOMINEE INFORMATION*\n${penamaDetails}\n*5. HEALTH RECORDS*\n${healthDetails}\n*6. FAMILY HEALTH HISTORY*\nRecords / Hereditary Diseases: ${sejarahKeluarga}\n\n*7. COVID-19 HISTORY*\n${covidDetails}\n*8. DOCUMENTS*\n_Please attach MyKad (Front, Back & Selfie holding MyKad) in this chat for eKYC verification purposes._`;
+                ? `*PERMOHONAN PRUBSN - REMOTE ENROLLMENT*\n\n*1. MAKLUMAT PERIBADI*\nNama: ${nama}\n${identityType}\nTarikh Lahir: ${tarikhLahir}\nNo. Tel: ${noTel}\nEmel: ${emel}\nAlamat: ${alamat}\nWarganegara: ${warganegara}\nAgama: ${agama}\nTinggi: ${tinggi} cm\nBerat: ${berat} kg\nStatus Merokok: ${merokokDetails}\n\n*2. MAKLUMAT PEKERJAAN*\nMajikan: ${majikan}\nJawatan: ${jawatan}\nDeskripsi Tugas: ${ketKerja}\nAlamat Majikan: ${alamatMajikan}\nPendapatan Tahunan: RM ${pendapatan}\n\n*3. MAKLUMAT BANK & BAYARAN*\nNama Bank (Tuntutan): ${namaBank}\nNo. Akaun: ${noAkaun}\nJenis Akaun: ${jenisAkaun}\nCara Bayaran Bulanan: ${caraBayaran}\n\n*4. MAKLUMAT PENAMA*\n${penamaDetails}\n*5. REKOD KESIHATAN*\n${healthDetails}\n*6. SEJARAH KESIHATAN KELUARGA*\nRekod / Penyakit Keturunan: ${sejarahKeluarga}\n\n*7. SEJARAH COVID-19*\n${covidDetails}\n*8. DOKUMEN*\n${documentInstruction}`
+                : `*PRUBSN APPLICATION - REMOTE ENROLLMENT*\n\n*1. PERSONAL INFORMATION*\nName: ${nama}\n${identityType}\nDate of Birth: ${tarikhLahir}\nPhone No.: ${noTel}\nEmail: ${emel}\nAddress: ${alamat}\nCitizenship: ${warganegara}\nReligion: ${agama}\nHeight: ${tinggi} cm\nWeight: ${berat} kg\nSmoking Status: ${merokokDetails}\n\n*2. OCCUPATION INFORMATION*\nEmployer: ${majikan}\nJob Title: ${jawatan}\nJob Description: ${ketKerja}\nEmployer Address: ${alamatMajikan}\nAnnual Income: RM ${pendapatan}\n\n*3. FINANCIAL & PAYMENT INFO*\nBank Name (Claims): ${namaBank}\nAccount No.: ${noAkaun}\nAccount Type: ${jenisAkaun}\nMonthly Payment Method: ${caraBayaran}\n\n*4. NOMINEE INFORMATION*\n${penamaDetails}\n*5. HEALTH RECORDS*\n${healthDetails}\n*6. FAMILY HEALTH HISTORY*\nRecords / Hereditary Diseases: ${sejarahKeluarga}\n\n*7. COVID-19 HISTORY*\n${covidDetails}\n*8. DOCUMENTS*\n${documentInstruction}`;
 
             window.open(`https://wa.me/${agentPhone}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
         }
