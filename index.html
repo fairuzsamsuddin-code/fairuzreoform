@@ -46,15 +46,15 @@
         
         .btn-primary { @apply inline-flex items-center justify-center gap-2 cursor-pointer transition-transform hover:-translate-y-0.5 bg-primary text-white hover:bg-primary-hover min-h-[3.5rem] py-3 rounded-full px-4 md:px-8 text-sm md:text-base font-semibold shadow-elegant w-full text-center leading-tight; }
         
-        .section-header { @apply text-lg font-bold text-gray-900 border-b-2 border-primary pb-2 mt-12 mb-6 flex items-center gap-2 scroll-mt-10; }
+        .section-header { @apply text-lg font-bold text-gray-900 border-b-2 border-primary pb-2 mt-12 mb-6 flex items-center gap-2 scroll-mt-28; }
         .sub-box { @apply bg-gray-50 border border-gray-200 p-6 rounded-2xl mb-5; }
       }
     </style>
 </head>
 <body class="bg-background text-gray-800 antialiased min-h-screen flex flex-col">
 
-    <!-- Unified Navigation Bar (Static, non-sticky) -->
-    <nav class="bg-white shadow-sm border-b border-gray-200">
+    <!-- Unified Navigation Bar (Sticky, always visible) -->
+    <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
         <div class="mx-auto flex max-w-6xl items-center px-4 py-3 gap-5 overflow-x-auto scrollbar-none">
             
             <!-- 1. Logo First -->
@@ -66,7 +66,7 @@
                 </div>
             </a>
 
-            <!-- 2. Language Button Second (Based on image reference) -->
+            <!-- 2. Language Button Second -->
             <button onclick="toggleLanguage()" id="langBtn" class="flex items-center gap-1.5 rounded-full border border-gray-300 bg-gray-50 px-3 py-2 text-xs font-bold text-gray-700 shadow-sm transition-colors hover:bg-gray-100 shrink-0">
                 <i class="fas fa-globe text-primary"></i> <span id="langText">EN</span>
             </button>
