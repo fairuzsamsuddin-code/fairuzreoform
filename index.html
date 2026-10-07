@@ -13,10 +13,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/FS-logo.png">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <!-- Tailwind CSS Standardized Config -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
+        darkMode: 'media',
         theme: {
           extend: {
             fontFamily: { sans: ['Poppins', 'sans-serif'] },
@@ -40,57 +40,62 @@
         .scrollbar-none::-webkit-scrollbar { display: none; }
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
         
-        .form-input { @apply block w-full border px-4 py-2 h-12 rounded-xl border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-sm transition-colors; }
+        .form-input { @apply block w-full border px-4 py-2 h-12 rounded-xl border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-sm transition-colors dark:bg-slate-800 dark:border-slate-700 dark:text-white dark:focus:ring-primary/50; }
         
         /* FIX FOR IOS/SAFARI DATE INPUT HEIGHTS */
-        input[type="date"].form-input, input[type="month"].form-input { @apply min-h-[3rem] appearance-none bg-white; }
+        input[type="date"].form-input, input[type="month"].form-input { @apply min-h-[3rem] appearance-none bg-transparent; }
         
-        .form-textarea { @apply block w-full border px-4 py-3 min-h-[100px] rounded-xl border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-sm transition-colors; }
-        .form-label { @apply text-sm font-semibold text-gray-700 mb-2 block; }
+        .form-textarea { @apply block w-full border px-4 py-3 min-h-[100px] rounded-xl border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-sm transition-colors dark:bg-slate-800 dark:border-slate-700 dark:text-white dark:focus:ring-primary/50; }
+        
+        .form-label { @apply text-sm font-semibold text-gray-700 mb-2 block dark:text-slate-300; }
         
         .btn-primary { @apply inline-flex items-center justify-center gap-2 cursor-pointer transition-transform hover:-translate-y-0.5 bg-primary text-white hover:bg-primary-hover min-h-[3.5rem] py-3 rounded-full px-4 md:px-8 text-sm md:text-base font-semibold shadow-elegant w-full text-center leading-tight; }
         
-        .section-header { @apply text-lg font-bold text-gray-900 border-b-2 border-primary pb-2 mt-12 mb-6 flex items-center gap-2 scroll-mt-28; }
-        .sub-box { @apply bg-gray-50 border border-gray-200 p-6 rounded-2xl mb-5; }
+        .section-header { @apply text-lg font-bold text-gray-900 border-b-2 border-primary pb-2 mt-12 mb-6 flex items-center gap-2 scroll-mt-28 dark:text-white dark:border-primary/80; }
+        
+        .sub-box { @apply bg-gray-50 border border-gray-200 p-6 rounded-2xl mb-5 dark:bg-slate-800/50 dark:border-slate-700; }
+        
+        .reveal-element { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .reveal-element.is-visible { opacity: 1; transform: translateY(0); }
       }
     </style>
 </head>
-<body class="bg-background text-gray-800 antialiased min-h-screen flex flex-col">
+<body class="bg-background text-gray-800 antialiased min-h-screen flex flex-col dark:bg-slate-950 dark:text-slate-200 transition-colors duration-300">
 
     <!-- Unified Navigation Bar (Sticky, always visible) -->
-    <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm border-b border-gray-200 dark:border-slate-800 transition-colors duration-300">
         <div class="mx-auto flex max-w-6xl items-center px-4 py-3 gap-5 overflow-x-auto scrollbar-none">
             
             <!-- 1. Logo First -->
             <a href="#" class="flex items-center gap-3 shrink-0">
-                <img src="FS-logo.png" alt="FS Logo" class="h-10 w-10 object-contain">
+                <img src="FS-logo.png" alt="FS Logo" class="h-10 w-10 object-contain" onerror="this.src='https://placehold.co/40x40/D9000D/white?text=FS'">
                 <div class="flex flex-col">
                     <span class="text-[14px] font-black uppercase tracking-tight text-primary leading-none" data-translate="brand_title">TAKAFUL SERVICES</span>
-                    <span class="mt-1 text-[11px] font-medium text-gray-500 leading-none" data-translate="brand_sub">by Fairuz Samsuddin</span>
+                    <span class="mt-1 text-[11px] font-medium text-gray-500 dark:text-slate-400 leading-none" data-translate="brand_sub">by Fairuz Samsuddin</span>
                 </div>
             </a>
 
             <!-- 2. Language Button Second -->
-            <button onclick="toggleLanguage()" id="langBtn" class="flex items-center gap-1.5 rounded-full border border-gray-300 bg-gray-50 px-3 py-2 text-xs font-bold text-gray-700 shadow-sm transition-colors hover:bg-gray-100 shrink-0">
+            <button onclick="toggleLanguage()" id="langBtn" class="flex items-center gap-1.5 rounded-full border border-gray-300 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 px-3 py-2 text-xs font-bold text-gray-700 dark:text-slate-200 shadow-sm transition-colors hover:bg-gray-100 dark:hover:bg-slate-700 shrink-0">
                 <i class="fas fa-globe text-primary"></i> <span id="langText">EN</span>
             </button>
             
             <!-- 3. Nav Links Third -->
             <div class="flex items-center gap-5 shrink-0">
-                <a href="#sec-peribadi" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
-                    <i class="far fa-user text-gray-400 text-lg"></i>
+                <a href="#sec-peribadi" class="flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors py-1">
+                    <i class="far fa-user text-gray-400 dark:text-slate-500 text-lg"></i>
                     <span class="text-xs font-bold whitespace-nowrap" data-translate="nav_personal">Peribadi</span>
                 </a>
-                <a href="#sec-penama" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
-                    <i class="fas fa-users text-gray-400 text-lg"></i>
+                <a href="#sec-penama" class="flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors py-1">
+                    <i class="fas fa-users text-gray-400 dark:text-slate-500 text-lg"></i>
                     <span class="text-xs font-bold whitespace-nowrap" data-translate="nav_nominee">Penama</span>
                 </a>
-                <a href="#sec-kesihatan" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
-                    <i class="far fa-hospital text-gray-400 text-lg"></i>
+                <a href="#sec-kesihatan" class="flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors py-1">
+                    <i class="far fa-hospital text-gray-400 dark:text-slate-500 text-lg"></i>
                     <span class="text-xs font-bold whitespace-nowrap" data-translate="nav_health">Kesihatan</span>
                 </a>            
-                <a href="#sec-dokumen" class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors py-1">
-                    <i class="far fa-file-alt text-gray-400 text-lg"></i>
+                <a href="#sec-dokumen" class="flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors py-1">
+                    <i class="far fa-file-alt text-gray-400 dark:text-slate-500 text-lg"></i>
                     <span class="text-xs font-bold whitespace-nowrap" data-translate="nav_documents">Dokumen</span>
                 </a>
             </div>
@@ -105,501 +110,517 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="bg-white border-b-2 border-primary py-8 text-center px-4">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight" data-translate="page_heading">BORANG PENDAFTARAN TAKAFUL</h1>
+    <header class="bg-white dark:bg-slate-900 border-b-2 border-primary py-8 text-center px-4 transition-colors duration-300">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white tracking-tight" data-translate="page_heading">BORANG PENDAFTARAN TAKAFUL</h1>
     </header>
 
     <!-- Main Form Container -->
-    <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-10">
-        <div class="bg-white rounded-3xl shadow-elegant border border-gray-100 p-6 md:p-10">
+    <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-10 reveal-element">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-elegant border border-gray-100 dark:border-slate-800 p-6 md:p-10 transition-colors duration-300">
             <form id="takafulForm" onsubmit="submitToWhatsApp(event)">
                 
-                <div class="bg-red-50 border-l-4 border-primary p-4 rounded-r-xl text-sm font-medium text-primary mb-8 flex items-start gap-3">
+                <div class="bg-red-50 dark:bg-red-950/30 border-l-4 border-primary p-4 rounded-r-xl text-sm font-medium text-primary dark:text-red-400 mb-8 flex items-start gap-3">
                     <i class="fas fa-info-circle mt-0.5"></i> 
                     <span data-translate="form_notice">Sila lengkapkan butiran di bawah dengan tepat untuk melancarkan proses permohonan Takaful anda.</span>
                 </div>
 
                 <!-- MAKLUMAT PERIBADI -->
-                <h3 class="section-header" id="sec-peribadi" data-translate="sec_1_title">1. Maklumat Peribadi</h3>
-                
-                <div class="space-y-5">
-                    <div>
-                        <label class="form-label"><span data-translate="lbl_fullname">Nama Penuh (Seperti dalam MyKad/Passport)</span> <span class="text-primary">*</span></label>
-                        <input type="text" id="nama" class="form-input" required>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="reveal-element">
+                    <h3 class="section-header" id="sec-peribadi" data-translate="sec_1_title">1. Maklumat Peribadi</h3>
+                    
+                    <div class="space-y-5">
                         <div>
-                            <label class="form-label"><span data-translate="lbl_citizen">Warganegara</span> <span class="text-primary">*</span></label>
-                            <select id="warganegara" class="form-input" required onchange="updateIdentityFields()">
-                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                <option value="Malaysia" data-translate="opt_malaysia">Malaysia</option>
-                                <option value="Penduduk Tetap" data-translate="opt_pr">Penduduk Tetap</option>
-                                <option value="Bukan Warganegara" data-translate="opt_foreigner">Bukan Warganegara</option>
-                            </select>
+                            <label class="form-label"><span data-translate="lbl_fullname">Nama Penuh (Seperti dalam MyKad/Passport)</span> <span class="text-primary">*</span></label>
+                            <input type="text" id="nama" class="form-input" required>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="form-label"><span data-translate="lbl_citizen">Warganegara</span> <span class="text-primary">*</span></label>
+                                <select id="warganegara" class="form-input" required onchange="updateIdentityFields()">
+                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                    <option value="Malaysia" data-translate="opt_malaysia">Malaysia</option>
+                                    <option value="Penduduk Tetap" data-translate="opt_pr">Penduduk Tetap</option>
+                                    <option value="Bukan Warganegara" data-translate="opt_foreigner">Bukan Warganegara</option>
+                                </select>
+                            </div>
+                            
+                            <div id="ic_container" style="display: none;">
+                                <label class="form-label"><span data-translate="lbl_ic">No. IC</span> <span class="text-primary">*</span></label>
+                                <input type="text" id="ic" class="form-input" placeholder="Contoh: 090724-14-2784" maxlength="14">
+                            </div>
+
+                            <div id="passport_container" style="display: none;">
+                                <label class="form-label"><span data-translate="lbl_passport">No. Pasport</span> <span class="text-primary">*</span></label>
+                                <input type="text" id="passport" class="form-input" placeholder="Contoh: A1234567">
+                            </div>
                         </div>
                         
-                        <div id="ic_container" style="display: none;">
-                            <label class="form-label"><span data-translate="lbl_ic">No. IC</span> <span class="text-primary">*</span></label>
-                            <input type="text" id="ic" class="form-input" placeholder="Contoh: 090724-14-2784" maxlength="14">
-                        </div>
-
-                        <div id="passport_container" style="display: none;">
-                            <label class="form-label"><span data-translate="lbl_passport">No. Pasport</span> <span class="text-primary">*</span></label>
-                            <input type="text" id="passport" class="form-input" placeholder="Contoh: A1234567">
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_dob">Tarikh Lahir</span> <span class="text-primary">*</span></label>
-                            <input type="date" id="tarikh_lahir" class="form-input" required>
-                        </div>
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_phone">No. Telefon</span> <span class="text-primary">*</span></label>
-                            <input type="tel" id="no_tel" class="form-input" required placeholder="Contoh: 0123456789">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_email">Emel</span> <span class="text-primary">*</span></label>
-                            <input type="email" id="emel" class="form-input" required>
-                        </div>
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_religion">Agama</span> <span class="text-primary">*</span></label>
-                            <select id="agama" class="form-input" required>
-                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                <option value="Islam" data-translate="opt_islam">Islam</option>
-                                <option value="Buddhist" data-translate="opt_buddhist">Buddhist</option>
-                                <option value="Hindu" data-translate="opt_hindu">Hindu</option>
-                                <option value="Kristian" data-translate="opt_christian">Kristian</option>
-                                <option value="Lain-lain" data-translate="opt_others">Lain-lain</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="form-label"><span data-translate="lbl_address">Alamat Rumah</span> <span class="text-primary">*</span></label>
-                        <textarea id="alamat" class="form-textarea" required></textarea>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_height">Tinggi (cm)</span> <span class="text-primary">*</span></label>
-                            <input type="number" id="tinggi" class="form-input" required placeholder="Contoh: 170">
-                        </div>
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_weight">Berat (kg)</span> <span class="text-primary">*</span></label>
-                            <input type="number" id="berat" class="form-input" required placeholder="Contoh: 70">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="form-label"><span data-translate="lbl_smoker_status">Status Merokok</span> <span class="text-primary">*</span></label>
-                        <select id="merokok" class="form-input" required onchange="updateMerokokFields()">
-                            <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                            <option value="Merokok" data-translate="opt_smoker">Merokok</option>
-                            <option value="Tidak Merokok" data-translate="opt_nonsmoker">Tidak Merokok</option>
-                        </select>
-                    </div>
-
-                    <!-- Butiran Merokok -->
-                    <div id="merokok_details_section" class="sub-box" style="display: none;">
-                        <div class="mb-4">
-                            <label class="form-label"><span data-translate="lbl_smoker_type">Rokok / Vape?</span> <span class="text-primary">*</span></label>
-                            <select id="jenis_merokok" class="form-input" onchange="updateJenisMerokokFields()">
-                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                <option value="Rokok" data-translate="opt_cigarette">Rokok</option>
-                                <option value="Vape" data-translate="opt_vape">Vape</option>
-                            </select>
-                        </div>
-
-                        <div id="rokok_details" class="grid grid-cols-1 md:grid-cols-2 gap-5" style="display: none;">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div>
-                                <label class="form-label"><span data-translate="lbl_cig_count">Berapa batang sehari?</span> <span class="text-primary">*</span></label>
-                                <input type="number" id="bilangan_rokok" class="form-input" min="1" placeholder="Contoh: 10">
+                                <label class="form-label"><span data-translate="lbl_dob">Tarikh Lahir</span> <span class="text-primary">*</span></label>
+                                <input type="date" id="tarikh_lahir" class="form-input" required>
                             </div>
                             <div>
-                                <label class="form-label"><span data-translate="lbl_cig_years">Berapa tahun merokok?</span> <span class="text-primary">*</span></label>
-                                <input type="number" id="tahun_merokok" class="form-input" min="1" placeholder="Contoh: 5">
+                                <label class="form-label"><span data-translate="lbl_phone">No. Telefon</span> <span class="text-primary">*</span></label>
+                                <input type="tel" id="no_tel" class="form-input" required placeholder="Contoh: 0123456789">
                             </div>
                         </div>
 
-                        <div id="vape_details" style="display: none;">
-                            <label class="form-label"><span data-translate="lbl_vape_years">Berapa tahun vape?</span> <span class="text-primary">*</span></label>
-                            <input type="number" id="tahun_vape" class="form-input" min="1" placeholder="Contoh: 3">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="form-label"><span data-translate="lbl_email">Emel</span> <span class="text-primary">*</span></label>
+                                <input type="email" id="emel" class="form-input" required>
+                            </div>
+                            <div>
+                                <label class="form-label"><span data-translate="lbl_religion">Agama</span> <span class="text-primary">*</span></label>
+                                <select id="agama" class="form-input" required>
+                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                    <option value="Islam" data-translate="opt_islam">Islam</option>
+                                    <option value="Buddhist" data-translate="opt_buddhist">Buddhist</option>
+                                    <option value="Hindu" data-translate="opt_hindu">Hindu</option>
+                                    <option value="Kristian" data-translate="opt_christian">Kristian</option>
+                                    <option value="Lain-lain" data-translate="opt_others">Lain-lain</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="form-label"><span data-translate="lbl_address">Alamat Rumah</span> <span class="text-primary">*</span></label>
+                            <textarea id="alamat" class="form-textarea" required></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="form-label"><span data-translate="lbl_height">Tinggi (cm)</span> <span class="text-primary">*</span></label>
+                                <input type="number" id="tinggi" class="form-input" required placeholder="Contoh: 170">
+                            </div>
+                            <div>
+                                <label class="form-label"><span data-translate="lbl_weight">Berat (kg)</span> <span class="text-primary">*</span></label>
+                                <input type="number" id="berat" class="form-input" required placeholder="Contoh: 70">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="form-label"><span data-translate="lbl_smoker_status">Status Merokok</span> <span class="text-primary">*</span></label>
+                            <select id="merokok" class="form-input" required onchange="updateMerokokFields()">
+                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                <option value="Merokok" data-translate="opt_smoker">Merokok</option>
+                                <option value="Tidak Merokok" data-translate="opt_nonsmoker">Tidak Merokok</option>
+                            </select>
+                        </div>
+
+                        <!-- Butiran Merokok -->
+                        <div id="merokok_details_section" class="sub-box" style="display: none;">
+                            <div class="mb-4">
+                                <label class="form-label"><span data-translate="lbl_smoker_type">Rokok / Vape?</span> <span class="text-primary">*</span></label>
+                                <select id="jenis_merokok" class="form-input" onchange="updateJenisMerokokFields()">
+                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                    <option value="Rokok" data-translate="opt_cigarette">Rokok</option>
+                                    <option value="Vape" data-translate="opt_vape">Vape</option>
+                                </select>
+                            </div>
+
+                            <div id="rokok_details" class="grid grid-cols-1 md:grid-cols-2 gap-5" style="display: none;">
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_cig_count">Berapa batang sehari?</span> <span class="text-primary">*</span></label>
+                                    <input type="number" id="bilangan_rokok" class="form-input" min="1" placeholder="Contoh: 10">
+                                </div>
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_cig_years">Berapa tahun merokok?</span> <span class="text-primary">*</span></label>
+                                    <input type="number" id="tahun_merokok" class="form-input" min="1" placeholder="Contoh: 5">
+                                </div>
+                            </div>
+
+                            <div id="vape_details" style="display: none;">
+                                <label class="form-label"><span data-translate="lbl_vape_years">Berapa tahun vape?</span> <span class="text-primary">*</span></label>
+                                <input type="number" id="tahun_vape" class="form-input" min="1" placeholder="Contoh: 3">
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- MAKLUMAT PEKERJAAN -->
-                <h3 class="section-header" data-translate="sec_2_title">2. Maklumat Pekerjaan</h3>
-                <div class="space-y-5">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_employer">Nama Majikan / Syarikat</span> <span class="text-primary">*</span></label>
-                            <input type="text" id="majikan" class="form-input" required>
+                <div class="reveal-element">
+                    <h3 class="section-header" data-translate="sec_2_title">2. Maklumat Pekerjaan</h3>
+                    <div class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="form-label"><span data-translate="lbl_employer">Nama Majikan / Syarikat</span> <span class="text-primary">*</span></label>
+                                <input type="text" id="majikan" class="form-input" required>
+                            </div>
+                            <div>
+                                <label class="form-label"><span data-translate="lbl_occupation">Jawatan</span> <span class="text-primary">*</span></label>
+                                <input type="text" id="jawatan" class="form-input" required>
+                            </div>
                         </div>
+
                         <div>
-                            <label class="form-label"><span data-translate="lbl_occupation">Jawatan</span> <span class="text-primary">*</span></label>
-                            <input type="text" id="jawatan" class="form-input" required>
+                            <label class="form-label"><span data-translate="lbl_job_desc">Keterangan Ringkas Pekerjaan</span> <span class="text-primary">*</span></label>
+                            <textarea id="keterangan_kerja" class="form-textarea" required placeholder="Contoh: Membuat kerja-kerja admin di pejabat..."></textarea>
                         </div>
-                    </div>
 
-                    <div>
-                        <label class="form-label"><span data-translate="lbl_job_desc">Keterangan Ringkas Pekerjaan</span> <span class="text-primary">*</span></label>
-                        <textarea id="keterangan_kerja" class="form-textarea" required placeholder="Contoh: Membuat kerja-kerja admin di pejabat..."></textarea>
-                    </div>
+                        <div>
+                            <label class="form-label"><span data-translate="lbl_employer_address">Alamat Majikan</span> <span class="text-primary">*</span></label>
+                            <textarea id="alamat_majikan" class="form-textarea" required></textarea>
+                        </div>
 
-                    <div>
-                        <label class="form-label"><span data-translate="lbl_employer_address">Alamat Majikan</span> <span class="text-primary">*</span></label>
-                        <textarea id="alamat_majikan" class="form-textarea" required></textarea>
-                    </div>
-
-                    <div>
-                        <label class="form-label"><span data-translate="lbl_annual_income">Pendapatan Tahunan (RM)</span> <span class="text-primary">*</span></label>
-                        <input type="number" id="pendapatan" class="form-input" required placeholder="Contoh: 45000">
+                        <div>
+                            <label class="form-label"><span data-translate="lbl_annual_income">Pendapatan Tahunan (RM)</span> <span class="text-primary">*</span></label>
+                            <input type="number" id="pendapatan" class="form-input" required placeholder="Contoh: 45000">
+                        </div>
                     </div>
                 </div>
 
                 <!-- MAKLUMAT BANK & PEMBAYARAN -->
-                <h3 class="section-header" data-translate="sec_3_title">3. Maklumat Kewangan & Pembayaran</h3>
-                <div class="space-y-5">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_bank_name">Nama Bank (Untuk tuntutan)</span> <span class="text-primary">*</span></label>
-                            <input type="text" id="nama_bank" class="form-input" required placeholder="Contoh: Maybank">
+                <div class="reveal-element">
+                    <h3 class="section-header" data-translate="sec_3_title">3. Maklumat Kewangan & Pembayaran</h3>
+                    <div class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="form-label"><span data-translate="lbl_bank_name">Nama Bank (Untuk tuntutan)</span> <span class="text-primary">*</span></label>
+                                <input type="text" id="nama_bank" class="form-input" required placeholder="Contoh: Maybank">
+                            </div>
+                            <div>
+                                <label class="form-label"><span data-translate="lbl_bank_acc">No. Akaun Bank</span> <span class="text-primary">*</span></label>
+                                <input type="text" id="no_akaun" class="form-input" required>
+                            </div>
                         </div>
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_bank_acc">No. Akaun Bank</span> <span class="text-primary">*</span></label>
-                            <input type="text" id="no_akaun" class="form-input" required>
-                        </div>
-                    </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_acc_type">Jenis Akaun</span> <span class="text-primary">*</span></label>
-                            <select id="jenis_akaun" class="form-input" required>
-                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                <option value="Islamik" data-translate="opt_islamic">Islamik</option>
-                                <option value="Konvensional" data-translate="opt_conventional">Konvensional</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_payment_method">Cara Bayaran Bulanan</span> <span class="text-primary">*</span></label>
-                            <select id="cara_bayaran" class="form-input" required>
-                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                <option value="Autodebit Akaun" data-translate="opt_autodebit">Autodebit Akaun</option>
-                                <option value="Kad Debit" data-translate="opt_debitcard">Kad Debit</option>
-                                <option value="Kad Kredit" data-translate="opt_creditcard">Kad Kredit</option>
-                            </select>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="form-label"><span data-translate="lbl_acc_type">Jenis Akaun</span> <span class="text-primary">*</span></label>
+                                <select id="jenis_akaun" class="form-input" required>
+                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                    <option value="Islamik" data-translate="opt_islamic">Islamik</option>
+                                    <option value="Konvensional" data-translate="opt_conventional">Konvensional</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-label"><span data-translate="lbl_payment_method">Cara Bayaran Bulanan</span> <span class="text-primary">*</span></label>
+                                <select id="cara_bayaran" class="form-input" required>
+                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                    <option value="Autodebit Akaun" data-translate="opt_autodebit">Autodebit Akaun</option>
+                                    <option value="Kad Debit" data-translate="opt_debitcard">Kad Debit</option>
+                                    <option value="Kad Kredit" data-translate="opt_creditcard">Kad Kredit</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- MAKLUMAT PENAMA -->
-                <h3 class="section-header" id="sec-penama" data-translate="sec_4_title">4. Maklumat Penama / Pewaris</h3>
-                <div class="space-y-5">
-                    <div>
-                        <label class="form-label"><span data-translate="lbl_nominee_count">Berapa Orang Penama?</span> <span class="text-primary">*</span></label>
-                        <select id="bilangan_penama" class="form-input" required onchange="updateNomineeFields()">
-                            <option value="1" data-translate="opt_1_nominee">1 Penama (100%)</option>
-                            <option value="2" data-translate="opt_2_nominee">2 Penama</option>
-                            <option value="3" data-translate="opt_3_nominee">3 Penama</option>
-                        </select>
-                    </div>
+                <div class="reveal-element">
+                    <h3 class="section-header" id="sec-penama" data-translate="sec_4_title">4. Maklumat Penama / Pewaris</h3>
+                    <div class="space-y-5">
+                        <div>
+                            <label class="form-label"><span data-translate="lbl_nominee_count">Berapa Orang Penama?</span> <span class="text-primary">*</span></label>
+                            <select id="bilangan_penama" class="form-input" required onchange="updateNomineeFields()">
+                                <option value="1" data-translate="opt_1_nominee">1 Penama (100%)</option>
+                                <option value="2" data-translate="opt_2_nominee">2 Penama</option>
+                                <option value="3" data-translate="opt_3_nominee">3 Penama</option>
+                            </select>
+                        </div>
 
-                    <!-- PENAMA 1 -->
-                    <div id="nominee_1_section" class="sub-box">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base" data-translate="nominee_1_heading">Penama 1</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_nominee_name">Nama Penama</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="penama_1" class="form-input" required>
+                        <!-- PENAMA 1 -->
+                        <div id="nominee_1_section" class="sub-box">
+                            <h4 class="font-bold text-gray-800 dark:text-white mb-4 text-base" data-translate="nominee_1_heading">Penama 1</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_nominee_name">Nama Penama</span> <span class="text-primary">*</span></label>
+                                    <input type="text" id="penama_1" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_nominee_relation">Hubungan</span> <span class="text-primary">*</span></label>
+                                    <input type="text" id="hubungan_penama_1" class="form-input" required placeholder="Contoh: Isteri / Suami / Anak">
+                                </div>
                             </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_nominee_relation">Hubungan</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="hubungan_penama_1" class="form-input" required placeholder="Contoh: Isteri / Suami / Anak">
+                            <div class="mt-5">
+                                <label class="form-label"><span data-translate="lbl_nominee_percentage">Peratusan (%)</span> <span class="text-primary">*</span></label>
+                                <input type="number" id="peratus_penama_1" class="form-input" required min="1" max="100" value="100" placeholder="Contoh: 100">
                             </div>
                         </div>
-                        <div class="mt-5">
-                            <label class="form-label"><span data-translate="lbl_nominee_percentage">Peratusan (%)</span> <span class="text-primary">*</span></label>
-                            <input type="number" id="peratus_penama_1" class="form-input" required min="1" max="100" value="100" placeholder="Contoh: 100">
-                        </div>
-                    </div>
 
-                    <!-- PENAMA 2 -->
-                    <div id="nominee_2_section" class="sub-box" style="display: none;">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base" data-translate="nominee_2_heading">Penama 2</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_nominee_name">Nama Penama</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="penama_2" class="form-input">
+                        <!-- PENAMA 2 -->
+                        <div id="nominee_2_section" class="sub-box" style="display: none;">
+                            <h4 class="font-bold text-gray-800 dark:text-white mb-4 text-base" data-translate="nominee_2_heading">Penama 2</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_nominee_name">Nama Penama</span> <span class="text-primary">*</span></label>
+                                    <input type="text" id="penama_2" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_nominee_relation">Hubungan</span> <span class="text-primary">*</span></label>
+                                    <input type="text" id="hubungan_penama_2" class="form-input" placeholder="Contoh: Isteri / Suami / Anak">
+                                </div>
                             </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_nominee_relation">Hubungan</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="hubungan_penama_2" class="form-input" placeholder="Contoh: Isteri / Suami / Anak">
+                            <div class="mt-5">
+                                <label class="form-label"><span data-translate="lbl_nominee_percentage">Peratusan (%)</span> <span class="text-primary">*</span></label>
+                                <input type="number" id="peratus_penama_2" class="form-input" min="1" max="100" placeholder="Contoh: 50">
                             </div>
                         </div>
-                        <div class="mt-5">
-                            <label class="form-label"><span data-translate="lbl_nominee_percentage">Peratusan (%)</span> <span class="text-primary">*</span></label>
-                            <input type="number" id="peratus_penama_2" class="form-input" min="1" max="100" placeholder="Contoh: 50">
-                        </div>
-                    </div>
 
-                    <!-- PENAMA 3 -->
-                    <div id="nominee_3_section" class="sub-box" style="display: none;">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base" data-translate="nominee_3_heading">Penama 3</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_nominee_name">Nama Penama</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="penama_3" class="form-input">
+                        <!-- PENAMA 3 -->
+                        <div id="nominee_3_section" class="sub-box" style="display: none;">
+                            <h4 class="font-bold text-gray-800 dark:text-white mb-4 text-base" data-translate="nominee_3_heading">Penama 3</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_nominee_name">Nama Penama</span> <span class="text-primary">*</span></label>
+                                    <input type="text" id="penama_3" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_nominee_relation">Hubungan</span> <span class="text-primary">*</span></label>
+                                    <input type="text" id="hubungan_penama_3" class="form-input" placeholder="Contoh: Isteri / Suami / Anak">
+                                </div>
                             </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_nominee_relation">Hubungan</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="hubungan_penama_3" class="form-input" placeholder="Contoh: Isteri / Suami / Anak">
+                            <div class="mt-5">
+                                <label class="form-label"><span data-translate="lbl_nominee_percentage">Peratusan (%)</span> <span class="text-primary">*</span></label>
+                                <input type="number" id="peratus_penama_3" class="form-input" min="1" max="100" placeholder="Contoh: 30">
                             </div>
-                        </div>
-                        <div class="mt-5">
-                            <label class="form-label"><span data-translate="lbl_nominee_percentage">Peratusan (%)</span> <span class="text-primary">*</span></label>
-                            <input type="number" id="peratus_penama_3" class="form-input" min="1" max="100" placeholder="Contoh: 30">
                         </div>
                     </div>
                 </div>
 
                 <!-- REKOD KESIHATAN -->
-                <h3 class="section-header" id="sec-kesihatan" data-translate="sec_5_title">5. Rekod Kesihatan & Kemasukan Wad</h3>
-                <div class="bg-teal-soft border-l-4 border-teal p-4 rounded-r-xl text-sm font-medium text-teal mb-6 flex items-start gap-3">
-                    <i class="fas fa-info-circle mt-0.5"></i> 
-                    <span data-translate="health_notice">Pilih "Tiada" jika anda tidak mempunyai sebarang rekod penyakit atau kemasukan ke wad sebelum ini.</span>
-                </div>
-                
-                <div class="space-y-5">
-                    <div>
-                        <label class="form-label"><span data-translate="lbl_health_count">Jumlah Rekod untuk Diisytiharkan</span> <span class="text-primary">*</span></label>
-                        <select id="bilangan_rekod" class="form-input" required onchange="updateHealthFields()">
-                            <option value="0" data-translate="opt_none">Tiada</option>
-                            <option value="1" data-translate="opt_1_record">1 Rekod</option>
-                            <option value="2" data-translate="opt_2_record">2 Rekod</option>
-                            <option value="3" data-translate="opt_3_record">3 Rekod</option>
-                        </select>
+                <div class="reveal-element">
+                    <h3 class="section-header" id="sec-kesihatan" data-translate="sec_5_title">5. Rekod Kesihatan & Kemasukan Wad</h3>
+                    <div class="bg-teal-soft dark:bg-teal-950/30 border-l-4 border-teal p-4 rounded-r-xl text-sm font-medium text-teal dark:text-teal-400 mb-6 flex items-start gap-3">
+                        <i class="fas fa-info-circle mt-0.5"></i> 
+                        <span data-translate="health_notice">Pilih "Tiada" jika anda tidak mempunyai sebarang rekod penyakit atau kemasukan ke wad sebelum ini.</span>
                     </div>
-
-                    <!-- REKOD KESIHATAN 1 -->
-                    <div id="rekod_1_section" class="sub-box" style="display: none;">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base" data-translate="record_1_heading">Rekod Kesihatan 1</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_disease">Penyakit Dihidapi</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="penyakit_1" class="form-input">
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_disease_date">Bulan/Tahun Disahkan</span> <span class="text-primary">*</span></label>
-                                <input type="month" id="tarikh_penyakit_1" class="form-input">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_hospital">Diwadkan di hospital mana?</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="hospital_1" class="form-input">
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_ward_days">Berapa hari di dalam wad?</span> <span class="text-primary">*</span></label>
-                                <input type="number" id="hari_wad_1" class="form-input">
-                            </div>
-                        </div>
-                        <div class="mb-5">
-                            <label class="form-label"><span data-translate="lbl_treatment_type">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan)</span> <span class="text-primary">*</span></label>
-                            <textarea id="jenis_rawatan_1" class="form-textarea" placeholder="Contoh: Makan ubat darah tinggi setiap hari..."></textarea>
-                        </div>
+                    
+                    <div class="space-y-5">
                         <div>
-                            <label class="form-label"><span data-translate="lbl_current_status">Status Terkini</span> <span class="text-primary">*</span></label>
-                            <select id="status_pulih_1" class="form-input">
-                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                <option value="Sudah pulih sepenuhnya" data-translate="opt_recovered">Sudah pulih sepenuhnya</option>
-                                <option value="Masih mendapatkan rawatan susulan" data-translate="opt_treatment">Masih mendapatkan rawatan susulan</option>
+                            <label class="form-label"><span data-translate="lbl_health_count">Jumlah Rekod untuk Diisytiharkan</span> <span class="text-primary">*</span></label>
+                            <select id="bilangan_rekod" class="form-input" required onchange="updateHealthFields()">
+                                <option value="0" data-translate="opt_none">Tiada</option>
+                                <option value="1" data-translate="opt_1_record">1 Rekod</option>
+                                <option value="2" data-translate="opt_2_record">2 Rekod</option>
+                                <option value="3" data-translate="opt_3_record">3 Rekod</option>
                             </select>
                         </div>
-                    </div>
 
-                    <!-- REKOD KESIHATAN 2 -->
-                    <div id="rekod_2_section" class="sub-box" style="display: none;">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base" data-translate="record_2_heading">Rekod Kesihatan 2</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_disease">Penyakit Dihidapi</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="penyakit_2" class="form-input">
+                        <!-- REKOD KESIHATAN 1 -->
+                        <div id="rekod_1_section" class="sub-box" style="display: none;">
+                            <h4 class="font-bold text-gray-800 dark:text-white mb-4 text-base" data-translate="record_1_heading">Rekod Kesihatan 1</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_disease">Penyakit Dihidapi</span> <span class="text-primary">*</span></label>
+                                    <input type="text" id="penyakit_1" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_disease_date">Bulan/Tahun Disahkan</span> <span class="text-primary">*</span></label>
+                                    <input type="month" id="tarikh_penyakit_1" class="form-input">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_hospital">Diwadkan di hospital mana?</span> <span class="text-primary">*</span></label>
+                                    <input type="text" id="hospital_1" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_ward_days">Berapa hari di dalam wad?</span> <span class="text-primary">*</span></label>
+                                    <input type="number" id="hari_wad_1" class="form-input">
+                                </div>
+                            </div>
+                            <div class="mb-5">
+                                <label class="form-label"><span data-translate="lbl_treatment_type">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan)</span> <span class="text-primary">*</span></label>
+                                <textarea id="jenis_rawatan_1" class="form-textarea" placeholder="Contoh: Makan ubat darah tinggi setiap hari..."></textarea>
                             </div>
                             <div>
-                                <label class="form-label"><span data-translate="lbl_disease_date">Bulan/Tahun Disahkan</span> <span class="text-primary">*</span></label>
-                                <input type="month" id="tarikh_penyakit_2" class="form-input">
+                                <label class="form-label"><span data-translate="lbl_current_status">Status Terkini</span> <span class="text-primary">*</span></label>
+                                <select id="status_pulih_1" class="form-input">
+                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                    <option value="Sudah pulih sepenuhnya" data-translate="opt_recovered">Sudah pulih sepenuhnya</option>
+                                    <option value="Masih mendapatkan rawatan susulan" data-translate="opt_treatment">Masih mendapatkan rawatan susulan</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_hospital">Diwadkan di hospital mana?</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="hospital_2" class="form-input">
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_ward_days">Berapa hari di dalam wad?</span> <span class="text-primary">*</span></label>
-                                <input type="number" id="hari_wad_2" class="form-input">
-                            </div>
-                        </div>
-                        <div class="mb-5">
-                            <label class="form-label"><span data-translate="lbl_treatment_type">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan)</span> <span class="text-primary">*</span></label>
-                            <textarea id="jenis_rawatan_2" class="form-textarea"></textarea>
-                        </div>
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_current_status">Status Terkini</span> <span class="text-primary">*</span></label>
-                            <select id="status_pulih_2" class="form-input">
-                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                <option value="Sudah pulih sepenuhnya" data-translate="opt_recovered">Sudah pulih sepenuhnya</option>
-                                <option value="Masih mendapatkan rawatan susulan" data-translate="opt_treatment">Masih mendapatkan rawatan susulan</option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <!-- REKOD KESIHATAN 3 -->
-                    <div id="rekod_3_section" class="sub-box" style="display: none;">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base" data-translate="record_3_heading">Rekod Kesihatan 3</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_disease">Penyakit Dihidapi</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="penyakit_3" class="form-input">
+                        <!-- REKOD KESIHATAN 2 -->
+                        <div id="rekod_2_section" class="sub-box" style="display: none;">
+                            <h4 class="font-bold text-gray-800 dark:text-white mb-4 text-base" data-translate="record_2_heading">Rekod Kesihatan 2</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_disease">Penyakit Dihidapi</span> <span class="text-primary">*</span></label>
+                                    <input type="text" id="penyakit_2" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_disease_date">Bulan/Tahun Disahkan</span> <span class="text-primary">*</span></label>
+                                    <input type="month" id="tarikh_penyakit_2" class="form-input">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_hospital">Diwadkan di hospital mana?</span> <span class="text-primary">*</span></label>
+                                    <input type="text" id="hospital_2" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_ward_days">Berapa hari di dalam wad?</span> <span class="text-primary">*</span></label>
+                                    <input type="number" id="hari_wad_2" class="form-input">
+                                </div>
+                            </div>
+                            <div class="mb-5">
+                                <label class="form-label"><span data-translate="lbl_treatment_type">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan)</span> <span class="text-primary">*</span></label>
+                                <textarea id="jenis_rawatan_2" class="form-textarea"></textarea>
                             </div>
                             <div>
-                                <label class="form-label"><span data-translate="lbl_disease_date">Bulan/Tahun Disahkan</span> <span class="text-primary">*</span></label>
-                                <input type="month" id="tarikh_penyakit_3" class="form-input">
+                                <label class="form-label"><span data-translate="lbl_current_status">Status Terkini</span> <span class="text-primary">*</span></label>
+                                <select id="status_pulih_2" class="form-input">
+                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                    <option value="Sudah pulih sepenuhnya" data-translate="opt_recovered">Sudah pulih sepenuhnya</option>
+                                    <option value="Masih mendapatkan rawatan susulan" data-translate="opt_treatment">Masih mendapatkan rawatan susulan</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_hospital">Diwadkan di hospital mana?</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="hospital_3" class="form-input">
+
+                        <!-- REKOD KESIHATAN 3 -->
+                        <div id="rekod_3_section" class="sub-box" style="display: none;">
+                            <h4 class="font-bold text-gray-800 dark:text-white mb-4 text-base" data-translate="record_3_heading">Rekod Kesihatan 3</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_disease">Penyakit Dihidapi</span> <span class="text-primary">*</span></label>
+                                    <input type="text" id="penyakit_3" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_disease_date">Bulan/Tahun Disahkan</span> <span class="text-primary">*</span></label>
+                                    <input type="month" id="tarikh_penyakit_3" class="form-input">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_hospital">Diwadkan di hospital mana?</span> <span class="text-primary">*</span></label>
+                                    <input type="text" id="hospital_3" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_ward_days">Berapa hari di dalam wad?</span> <span class="text-primary">*</span></label>
+                                    <input type="number" id="hari_wad_3" class="form-input">
+                                </div>
+                            </div>
+                            <div class="mb-5">
+                                <label class="form-label"><span data-translate="lbl_treatment_type">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan)</span> <span class="text-primary">*</span></label>
+                                <textarea id="jenis_rawatan_3" class="form-textarea"></textarea>
                             </div>
                             <div>
-                                <label class="form-label"><span data-translate="lbl_ward_days">Berapa hari di dalam wad?</span> <span class="text-primary">*</span></label>
-                                <input type="number" id="hari_wad_3" class="form-input">
+                                <label class="form-label"><span data-translate="lbl_current_status">Status Terkini</span> <span class="text-primary">*</span></label>
+                                <select id="status_pulih_3" class="form-input">
+                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                    <option value="Sudah pulih sepenuhnya" data-translate="opt_recovered">Sudah pulih sepenuhnya</option>
+                                    <option value="Masih mendapatkan rawatan susulan" data-translate="opt_treatment">Masih mendapatkan rawatan susulan</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="mb-5">
-                            <label class="form-label"><span data-translate="lbl_treatment_type">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan)</span> <span class="text-primary">*</span></label>
-                            <textarea id="jenis_rawatan_3" class="form-textarea"></textarea>
-                        </div>
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_current_status">Status Terkini</span> <span class="text-primary">*</span></label>
-                            <select id="status_pulih_3" class="form-input">
-                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                <option value="Sudah pulih sepenuhnya" data-translate="opt_recovered">Sudah pulih sepenuhnya</option>
-                                <option value="Masih mendapatkan rawatan susulan" data-translate="opt_treatment">Masih mendapatkan rawatan susulan</option>
-                            </select>
                         </div>
                     </div>
                 </div>
 
                 <!-- SEJARAH KESIHATAN KELUARGA -->
-                <h3 class="section-header" data-translate="sec_6_title">6. Sejarah Kesihatan Keluarga (Penyakit Keturunan)</h3>
-                <div>
-                    <label class="form-label font-normal text-gray-600 leading-relaxed mb-4" data-translate="family_desc">Adakah dikalangan keluarga terdekat (ibu, ayah atau adik-beradik kandung) disahkan menghidapi penyakit keturunan atau penyakit kritikal (contoh: darah tinggi, kencing manis, kegagalan buah pinggang, serangan jantung, kanser atau lain-lain)? Jika ada, sila nyatakan di bawah.</label>
-                    <textarea id="sejarah_keluarga" class="form-textarea" placeholder="Contoh: Bapa - Kencing Manis, Ibu - Darah Tinggi. (Tulis 'Tiada' jika tidak berkaitan)"></textarea>
+                <div class="reveal-element">
+                    <h3 class="section-header" data-translate="sec_6_title">6. Sejarah Kesihatan Keluarga (Penyakit Keturunan)</h3>
+                    <div>
+                        <label class="form-label font-normal text-gray-600 dark:text-slate-400 leading-relaxed mb-4" data-translate="family_desc">Adakah dikalangan keluarga terdekat (ibu, ayah atau adik-beradik kandung) disahkan menghidapi penyakit keturunan atau penyakit kritikal (contoh: darah tinggi, kencing manis, kegagalan buah pinggang, serangan jantung, kanser atau lain-lain)? Jika ada, sila nyatakan di bawah.</label>
+                        <textarea id="sejarah_keluarga" class="form-textarea" placeholder="Contoh: Bapa - Kencing Manis, Ibu - Darah Tinggi. (Tulis 'Tiada' jika tidak berkaitan)"></textarea>
+                    </div>
                 </div>
 
                 <!-- SEJARAH COVID-19 -->
-                <h3 class="section-header" data-translate="sec_7_title">7. Sejarah COVID-19</h3>
-                <div class="space-y-5">
-                    <div>
-                        <label class="form-label"><span data-translate="lbl_covid_status">Pernahkah anda disahkan positif COVID-19?</span> <span class="text-primary">*</span></label>
-                        <select id="positif_covid" class="form-input" required onchange="updateCovidFields()">
-                            <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                            <option value="Ya" data-translate="opt_yes">Ya</option>
-                            <option value="Tidak" data-translate="opt_no">Tidak</option>
-                        </select>
-                    </div>
-
-                    <div id="covid_details_section" class="sub-box" style="display: none;">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_covid_freq">Berapa kali disahkan positif?</span> <span class="text-primary">*</span></label>
-                                <input type="number" id="kekerapan_covid" class="form-input" min="1" placeholder="Contoh: 2">
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_covid_date">Bulan/Tahun disahkan positif</span> <span class="text-primary">*</span></label>
-                                <input type="month" id="tarikh_covid" class="form-input">
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_covid_stage">Tahap COVID-19?</span> <span class="text-primary">*</span></label>
-                                <select id="tahap_covid" class="form-input">
-                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                    <option value="Tahap 1">1</option>
-                                    <option value="Tahap 2">2</option>
-                                    <option value="Tahap 3">3</option>
-                                    <option value="Tahap 4">4</option>
-                                    <option value="Tahap 5">5</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_covid_hosp">Pernah masuk hospital untuk ini?</span> <span class="text-primary">*</span></label>
-                                <select id="masuk_hospital_covid" class="form-input" onchange="updateCovidHospitalFields()">
-                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                    <option value="Ya" data-translate="opt_yes">Ya</option>
-                                    <option value="Tidak" data-translate="opt_no">Tidak</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="mb-5" id="rawatan_covid_section" style="display: none;">
-                            <label class="form-label"><span data-translate="lbl_covid_treatment">Jika Ya, apakah rawatan yang telah dijalankan?</span> <span class="text-primary">*</span></label>
-                            <select id="rawatan_covid" class="form-input">
+                <div class="reveal-element">
+                    <h3 class="section-header" data-translate="sec_7_title">7. Sejarah COVID-19</h3>
+                    <div class="space-y-5">
+                        <div>
+                            <label class="form-label"><span data-translate="lbl_covid_status">Pernahkah anda disahkan positif COVID-19?</span> <span class="text-primary">*</span></label>
+                            <select id="positif_covid" class="form-input" required onchange="updateCovidFields()">
                                 <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                <option value="Bantuan Alat Pernafasan" data-translate="opt_resp">Bantuan Alat Pernafasan</option>
-                                <option value="HDU / ICU / ITU / CCU" data-translate="opt_icu">HDU, ICU, ITU, CCU</option>
-                                <option value="Ubat Anti-Viral" data-translate="opt_antiviral">Ubat Anti-Viral</option>
-                                <option value="Kuarantin di Wad atau Pusat Kuarantin" data-translate="opt_quarantine">Kuarantin di Wad atau Pusat Kuarantin</option>
+                                <option value="Ya" data-translate="opt_yes">Ya</option>
+                                <option value="Tidak" data-translate="opt_no">Tidak</option>
                             </select>
                         </div>
 
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_covid_current">Sebarang kondisi sekarang disebabkan oleh COVID-19?</span> <span class="text-primary">*</span></label>
-                            <textarea id="kondisi_semasa_covid" class="form-textarea" placeholder="Contoh: Kerap sesak nafas. (Tulis 'Tiada' jika tidak berkaitan)"></textarea>
+                        <div id="covid_details_section" class="sub-box" style="display: none;">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_covid_freq">Berapa kali disahkan positif?</span> <span class="text-primary">*</span></label>
+                                    <input type="number" id="kekerapan_covid" class="form-input" min="1" placeholder="Contoh: 2">
+                                </div>
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_covid_date">Bulan/Tahun disahkan positif</span> <span class="text-primary">*</span></label>
+                                    <input type="month" id="tarikh_covid" class="form-input">
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_covid_stage">Tahap COVID-19?</span> <span class="text-primary">*</span></label>
+                                    <select id="tahap_covid" class="form-input">
+                                        <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                        <option value="Tahap 1">1</option>
+                                        <option value="Tahap 2">2</option>
+                                        <option value="Tahap 3">3</option>
+                                        <option value="Tahap 4">4</option>
+                                        <option value="Tahap 5">5</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="form-label"><span data-translate="lbl_covid_hosp">Pernah masuk hospital untuk ini?</span> <span class="text-primary">*</span></label>
+                                    <select id="masuk_hospital_covid" class="form-input" onchange="updateCovidHospitalFields()">
+                                        <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                        <option value="Ya" data-translate="opt_yes">Ya</option>
+                                        <option value="Tidak" data-translate="opt_no">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-5" id="rawatan_covid_section" style="display: none;">
+                                <label class="form-label"><span data-translate="lbl_covid_treatment">Jika Ya, apakah rawatan yang telah dijalankan?</span> <span class="text-primary">*</span></label>
+                                <select id="rawatan_covid" class="form-input">
+                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
+                                    <option value="Bantuan Alat Pernafasan" data-translate="opt_resp">Bantuan Alat Pernafasan</option>
+                                    <option value="HDU / ICU / ITU / CCU" data-translate="opt_icu">HDU, ICU, ITU, CCU</option>
+                                    <option value="Ubat Anti-Viral" data-translate="opt_antiviral">Ubat Anti-Viral</option>
+                                    <option value="Kuarantin di Wad atau Pusat Kuarantin" data-translate="opt_quarantine">Kuarantin di Wad atau Pusat Kuarantin</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="form-label"><span data-translate="lbl_covid_current">Sebarang kondisi sekarang disebabkan oleh COVID-19?</span> <span class="text-primary">*</span></label>
+                                <textarea id="kondisi_semasa_covid" class="form-textarea" placeholder="Contoh: Kerap sesak nafas. (Tulis 'Tiada' jika tidak berkaitan)"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- DOKUMEN SOKONGAN -->
-                <h3 class="section-header" id="sec-dokumen" data-translate="sec_8_title">8. Dokumen Sokongan</h3>
-                <div class="bg-gray-50 border border-gray-200 p-6 rounded-2xl mb-8">
-                    <p class="font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="fas fa-camera text-primary text-xl"></i> <span data-translate="doc_instruction_title">ARAHAN PENTING:</span></p>
-                    <p class="text-sm text-gray-700 mb-4 leading-relaxed"><span data-translate="doc_instruction_desc">Sebagai pengesahan keselamatan identiti, sila sediakan gambar-gambar berikut untuk dihantar</span> <strong data-translate="doc_chat_text">di dalam ruang chat WhatsApp</strong> <span data-translate="doc_instruction_desc2">selepas anda menekan butang Hantar di bawah:</span></p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 mb-6 space-y-1 ml-2">
-                        <li id="doc_item_1" data-translate="doc_li_1_mykad">Gambar MyKad (Muka Depan)</li>
-                        <li id="doc_item_2" data-translate="doc_li_2_mykad">Gambar MyKad (Muka Belakang)</li>
-                        <li id="doc_item_3" data-translate="doc_li_3_mykad">Gambar Selfie anda memegang MyKad</li>
-                    </ul>
-                    
-                    <div class="bg-white p-5 rounded-xl border-l-4 border-teal shadow-sm text-sm text-gray-600">
-                        <span><strong class="text-gray-900" data-translate="note_label">*Nota:</strong> <span id="ekyc_note" data-translate="ekyc_note_1_mykad">Langkah penyerahan gambar MyKad dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori eKYC (Electronic Know Your Customer) bagi tujuan pengesahan identiti secara digital.</span></span>
-                        <br>
-                        <a href="https://www.bnm.gov.my/-/pd-ekyc-en" target="_blank" class="text-teal font-semibold hover:underline mt-2 inline-block" data-translate="ekyc_link">
-                            &rarr; Ketahui lebih lanjut mengenai polisi eKYC BNM
-                        </a>
+                <div class="reveal-element">
+                    <h3 class="section-header" id="sec-dokumen" data-translate="sec_8_title">8. Dokumen Sokongan</h3>
+                    <div class="bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 p-6 rounded-2xl mb-8">
+                        <p class="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2"><i class="fas fa-camera text-primary text-xl"></i> <span data-translate="doc_instruction_title">ARAHAN PENTING:</span></p>
+                        <p class="text-sm text-gray-700 dark:text-slate-300 mb-4 leading-relaxed"><span data-translate="doc_instruction_desc">Sebagai pengesahan keselamatan identiti, sila sediakan gambar-gambar berikut untuk dihantar</span> <strong data-translate="doc_chat_text" class="dark:text-white">di dalam ruang chat WhatsApp</strong> <span data-translate="doc_instruction_desc2">selepas anda menekan butang Hantar di bawah:</span></p>
+                        <ul class="list-disc list-inside text-sm text-gray-700 dark:text-slate-300 mb-6 space-y-1 ml-2">
+                            <li id="doc_item_1" data-translate="doc_li_1_mykad">Gambar MyKad (Muka Depan)</li>
+                            <li id="doc_item_2" data-translate="doc_li_2_mykad">Gambar MyKad (Muka Belakang)</li>
+                            <li id="doc_item_3" data-translate="doc_li_3_mykad">Gambar Selfie anda memegang MyKad</li>
+                        </ul>
+                        
+                        <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border-l-4 border-teal shadow-sm text-sm text-gray-600 dark:text-slate-400">
+                            <span><strong class="text-gray-900 dark:text-white" data-translate="note_label">*Nota:</strong> <span id="ekyc_note" data-translate="ekyc_note_1_mykad">Langkah penyerahan gambar MyKad dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori eKYC (Electronic Know Your Customer) bagi tujuan pengesahan identiti secara digital.</span></span>
+                            <br>
+                            <a href="https://www.bnm.gov.my/-/pd-ekyc-en" target="_blank" class="text-teal font-semibold hover:underline mt-2 inline-block" data-translate="ekyc_link">
+                                &rarr; Ketahui lebih lanjut mengenai polisi eKYC BNM
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-                <button type="submit" class="btn-primary">
-                    <span data-translate="btn_submit">Hantar Permohonan Melalui WhatsApp</span> <i class="fab fa-whatsapp text-lg ml-1"></i>
-                </button>
+                    <button type="submit" class="btn-primary mt-4">
+                        <span data-translate="btn_submit">Hantar Permohonan Melalui WhatsApp</span> <i class="fab fa-whatsapp text-lg ml-1"></i>
+                    </button>
+                </div>
             </form>
         </div>
     </main>
     
     <!-- Unified Footer -->
-    <footer class="border-t border-border bg-white py-10 mt-auto">
+    <footer class="border-t border-border bg-white dark:bg-slate-900 border-gray-200 dark:border-slate-800 py-10 mt-auto transition-colors duration-300">
         <div class="mx-auto max-w-6xl px-6">
-            <div class="flex flex-col items-center justify-between gap-4 text-xs text-gray-500 md:flex-row text-center md:text-left">
+            <div class="flex flex-col items-center justify-between gap-4 text-xs text-gray-500 dark:text-slate-400 md:flex-row text-center md:text-left">
                 <p data-translate="footer_reg">Perunding Takaful Berdaftar dengan PruBSN Takaful Berhad.</p>
                 <p>© 2026 Fairuz Samsuddin. <span data-translate="footer_rights">Hak Cipta Terpelihara.</span></p>
                 <p data-translate="footer_portal">Portal Servis Rasmi Fairuz Samsuddin</p>
@@ -1221,6 +1242,23 @@
 
             window.open(`https://wa.me/${agentPhone}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
         }
+        
+        // Scroll Animation Observer setup
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-element').forEach((el) => {
+                observer.observe(el);
+            });
+        });
     </script>
 </body>
 </html>
