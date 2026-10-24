@@ -1,648 +1,595 @@
 <!DOCTYPE html>
-<html lang="ms" id="htmlTag">
+<html lang="ms">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">REO Form - TAKAFUL SERVICES - Fairuz Samsuddin</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>REO Form - TAKAFUL SERVICES - Fairuz Samsuddin</title>
+  <meta name="author" content="Fairuz Samsuddin" />
+  <meta name="description" content="Borang pendaftaran takaful secara jarak jauh — hantar terus melalui WhatsApp." />
+  <meta name="theme-color" content="#f5f5f7" />
+  <meta name="color-scheme" content="light" />
 
-    <link rel="apple-touch-icon" href="FS-logo.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/FS-logo.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/FS-logo.png">
-    <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/fsconsultancy-mark.png">
+  <link rel="shortcut icon" href="/favicon.ico">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'media',
-        theme: {
-          extend: {
-            fontFamily: { sans: ['Poppins', 'sans-serif'] },
-            colors: {
-              primary: { DEFAULT: '#D9000D', hover: '#b8000b' },
-              teal: { DEFAULT: '#008183', hover: '#005a5c', soft: '#e6f6f5' },
-              background: '#f8fafc',
-            },
-            boxShadow: {
-              'soft': '0 4px 10px rgba(0,0,0,0.03)',
-              'elegant': '0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01)',
-            }
-          }
-        }
-      }
-    </script>
-    
-    <style type="text/tailwindcss">
-      @layer components {
-        html { scroll-behavior: smooth; }
-        .scrollbar-none::-webkit-scrollbar { display: none; }
-        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        .form-input { @apply block w-full border px-4 py-2 h-12 rounded-xl border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-sm transition-colors dark:bg-slate-800 dark:border-slate-700 dark:text-white dark:focus:ring-primary/50; }
-        
-        /* FIX FOR IOS/SAFARI DATE INPUT HEIGHTS */
-        input[type="date"].form-input, input[type="month"].form-input { @apply min-h-[3rem] appearance-none bg-transparent; }
-        
-        .form-textarea { @apply block w-full border px-4 py-3 min-h-[100px] rounded-xl border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-sm transition-colors dark:bg-slate-800 dark:border-slate-700 dark:text-white dark:focus:ring-primary/50; }
-        
-        .form-label { @apply text-sm font-semibold text-gray-700 mb-2 block dark:text-slate-300; }
-        
-        .btn-primary { @apply inline-flex items-center justify-center gap-2 cursor-pointer transition-transform hover:-translate-y-0.5 bg-primary text-white hover:bg-primary-hover min-h-[3.5rem] py-3 rounded-full px-4 md:px-8 text-sm md:text-base font-semibold shadow-elegant w-full text-center leading-tight; }
-        
-        .section-header { @apply text-lg font-bold text-gray-900 border-b-2 border-primary pb-2 mt-12 mb-6 flex items-center gap-2 scroll-mt-28 dark:text-white dark:border-primary/80; }
-        
-        .sub-box { @apply bg-gray-50 border border-gray-200 p-6 rounded-2xl mb-5 dark:bg-slate-800/50 dark:border-slate-700; }
-        
-        .reveal-element { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .reveal-element.is-visible { opacity: 1; transform: translateY(0); }
-      }
-    </style>
+  <style>
+    :root{color-scheme:light;--bg:#f5f5f7;--card:#fff;--fg:#1d1d1f;--mut:#6e6e73;--mut2:#424245;--hero1:#86868b;--line:#d2d2d7;--line2:#e5e5ea;--teal:#008183;--tealT:#00696b;--red:#D9000D;--tint:#e2f3f3;--tintFg:#00605f;--amberBg:#fff8ec;--amberFg:#8a4b00;--amberIc:#a35a00;--redBg:#fde8e9;--redFg:#a8000a;--glass:rgba(255,255,255,.62);--glassB:rgba(255,255,255,.85);--fill:rgba(118,118,128,.14);--sheet:rgba(245,245,247,.94);--sf:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Inter,system-ui,"Segoe UI",Roboto,sans-serif}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sf);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;line-height:1.4}
+    body.lock{overflow:hidden}
+    a{color:var(--tealT);text-decoration:none}a:hover{text-decoration:underline}
+    img{max-width:100%}
+    [hidden]{display:none!important}
+    :focus-visible{outline:3px solid rgba(0,129,131,.45);outline-offset:2px}
+    .wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+    .lgl{background:var(--glass);-webkit-backdrop-filter:blur(30px) saturate(190%);backdrop-filter:blur(30px) saturate(190%);border:1px solid var(--glassB);box-shadow:inset 0 1px 0 var(--glassB),0 12px 34px rgba(0,0,0,.10)}
+
+    /* nav */
+    .nav{position:sticky;top:calc(10px + env(safe-area-inset-top,0px));z-index:40;max-width:1040px;width:calc(100% - 24px);margin:10px auto 0;padding:7px 8px 7px 12px;border-radius:999px;display:flex;align-items:center;gap:10px}
+    .brand{display:flex;align-items:center;gap:10px;flex:none;color:var(--fg)}.brand:hover{text-decoration:none}
+    .brand img{width:34px;height:34px;border-radius:9px;background:#fff;object-fit:contain}
+    .brand b{display:block;font-size:14px;letter-spacing:-.01em;color:var(--red)}
+    .brand small{display:block;font-size:12px;color:var(--mut)}
+    .navlinks{display:flex;gap:2px;margin-left:auto;min-width:0}
+    .navlinks a{color:var(--fg);font-size:13px;padding:8px 10px;border-radius:999px;white-space:nowrap}.navlinks a:hover{background:var(--fill);text-decoration:none}
+    .navr{display:flex;gap:6px;align-items:center;flex:none}
+
+    /* controls */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 24px;border-radius:999px;background:var(--teal);color:#fff;font:500 16px var(--sf);border:0;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 6px 18px rgba(0,129,131,.3)}
+    .btn:hover{background:#00706f;color:#fff;text-decoration:none}
+    .btn-s{min-height:36px;padding:0 14px;font-size:13px;font-weight:600}
+    .btn-t{background:transparent;color:var(--tealT);box-shadow:none}.btn-t:hover{background:var(--fill);color:var(--tealT)}
+    .btn-w{width:100%}
+    .seg{display:inline-flex;background:var(--fill);padding:2px;border-radius:999px}
+    .seg button{border:0;background:transparent;color:var(--fg);font:600 13px var(--sf);padding:7px 14px;border-radius:999px;cursor:pointer;min-height:32px}
+    .seg button[aria-pressed="true"]{background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+    .ic{width:18px;height:18px;flex:none}
+
+    /* type */
+    .kk{margin:0 0 8px;font-size:14px;font-weight:600;color:var(--tealT)}
+    .h2s{margin:0;font-size:28px;line-height:1.12;letter-spacing:-.035em;font-weight:700}
+    .sub{margin:12px 0 0;font-size:15px;line-height:1.45;color:var(--mut)}
+
+    /* layout */
+    .split{display:grid;grid-template-columns:260px minmax(0,1fr);column-gap:44px;padding:52px 0;border-top:.5px solid var(--line);scroll-margin-top:80px}
+    .split>.side{position:sticky;top:96px;align-self:start}
+    .stack{display:flex;flex-direction:column;gap:16px}
+    .group{background:var(--card);border-radius:18px;overflow:hidden;margin:0;padding:0;list-style:none}
+    .glabel{margin:0 0 8px 18px;font-size:13px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.02em}
+
+    /* iOS grouped rows */
+    .row{display:flex;align-items:center;gap:12px;min-height:56px;padding:4px 18px;border-bottom:.5px solid var(--line)}
+    .row:last-child{border-bottom:0}
+    .row:focus-within{background:var(--tint);box-shadow:inset 3px 0 0 var(--teal)}
+    .row label{flex:0 1 auto;font-size:16px;color:var(--fg);padding:12px 0}
+    .row input,.row select{flex:1 0 45%;min-width:0;border:0;background:transparent;text-align:right;font:16px var(--sf);color:var(--fg);padding:12px 0;outline:none}
+    .row input[type="date"],.row input[type="month"]{-webkit-appearance:none;appearance:none;min-height:44px}
+    .row input::-webkit-date-and-time-value{text-align:right}
+    .row input[type="number"]{-moz-appearance:textfield}
+    .row input[type="number"]::-webkit-inner-spin-button,.row input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+    .row select{text-align-last:right;cursor:pointer;-webkit-appearance:none;appearance:none;padding-right:18px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2386868b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right center no-repeat}
+    .row select:invalid{color:#8e8e93}
+    .row input::placeholder,.row textarea::placeholder{color:#8e8e93}
+    .row.col{flex-direction:column;align-items:stretch;gap:0}
+    .row.col label{padding:12px 0 4px}
+    .row.col input,.row.col select{flex:none;width:100%;text-align:left;text-align-last:left;padding:4px 18px 12px 0}
+    .row.col select,.selv{background-position:right calc(50% - 4px)}
+    .row.col input::-webkit-date-and-time-value{text-align:left}
+    /* long-option selects: visible text wraps, the native select sits on top transparently */
+    .selw{position:relative}
+    .selw select{position:absolute;inset:0;width:100%;height:100%;opacity:0;padding:0;cursor:pointer}
+    .selv{display:block;padding:4px 18px 12px 0;font-size:16px;line-height:1.35;color:var(--fg);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2386868b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right center no-repeat}
+    .selv.empty{color:#8e8e93}
+    .row textarea{border:0;background:transparent;font:16px var(--sf);color:var(--fg);padding:4px 0 12px;min-height:96px;resize:vertical;outline:none}
+    .req{color:var(--red);font-weight:600}
+    input,select,textarea{scroll-margin-top:110px;scroll-margin-bottom:110px}
+
+    .note{background:var(--amberBg);border-radius:16px;padding:14px 16px;display:flex;gap:10px;font-size:14px;line-height:1.5;color:var(--fg)}
+    .note.ok{background:var(--tint)}
+    .note .ic{color:var(--amberIc);margin-top:1px}
+    .note.ok .ic{color:var(--tintFg)}
+    /* digit badges: trim the digit to cap height so flex centres the glyph, not the line box */
+    .d{display:block;line-height:1;text-box:trim-both cap alphabetic}
+    .num{flex:none;width:32px;height:32px;border-radius:999px;background:var(--tint);color:var(--tintFg);font-size:15px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px}
+
+    /* hero */
+    .hero{text-align:center;padding:64px 0 52px}
+    .hero-k{margin:0 0 10px;font-size:16px;font-weight:600;color:var(--red)}
+    .hero h1{margin:0 auto 20px;max-width:860px;font-size:clamp(40px,6.2vw,64px);line-height:1.04;letter-spacing:-.04em;font-weight:700}
+    .hero h1 span:first-child{color:var(--hero1)}
+    .hero-d{margin:0 auto;max-width:640px;font-size:clamp(17px,2.1vw,20px);line-height:1.45;color:var(--mut2)}
+    .hero-b{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+    .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:28px auto 0;padding:0;list-style:none;max-width:720px}
+    .chips li{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:999px;background:var(--card);font-size:14px;font-weight:500}
+    .chips li>span{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:var(--tint);color:var(--tintFg);font-size:12px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+
+    /* documents */
+    .doc{padding:22px}
+    .doc h3{margin:0 0 8px;font-size:17px;font-weight:600;display:flex;align-items:center;gap:10px}
+    .doc h3 .ic{color:var(--tealT)}
+    .doc p{margin:0;font-size:15px;line-height:1.5;color:var(--mut2)}
+    .doc ol{margin:14px 0 0;padding:0;list-style:none}
+    .doc li{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:.5px solid var(--line2);font-size:15px}
+    .doc .dn{flex:none;width:26px;height:26px;border-radius:999px;background:var(--tint);color:var(--tintFg);font-size:13px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;justify-content:center}
+
+    footer{padding:28px 0 120px;border-top:.5px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--mut)}
+    footer img{width:120px;height:auto;display:block;margin-bottom:8px}
+
+    /* sticky action bar */
+    .abar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;gap:6px;max-width:calc(100% - 24px);padding:6px;border-radius:999px}
+    .abar .btn{font-size:15px;white-space:nowrap}
+
+    /* sheets */
+    .overlay{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.32);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px}
+    .sheet{width:100%;max-width:560px;max-height:calc(100vh - 32px);overflow:auto;border-radius:30px;background:var(--sheet)}
+    .alert{max-width:360px;border-radius:26px;padding:28px 24px 20px;text-align:center}
+    .alert-i{display:inline-flex;width:52px;height:52px;border-radius:999px;background:var(--redBg);color:var(--redFg);align-items:center;justify-content:center}
+
+    @media(max-width:760px){
+      .nav{flex-wrap:wrap;border-radius:24px;padding:8px 8px 4px 10px;row-gap:2px}
+      .navr{margin-left:auto}
+      .navlinks{order:3;flex-basis:100%;margin-left:-6px;overflow-x:auto;scrollbar-width:none}
+      .navlinks::-webkit-scrollbar{display:none}
+      .split{grid-template-columns:minmax(0,1fr);row-gap:18px;padding:36px 0}
+      .split>.side{position:static}
+      .hero{padding:36px 0 36px}
+      .chips li{font-size:13px}
+    }
+    @media(max-width:560px){
+      .row{flex-direction:column;align-items:stretch;gap:0}
+      .row label{padding:12px 0 4px}
+      .row input,.row select{flex:none;width:100%;text-align:left;text-align-last:left;padding:4px 18px 12px 0}
+      .row select{background-position:right calc(50% - 4px)}
+      .row input::-webkit-date-and-time-value{text-align:left}
+    }
+    @media(max-width:420px){.brand small{display:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
 </head>
-<body class="bg-background text-gray-800 antialiased min-h-screen flex flex-col dark:bg-slate-950 dark:text-slate-200 transition-colors duration-300">
+<body>
+  <div id="top"></div>
 
-    <!-- Unified Navigation Bar (Sticky, always visible) -->
-    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm border-b border-gray-200 dark:border-slate-800 transition-colors duration-300">
-        <div class="mx-auto flex max-w-6xl items-center px-4 py-3 gap-5 overflow-x-auto scrollbar-none">
-            
-            <!-- 1. Logo First -->
-            <a href="#" class="flex items-center gap-3 shrink-0">
-                <img src="FS-logo.png" alt="FS Logo" class="h-10 w-10 object-contain" onerror="this.src='https://placehold.co/40x40/D9000D/white?text=FS'">
-                <div class="flex flex-col">
-                    <span class="text-[14px] font-black uppercase tracking-tight text-primary leading-none" data-translate="brand_title">TAKAFUL SERVICES</span>
-                    <span class="mt-1 text-[11px] font-medium text-gray-500 dark:text-slate-400 leading-none" data-translate="brand_sub">by Fairuz Samsuddin</span>
-                </div>
-            </a>
+  <!-- Floating glass nav -->
+  <nav class="nav lgl" aria-label="Utama">
+    <a class="brand" href="#top">
+      <img src="fsconsultancy-mark.png" alt="fsconsultancy" width="34" height="34">
+      <span><b data-i18n="brand_title">TAKAFUL SERVICES</b><small data-i18n="brand_sub">by Fairuz Samsuddin</small></span>
+    </a>
+    <div class="navlinks">
+      <a href="#sec-peribadi" data-i18n="nav_personal">Peribadi</a>
+      <a href="#sec-penama" data-i18n="nav_nominee">Penama</a>
+      <a href="#sec-kesihatan" data-i18n="nav_health">Kesihatan</a>
+      <a href="#sec-dokumen" data-i18n="nav_documents">Dokumen</a>
+    </div>
+    <div class="navr">
+      <div class="seg" role="group" aria-label="Bahasa / Language">
+        <button type="button" data-lang="ms" aria-pressed="true">BM</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn-s" href="https://wa.me/60176213432" target="_blank" rel="noopener noreferrer">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </nav>
 
-            <!-- 2. Language Button Second -->
-            <button onclick="toggleLanguage()" id="langBtn" class="flex items-center gap-1.5 rounded-full border border-gray-300 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 px-3 py-2 text-xs font-bold text-gray-700 dark:text-slate-200 shadow-sm transition-colors hover:bg-gray-100 dark:hover:bg-slate-700 shrink-0">
-                <i class="fas fa-globe text-primary"></i> <span id="langText">EN</span>
-            </button>
-            
-            <!-- 3. Nav Links Third -->
-            <div class="flex items-center gap-5 shrink-0">
-                <a href="#sec-peribadi" class="flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors py-1">
-                    <i class="far fa-user text-gray-400 dark:text-slate-500 text-lg"></i>
-                    <span class="text-xs font-bold whitespace-nowrap" data-translate="nav_personal">Peribadi</span>
-                </a>
-                <a href="#sec-penama" class="flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors py-1">
-                    <i class="fas fa-users text-gray-400 dark:text-slate-500 text-lg"></i>
-                    <span class="text-xs font-bold whitespace-nowrap" data-translate="nav_nominee">Penama</span>
-                </a>
-                <a href="#sec-kesihatan" class="flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors py-1">
-                    <i class="far fa-hospital text-gray-400 dark:text-slate-500 text-lg"></i>
-                    <span class="text-xs font-bold whitespace-nowrap" data-translate="nav_health">Kesihatan</span>
-                </a>            
-                <a href="#sec-dokumen" class="flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors py-1">
-                    <i class="far fa-file-alt text-gray-400 dark:text-slate-500 text-lg"></i>
-                    <span class="text-xs font-bold whitespace-nowrap" data-translate="nav_documents">Dokumen</span>
-                </a>
-            </div>
-            
-            <!-- 4. WhatsApp Button Last -->
-            <div class="ml-auto flex items-center shrink-0">
-                <a href="https://wa.me/60176213432" target="_blank" class="flex items-center gap-2 rounded-full bg-teal px-5 py-2.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-teal-hover">
-                    <i class="fab fa-whatsapp text-base"></i> WhatsApp
-                </a>
-            </div>
-        </div>
-    </nav>
+  <main class="wrap">
 
-    <!-- Page Header -->
-    <header class="bg-white dark:bg-slate-900 border-b-2 border-primary py-8 text-center px-4 transition-colors duration-300">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white tracking-tight" data-translate="page_heading">BORANG PENDAFTARAN TAKAFUL</h1>
+    <!-- Hero -->
+    <header class="hero">
+      <p class="hero-k" data-i18n="hero_kicker">Pendaftaran Jarak Jauh</p>
+      <h1><span data-i18n="hero_h1_a">Borang Pendaftaran</span> <span data-i18n="hero_h1_b">Takaful.</span></h1>
+      <p class="hero-d" data-i18n="form_notice">Sila lengkapkan butiran di bawah dengan tepat untuk melancarkan proses permohonan Takaful anda.</p>
+      <ol class="chips" aria-hidden="true">
+        <li><span><span class="d">1</span></span><b data-i18n="nav_personal" style="font-weight:500">Peribadi</b></li>
+        <li><span><span class="d">4</span></span><b data-i18n="nav_nominee" style="font-weight:500">Penama</b></li>
+        <li><span><span class="d">5</span></span><b data-i18n="nav_health" style="font-weight:500">Kesihatan</b></li>
+        <li><span><span class="d">8</span></span><b data-i18n="nav_documents" style="font-weight:500">Dokumen</b></li>
+      </ol>
     </header>
 
-    <!-- Main Form Container -->
-    <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-10 reveal-element">
-        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-elegant border border-gray-100 dark:border-slate-800 p-6 md:p-10 transition-colors duration-300">
-            <form id="takafulForm" onsubmit="submitToWhatsApp(event)">
-                
-                <div class="bg-red-50 dark:bg-red-950/30 border-l-4 border-primary p-4 rounded-r-xl text-sm font-medium text-primary dark:text-red-400 mb-8 flex items-start gap-3">
-                    <i class="fas fa-info-circle mt-0.5"></i> 
-                    <span data-translate="form_notice">Sila lengkapkan butiran di bawah dengan tepat untuk melancarkan proses permohonan Takaful anda.</span>
-                </div>
+    <form id="takafulForm">
 
-                <!-- MAKLUMAT PERIBADI -->
-                <div class="reveal-element">
-                    <h3 class="section-header" id="sec-peribadi" data-translate="sec_1_title">1. Maklumat Peribadi</h3>
-                    
-                    <div class="space-y-5">
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_fullname">Nama Penuh (Seperti dalam MyKad/Passport)</span> <span class="text-primary">*</span></label>
-                            <input type="text" id="nama" class="form-input" required>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_citizen">Warganegara</span> <span class="text-primary">*</span></label>
-                                <select id="warganegara" class="form-input" required onchange="updateIdentityFields()">
-                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                    <option value="Malaysia" data-translate="opt_malaysia">Malaysia</option>
-                                    <option value="Penduduk Tetap" data-translate="opt_pr">Penduduk Tetap</option>
-                                    <option value="Bukan Warganegara" data-translate="opt_foreigner">Bukan Warganegara</option>
-                                </select>
-                            </div>
-                            
-                            <div id="ic_container" style="display: none;">
-                                <label class="form-label"><span data-translate="lbl_ic">No. IC</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="ic" class="form-input" placeholder="Contoh: 090724-14-2784" maxlength="14">
-                            </div>
-
-                            <div id="passport_container" style="display: none;">
-                                <label class="form-label"><span data-translate="lbl_passport">No. Pasport</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="passport" class="form-input" placeholder="Contoh: A1234567">
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_dob">Tarikh Lahir</span> <span class="text-primary">*</span></label>
-                                <input type="date" id="tarikh_lahir" class="form-input" required>
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_phone">No. Telefon</span> <span class="text-primary">*</span></label>
-                                <input type="tel" id="no_tel" class="form-input" required placeholder="Contoh: 0123456789">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_email">Emel</span> <span class="text-primary">*</span></label>
-                                <input type="email" id="emel" class="form-input" required>
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_religion">Agama</span> <span class="text-primary">*</span></label>
-                                <select id="agama" class="form-input" required>
-                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                    <option value="Islam" data-translate="opt_islam">Islam</option>
-                                    <option value="Buddhist" data-translate="opt_buddhist">Buddhist</option>
-                                    <option value="Hindu" data-translate="opt_hindu">Hindu</option>
-                                    <option value="Kristian" data-translate="opt_christian">Kristian</option>
-                                    <option value="Lain-lain" data-translate="opt_others">Lain-lain</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_address">Alamat Rumah</span> <span class="text-primary">*</span></label>
-                            <textarea id="alamat" class="form-textarea" required></textarea>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_height">Tinggi (cm)</span> <span class="text-primary">*</span></label>
-                                <input type="number" id="tinggi" class="form-input" required placeholder="Contoh: 170">
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_weight">Berat (kg)</span> <span class="text-primary">*</span></label>
-                                <input type="number" id="berat" class="form-input" required placeholder="Contoh: 70">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_smoker_status">Status Merokok</span> <span class="text-primary">*</span></label>
-                            <select id="merokok" class="form-input" required onchange="updateMerokokFields()">
-                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                <option value="Merokok" data-translate="opt_smoker">Merokok</option>
-                                <option value="Tidak Merokok" data-translate="opt_nonsmoker">Tidak Merokok</option>
-                            </select>
-                        </div>
-
-                        <!-- Butiran Merokok -->
-                        <div id="merokok_details_section" class="sub-box" style="display: none;">
-                            <div class="mb-4">
-                                <label class="form-label"><span data-translate="lbl_smoker_type">Rokok / Vape?</span> <span class="text-primary">*</span></label>
-                                <select id="jenis_merokok" class="form-input" onchange="updateJenisMerokokFields()">
-                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                    <option value="Rokok" data-translate="opt_cigarette">Rokok</option>
-                                    <option value="Vape" data-translate="opt_vape">Vape</option>
-                                </select>
-                            </div>
-
-                            <div id="rokok_details" class="grid grid-cols-1 md:grid-cols-2 gap-5" style="display: none;">
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_cig_count">Berapa batang sehari?</span> <span class="text-primary">*</span></label>
-                                    <input type="number" id="bilangan_rokok" class="form-input" min="1" placeholder="Contoh: 10">
-                                </div>
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_cig_years">Berapa tahun merokok?</span> <span class="text-primary">*</span></label>
-                                    <input type="number" id="tahun_merokok" class="form-input" min="1" placeholder="Contoh: 5">
-                                </div>
-                            </div>
-
-                            <div id="vape_details" style="display: none;">
-                                <label class="form-label"><span data-translate="lbl_vape_years">Berapa tahun vape?</span> <span class="text-primary">*</span></label>
-                                <input type="number" id="tahun_vape" class="form-input" min="1" placeholder="Contoh: 3">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MAKLUMAT PEKERJAAN -->
-                <div class="reveal-element">
-                    <h3 class="section-header" data-translate="sec_2_title">2. Maklumat Pekerjaan</h3>
-                    <div class="space-y-5">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_employer">Nama Majikan / Syarikat</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="majikan" class="form-input" required>
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_occupation">Jawatan</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="jawatan" class="form-input" required>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_job_desc">Keterangan Ringkas Pekerjaan</span> <span class="text-primary">*</span></label>
-                            <textarea id="keterangan_kerja" class="form-textarea" required placeholder="Contoh: Membuat kerja-kerja admin di pejabat..."></textarea>
-                        </div>
-
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_employer_address">Alamat Majikan</span> <span class="text-primary">*</span></label>
-                            <textarea id="alamat_majikan" class="form-textarea" required></textarea>
-                        </div>
-
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_annual_income">Pendapatan Tahunan (RM)</span> <span class="text-primary">*</span></label>
-                            <input type="number" id="pendapatan" class="form-input" required placeholder="Contoh: 45000">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MAKLUMAT BANK & PEMBAYARAN -->
-                <div class="reveal-element">
-                    <h3 class="section-header" data-translate="sec_3_title">3. Maklumat Kewangan & Pembayaran</h3>
-                    <div class="space-y-5">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_bank_name">Nama Bank (Untuk tuntutan)</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="nama_bank" class="form-input" required placeholder="Contoh: Maybank">
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_bank_acc">No. Akaun Bank</span> <span class="text-primary">*</span></label>
-                                <input type="text" id="no_akaun" class="form-input" required>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_acc_type">Jenis Akaun</span> <span class="text-primary">*</span></label>
-                                <select id="jenis_akaun" class="form-input" required>
-                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                    <option value="Islamik" data-translate="opt_islamic">Islamik</option>
-                                    <option value="Konvensional" data-translate="opt_conventional">Konvensional</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_payment_method">Cara Bayaran Bulanan</span> <span class="text-primary">*</span></label>
-                                <select id="cara_bayaran" class="form-input" required>
-                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                    <option value="Autodebit Akaun" data-translate="opt_autodebit">Autodebit Akaun</option>
-                                    <option value="Kad Debit" data-translate="opt_debitcard">Kad Debit</option>
-                                    <option value="Kad Kredit" data-translate="opt_creditcard">Kad Kredit</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MAKLUMAT PENAMA -->
-                <div class="reveal-element">
-                    <h3 class="section-header" id="sec-penama" data-translate="sec_4_title">4. Maklumat Penama / Pewaris</h3>
-                    <div class="space-y-5">
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_nominee_count">Berapa Orang Penama?</span> <span class="text-primary">*</span></label>
-                            <select id="bilangan_penama" class="form-input" required onchange="updateNomineeFields()">
-                                <option value="1" data-translate="opt_1_nominee">1 Penama (100%)</option>
-                                <option value="2" data-translate="opt_2_nominee">2 Penama</option>
-                                <option value="3" data-translate="opt_3_nominee">3 Penama</option>
-                            </select>
-                        </div>
-
-                        <!-- PENAMA 1 -->
-                        <div id="nominee_1_section" class="sub-box">
-                            <h4 class="font-bold text-gray-800 dark:text-white mb-4 text-base" data-translate="nominee_1_heading">Penama 1</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_nominee_name">Nama Penama</span> <span class="text-primary">*</span></label>
-                                    <input type="text" id="penama_1" class="form-input" required>
-                                </div>
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_nominee_relation">Hubungan</span> <span class="text-primary">*</span></label>
-                                    <input type="text" id="hubungan_penama_1" class="form-input" required placeholder="Contoh: Isteri / Suami / Anak">
-                                </div>
-                            </div>
-                            <div class="mt-5">
-                                <label class="form-label"><span data-translate="lbl_nominee_percentage">Peratusan (%)</span> <span class="text-primary">*</span></label>
-                                <input type="number" id="peratus_penama_1" class="form-input" required min="1" max="100" value="100" placeholder="Contoh: 100">
-                            </div>
-                        </div>
-
-                        <!-- PENAMA 2 -->
-                        <div id="nominee_2_section" class="sub-box" style="display: none;">
-                            <h4 class="font-bold text-gray-800 dark:text-white mb-4 text-base" data-translate="nominee_2_heading">Penama 2</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_nominee_name">Nama Penama</span> <span class="text-primary">*</span></label>
-                                    <input type="text" id="penama_2" class="form-input">
-                                </div>
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_nominee_relation">Hubungan</span> <span class="text-primary">*</span></label>
-                                    <input type="text" id="hubungan_penama_2" class="form-input" placeholder="Contoh: Isteri / Suami / Anak">
-                                </div>
-                            </div>
-                            <div class="mt-5">
-                                <label class="form-label"><span data-translate="lbl_nominee_percentage">Peratusan (%)</span> <span class="text-primary">*</span></label>
-                                <input type="number" id="peratus_penama_2" class="form-input" min="1" max="100" placeholder="Contoh: 50">
-                            </div>
-                        </div>
-
-                        <!-- PENAMA 3 -->
-                        <div id="nominee_3_section" class="sub-box" style="display: none;">
-                            <h4 class="font-bold text-gray-800 dark:text-white mb-4 text-base" data-translate="nominee_3_heading">Penama 3</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_nominee_name">Nama Penama</span> <span class="text-primary">*</span></label>
-                                    <input type="text" id="penama_3" class="form-input">
-                                </div>
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_nominee_relation">Hubungan</span> <span class="text-primary">*</span></label>
-                                    <input type="text" id="hubungan_penama_3" class="form-input" placeholder="Contoh: Isteri / Suami / Anak">
-                                </div>
-                            </div>
-                            <div class="mt-5">
-                                <label class="form-label"><span data-translate="lbl_nominee_percentage">Peratusan (%)</span> <span class="text-primary">*</span></label>
-                                <input type="number" id="peratus_penama_3" class="form-input" min="1" max="100" placeholder="Contoh: 30">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- REKOD KESIHATAN -->
-                <div class="reveal-element">
-                    <h3 class="section-header" id="sec-kesihatan" data-translate="sec_5_title">5. Rekod Kesihatan & Kemasukan Wad</h3>
-                    <div class="bg-teal-soft dark:bg-teal-950/30 border-l-4 border-teal p-4 rounded-r-xl text-sm font-medium text-teal dark:text-teal-400 mb-6 flex items-start gap-3">
-                        <i class="fas fa-info-circle mt-0.5"></i> 
-                        <span data-translate="health_notice">Pilih "Tiada" jika anda tidak mempunyai sebarang rekod penyakit atau kemasukan ke wad sebelum ini.</span>
-                    </div>
-                    
-                    <div class="space-y-5">
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_health_count">Jumlah Rekod untuk Diisytiharkan</span> <span class="text-primary">*</span></label>
-                            <select id="bilangan_rekod" class="form-input" required onchange="updateHealthFields()">
-                                <option value="0" data-translate="opt_none">Tiada</option>
-                                <option value="1" data-translate="opt_1_record">1 Rekod</option>
-                                <option value="2" data-translate="opt_2_record">2 Rekod</option>
-                                <option value="3" data-translate="opt_3_record">3 Rekod</option>
-                            </select>
-                        </div>
-
-                        <!-- REKOD KESIHATAN 1 -->
-                        <div id="rekod_1_section" class="sub-box" style="display: none;">
-                            <h4 class="font-bold text-gray-800 dark:text-white mb-4 text-base" data-translate="record_1_heading">Rekod Kesihatan 1</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_disease">Penyakit Dihidapi</span> <span class="text-primary">*</span></label>
-                                    <input type="text" id="penyakit_1" class="form-input">
-                                </div>
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_disease_date">Bulan/Tahun Disahkan</span> <span class="text-primary">*</span></label>
-                                    <input type="month" id="tarikh_penyakit_1" class="form-input">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_hospital">Diwadkan di hospital mana?</span> <span class="text-primary">*</span></label>
-                                    <input type="text" id="hospital_1" class="form-input">
-                                </div>
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_ward_days">Berapa hari di dalam wad?</span> <span class="text-primary">*</span></label>
-                                    <input type="number" id="hari_wad_1" class="form-input">
-                                </div>
-                            </div>
-                            <div class="mb-5">
-                                <label class="form-label"><span data-translate="lbl_treatment_type">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan)</span> <span class="text-primary">*</span></label>
-                                <textarea id="jenis_rawatan_1" class="form-textarea" placeholder="Contoh: Makan ubat darah tinggi setiap hari..."></textarea>
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_current_status">Status Terkini</span> <span class="text-primary">*</span></label>
-                                <select id="status_pulih_1" class="form-input">
-                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                    <option value="Sudah pulih sepenuhnya" data-translate="opt_recovered">Sudah pulih sepenuhnya</option>
-                                    <option value="Masih mendapatkan rawatan susulan" data-translate="opt_treatment">Masih mendapatkan rawatan susulan</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- REKOD KESIHATAN 2 -->
-                        <div id="rekod_2_section" class="sub-box" style="display: none;">
-                            <h4 class="font-bold text-gray-800 dark:text-white mb-4 text-base" data-translate="record_2_heading">Rekod Kesihatan 2</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_disease">Penyakit Dihidapi</span> <span class="text-primary">*</span></label>
-                                    <input type="text" id="penyakit_2" class="form-input">
-                                </div>
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_disease_date">Bulan/Tahun Disahkan</span> <span class="text-primary">*</span></label>
-                                    <input type="month" id="tarikh_penyakit_2" class="form-input">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_hospital">Diwadkan di hospital mana?</span> <span class="text-primary">*</span></label>
-                                    <input type="text" id="hospital_2" class="form-input">
-                                </div>
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_ward_days">Berapa hari di dalam wad?</span> <span class="text-primary">*</span></label>
-                                    <input type="number" id="hari_wad_2" class="form-input">
-                                </div>
-                            </div>
-                            <div class="mb-5">
-                                <label class="form-label"><span data-translate="lbl_treatment_type">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan)</span> <span class="text-primary">*</span></label>
-                                <textarea id="jenis_rawatan_2" class="form-textarea"></textarea>
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_current_status">Status Terkini</span> <span class="text-primary">*</span></label>
-                                <select id="status_pulih_2" class="form-input">
-                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                    <option value="Sudah pulih sepenuhnya" data-translate="opt_recovered">Sudah pulih sepenuhnya</option>
-                                    <option value="Masih mendapatkan rawatan susulan" data-translate="opt_treatment">Masih mendapatkan rawatan susulan</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- REKOD KESIHATAN 3 -->
-                        <div id="rekod_3_section" class="sub-box" style="display: none;">
-                            <h4 class="font-bold text-gray-800 dark:text-white mb-4 text-base" data-translate="record_3_heading">Rekod Kesihatan 3</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_disease">Penyakit Dihidapi</span> <span class="text-primary">*</span></label>
-                                    <input type="text" id="penyakit_3" class="form-input">
-                                </div>
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_disease_date">Bulan/Tahun Disahkan</span> <span class="text-primary">*</span></label>
-                                    <input type="month" id="tarikh_penyakit_3" class="form-input">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_hospital">Diwadkan di hospital mana?</span> <span class="text-primary">*</span></label>
-                                    <input type="text" id="hospital_3" class="form-input">
-                                </div>
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_ward_days">Berapa hari di dalam wad?</span> <span class="text-primary">*</span></label>
-                                    <input type="number" id="hari_wad_3" class="form-input">
-                                </div>
-                            </div>
-                            <div class="mb-5">
-                                <label class="form-label"><span data-translate="lbl_treatment_type">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan)</span> <span class="text-primary">*</span></label>
-                                <textarea id="jenis_rawatan_3" class="form-textarea"></textarea>
-                            </div>
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_current_status">Status Terkini</span> <span class="text-primary">*</span></label>
-                                <select id="status_pulih_3" class="form-input">
-                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                    <option value="Sudah pulih sepenuhnya" data-translate="opt_recovered">Sudah pulih sepenuhnya</option>
-                                    <option value="Masih mendapatkan rawatan susulan" data-translate="opt_treatment">Masih mendapatkan rawatan susulan</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SEJARAH KESIHATAN KELUARGA -->
-                <div class="reveal-element">
-                    <h3 class="section-header" data-translate="sec_6_title">6. Sejarah Kesihatan Keluarga (Penyakit Keturunan)</h3>
-                    <div>
-                        <label class="form-label font-normal text-gray-600 dark:text-slate-400 leading-relaxed mb-4" data-translate="family_desc">Adakah dikalangan keluarga terdekat (ibu, ayah atau adik-beradik kandung) disahkan menghidapi penyakit keturunan atau penyakit kritikal (contoh: darah tinggi, kencing manis, kegagalan buah pinggang, serangan jantung, kanser atau lain-lain)? Jika ada, sila nyatakan di bawah.</label>
-                        <textarea id="sejarah_keluarga" class="form-textarea" placeholder="Contoh: Bapa - Kencing Manis, Ibu - Darah Tinggi. (Tulis 'Tiada' jika tidak berkaitan)"></textarea>
-                    </div>
-                </div>
-
-                <!-- SEJARAH COVID-19 -->
-                <div class="reveal-element">
-                    <h3 class="section-header" data-translate="sec_7_title">7. Sejarah COVID-19</h3>
-                    <div class="space-y-5">
-                        <div>
-                            <label class="form-label"><span data-translate="lbl_covid_status">Pernahkah anda disahkan positif COVID-19?</span> <span class="text-primary">*</span></label>
-                            <select id="positif_covid" class="form-input" required onchange="updateCovidFields()">
-                                <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                <option value="Ya" data-translate="opt_yes">Ya</option>
-                                <option value="Tidak" data-translate="opt_no">Tidak</option>
-                            </select>
-                        </div>
-
-                        <div id="covid_details_section" class="sub-box" style="display: none;">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_covid_freq">Berapa kali disahkan positif?</span> <span class="text-primary">*</span></label>
-                                    <input type="number" id="kekerapan_covid" class="form-input" min="1" placeholder="Contoh: 2">
-                                </div>
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_covid_date">Bulan/Tahun disahkan positif</span> <span class="text-primary">*</span></label>
-                                    <input type="month" id="tarikh_covid" class="form-input">
-                                </div>
-                            </div>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_covid_stage">Tahap COVID-19?</span> <span class="text-primary">*</span></label>
-                                    <select id="tahap_covid" class="form-input">
-                                        <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                        <option value="Tahap 1">1</option>
-                                        <option value="Tahap 2">2</option>
-                                        <option value="Tahap 3">3</option>
-                                        <option value="Tahap 4">4</option>
-                                        <option value="Tahap 5">5</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="form-label"><span data-translate="lbl_covid_hosp">Pernah masuk hospital untuk ini?</span> <span class="text-primary">*</span></label>
-                                    <select id="masuk_hospital_covid" class="form-input" onchange="updateCovidHospitalFields()">
-                                        <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                        <option value="Ya" data-translate="opt_yes">Ya</option>
-                                        <option value="Tidak" data-translate="opt_no">Tidak</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="mb-5" id="rawatan_covid_section" style="display: none;">
-                                <label class="form-label"><span data-translate="lbl_covid_treatment">Jika Ya, apakah rawatan yang telah dijalankan?</span> <span class="text-primary">*</span></label>
-                                <select id="rawatan_covid" class="form-input">
-                                    <option value="" disabled selected data-translate="opt_select">Sila Pilih...</option>
-                                    <option value="Bantuan Alat Pernafasan" data-translate="opt_resp">Bantuan Alat Pernafasan</option>
-                                    <option value="HDU / ICU / ITU / CCU" data-translate="opt_icu">HDU, ICU, ITU, CCU</option>
-                                    <option value="Ubat Anti-Viral" data-translate="opt_antiviral">Ubat Anti-Viral</option>
-                                    <option value="Kuarantin di Wad atau Pusat Kuarantin" data-translate="opt_quarantine">Kuarantin di Wad atau Pusat Kuarantin</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="form-label"><span data-translate="lbl_covid_current">Sebarang kondisi sekarang disebabkan oleh COVID-19?</span> <span class="text-primary">*</span></label>
-                                <textarea id="kondisi_semasa_covid" class="form-textarea" placeholder="Contoh: Kerap sesak nafas. (Tulis 'Tiada' jika tidak berkaitan)"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DOKUMEN SOKONGAN -->
-                <div class="reveal-element">
-                    <h3 class="section-header" id="sec-dokumen" data-translate="sec_8_title">8. Dokumen Sokongan</h3>
-                    <div class="bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 p-6 rounded-2xl mb-8">
-                        <p class="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2"><i class="fas fa-camera text-primary text-xl"></i> <span data-translate="doc_instruction_title">ARAHAN PENTING:</span></p>
-                        <p class="text-sm text-gray-700 dark:text-slate-300 mb-4 leading-relaxed"><span data-translate="doc_instruction_desc">Sebagai pengesahan keselamatan identiti, sila sediakan gambar-gambar berikut untuk dihantar</span> <strong data-translate="doc_chat_text" class="dark:text-white">di dalam ruang chat WhatsApp</strong> <span data-translate="doc_instruction_desc2">selepas anda menekan butang Hantar di bawah:</span></p>
-                        <ul class="list-disc list-inside text-sm text-gray-700 dark:text-slate-300 mb-6 space-y-1 ml-2">
-                            <li id="doc_item_1" data-translate="doc_li_1_mykad">Gambar MyKad (Muka Depan)</li>
-                            <li id="doc_item_2" data-translate="doc_li_2_mykad">Gambar MyKad (Muka Belakang)</li>
-                            <li id="doc_item_3" data-translate="doc_li_3_mykad">Gambar Selfie anda memegang MyKad</li>
-                        </ul>
-                        
-                        <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border-l-4 border-teal shadow-sm text-sm text-gray-600 dark:text-slate-400">
-                            <span><strong class="text-gray-900 dark:text-white" data-translate="note_label">*Nota:</strong> <span id="ekyc_note" data-translate="ekyc_note_1_mykad">Langkah penyerahan gambar MyKad dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori eKYC (Electronic Know Your Customer) bagi tujuan pengesahan identiti secara digital.</span></span>
-                            <br>
-                            <a href="https://www.bnm.gov.my/-/pd-ekyc-en" target="_blank" class="text-teal font-semibold hover:underline mt-2 inline-block" data-translate="ekyc_link">
-                                &rarr; Ketahui lebih lanjut mengenai polisi eKYC BNM
-                            </a>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-primary mt-4">
-                        <span data-translate="btn_submit">Hantar Permohonan Melalui WhatsApp</span> <i class="fab fa-whatsapp text-lg ml-1"></i>
-                    </button>
-                </div>
-            </form>
+      <!-- 1. MAKLUMAT PERIBADI -->
+      <section id="sec-peribadi" class="split">
+        <div class="side">
+          <span class="num"><span class="d">1</span></span>
+          <h2 class="h2s" data-i18n="sec_1_title">Maklumat Peribadi</h2>
         </div>
-    </main>
-    
-    <!-- Unified Footer -->
-    <footer class="border-t border-border bg-white dark:bg-slate-900 border-gray-200 dark:border-slate-800 py-10 mt-auto transition-colors duration-300">
-        <div class="mx-auto max-w-6xl px-6">
-            <div class="flex flex-col items-center justify-between gap-4 text-xs text-gray-500 dark:text-slate-400 md:flex-row text-center md:text-left">
-                <p data-translate="footer_reg">Perunding Takaful Berdaftar dengan PruBSN Takaful Berhad.</p>
-                <p>© 2026 Fairuz Samsuddin. <span data-translate="footer_rights">Hak Cipta Terpelihara.</span></p>
-                <p data-translate="footer_portal">Portal Servis Rasmi Fairuz Samsuddin</p>
+        <div class="stack">
+          <div class="group">
+            <div class="row col"><label for="nama"><span data-i18n="lbl_fullname">Nama Penuh (Seperti dalam MyKad/Passport)</span>&nbsp;<span class="req">*</span></label><input type="text" id="nama" autocomplete="name" required data-i18n-ph="ph_required"></div>
+            <div class="row"><label for="warganegara"><span data-i18n="lbl_citizen">Warganegara</span>&nbsp;<span class="req">*</span></label>
+              <select id="warganegara" required>
+                <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                <option value="Malaysia" data-i18n="opt_malaysia">Malaysia</option>
+                <option value="Penduduk Tetap" data-i18n="opt_pr">Penduduk Tetap</option>
+                <option value="Bukan Warganegara" data-i18n="opt_foreigner">Bukan Warganegara</option>
+              </select>
             </div>
-        </div>
-    </footer>
+            <div class="row" id="ic_container" style="display: none;"><label for="ic"><span data-i18n="lbl_ic">No. IC</span>&nbsp;<span class="req">*</span></label><input type="text" id="ic" inputmode="numeric" maxlength="14" data-i18n-ph="ph_ic"></div>
+            <div class="row" id="passport_container" style="display: none;"><label for="passport"><span data-i18n="lbl_passport">No. Pasport</span>&nbsp;<span class="req">*</span></label><input type="text" id="passport" data-i18n-ph="ph_passport"></div>
+            <div class="row"><label for="tarikh_lahir"><span data-i18n="lbl_dob">Tarikh Lahir</span>&nbsp;<span class="req">*</span></label><input type="date" id="tarikh_lahir" required></div>
+            <div class="row"><label for="agama"><span data-i18n="lbl_religion">Agama</span>&nbsp;<span class="req">*</span></label>
+              <select id="agama" required>
+                <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                <option value="Islam" data-i18n="opt_islam">Islam</option>
+                <option value="Buddhist" data-i18n="opt_buddhist">Buddhist</option>
+                <option value="Hindu" data-i18n="opt_hindu">Hindu</option>
+                <option value="Kristian" data-i18n="opt_christian">Kristian</option>
+                <option value="Lain-lain" data-i18n="opt_others">Lain-lain</option>
+              </select>
+            </div>
+          </div>
 
-    <!-- Scripts -->
-    <script>
+          <div class="group">
+            <div class="row"><label for="no_tel"><span data-i18n="lbl_phone">No. Telefon</span>&nbsp;<span class="req">*</span></label><input type="tel" id="no_tel" autocomplete="tel" required data-i18n-ph="ph_phone"></div>
+            <div class="row"><label for="emel"><span data-i18n="lbl_email">Emel</span>&nbsp;<span class="req">*</span></label><input type="email" id="emel" autocomplete="email" required data-i18n-ph="ph_required"></div>
+            <div class="row col"><label for="alamat"><span data-i18n="lbl_address">Alamat Rumah</span>&nbsp;<span class="req">*</span></label><textarea id="alamat" autocomplete="street-address" required></textarea></div>
+          </div>
+
+          <div class="group">
+            <div class="row"><label for="tinggi"><span data-i18n="lbl_height">Tinggi (cm)</span>&nbsp;<span class="req">*</span></label><input type="number" id="tinggi" inputmode="numeric" required data-i18n-ph="ph_height"></div>
+            <div class="row"><label for="berat"><span data-i18n="lbl_weight">Berat (kg)</span>&nbsp;<span class="req">*</span></label><input type="number" id="berat" inputmode="numeric" required data-i18n-ph="ph_weight"></div>
+            <div class="row"><label for="merokok"><span data-i18n="lbl_smoker_status">Status Merokok</span>&nbsp;<span class="req">*</span></label>
+              <select id="merokok" required>
+                <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                <option value="Merokok" data-i18n="opt_smoker">Merokok</option>
+                <option value="Tidak Merokok" data-i18n="opt_nonsmoker">Tidak Merokok</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Butiran Merokok -->
+          <div class="group" id="merokok_details_section" style="display: none;">
+            <div class="row"><label for="jenis_merokok"><span data-i18n="lbl_smoker_type">Rokok / Vape?</span>&nbsp;<span class="req">*</span></label>
+              <select id="jenis_merokok">
+                <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                <option value="Rokok" data-i18n="opt_cigarette">Rokok</option>
+                <option value="Vape" data-i18n="opt_vape">Vape</option>
+              </select>
+            </div>
+            <div id="rokok_details" style="display: none;">
+              <div class="row"><label for="bilangan_rokok"><span data-i18n="lbl_cig_count">Berapa batang sehari?</span>&nbsp;<span class="req">*</span></label><input type="number" id="bilangan_rokok" inputmode="numeric" min="1" data-i18n-ph="ph_cig_count"></div>
+              <div class="row"><label for="tahun_merokok"><span data-i18n="lbl_cig_years">Berapa tahun merokok?</span>&nbsp;<span class="req">*</span></label><input type="number" id="tahun_merokok" inputmode="numeric" min="1" data-i18n-ph="ph_cig_years"></div>
+            </div>
+            <div class="row" id="vape_details" style="display: none;"><label for="tahun_vape"><span data-i18n="lbl_vape_years">Berapa tahun vape?</span>&nbsp;<span class="req">*</span></label><input type="number" id="tahun_vape" inputmode="numeric" min="1" data-i18n-ph="ph_vape_years"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. MAKLUMAT PEKERJAAN -->
+      <section class="split">
+        <div class="side">
+          <span class="num"><span class="d">2</span></span>
+          <h2 class="h2s" data-i18n="sec_2_title">Maklumat Pekerjaan</h2>
+        </div>
+        <div class="stack">
+          <div class="group">
+            <div class="row"><label for="majikan"><span data-i18n="lbl_employer">Nama Majikan / Syarikat</span>&nbsp;<span class="req">*</span></label><input type="text" id="majikan" autocomplete="organization" required data-i18n-ph="ph_required"></div>
+            <div class="row"><label for="jawatan"><span data-i18n="lbl_occupation">Jawatan</span>&nbsp;<span class="req">*</span></label><input type="text" id="jawatan" autocomplete="organization-title" required data-i18n-ph="ph_required"></div>
+            <div class="row"><label for="pendapatan"><span data-i18n="lbl_annual_income">Pendapatan Tahunan (RM)</span>&nbsp;<span class="req">*</span></label><input type="number" id="pendapatan" inputmode="numeric" required data-i18n-ph="ph_income"></div>
+          </div>
+          <div class="group">
+            <div class="row col"><label for="keterangan_kerja"><span data-i18n="lbl_job_desc">Keterangan Ringkas Pekerjaan</span>&nbsp;<span class="req">*</span></label><textarea id="keterangan_kerja" required data-i18n-ph="ph_job_desc"></textarea></div>
+            <div class="row col"><label for="alamat_majikan"><span data-i18n="lbl_employer_address">Alamat Majikan</span>&nbsp;<span class="req">*</span></label><textarea id="alamat_majikan" required></textarea></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. MAKLUMAT BANK & PEMBAYARAN -->
+      <section class="split">
+        <div class="side">
+          <span class="num"><span class="d">3</span></span>
+          <h2 class="h2s" data-i18n="sec_3_title">Maklumat Kewangan &amp; Pembayaran</h2>
+        </div>
+        <div class="stack">
+          <div class="group">
+            <div class="row"><label for="nama_bank"><span data-i18n="lbl_bank_name">Nama Bank (Untuk tuntutan)</span>&nbsp;<span class="req">*</span></label><input type="text" id="nama_bank" required data-i18n-ph="ph_bank"></div>
+            <div class="row"><label for="no_akaun"><span data-i18n="lbl_bank_acc">No. Akaun Bank</span>&nbsp;<span class="req">*</span></label><input type="text" id="no_akaun" inputmode="numeric" required data-i18n-ph="ph_required"></div>
+            <div class="row"><label for="jenis_akaun"><span data-i18n="lbl_acc_type">Jenis Akaun</span>&nbsp;<span class="req">*</span></label>
+              <select id="jenis_akaun" required>
+                <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                <option value="Islamik" data-i18n="opt_islamic">Islamik</option>
+                <option value="Konvensional" data-i18n="opt_conventional">Konvensional</option>
+              </select>
+            </div>
+            <div class="row"><label for="cara_bayaran"><span data-i18n="lbl_payment_method">Cara Bayaran Bulanan</span>&nbsp;<span class="req">*</span></label>
+              <select id="cara_bayaran" required>
+                <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                <option value="Autodebit Akaun" data-i18n="opt_autodebit">Autodebit Akaun</option>
+                <option value="Kad Debit" data-i18n="opt_debitcard">Kad Debit</option>
+                <option value="Kad Kredit" data-i18n="opt_creditcard">Kad Kredit</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. MAKLUMAT PENAMA -->
+      <section id="sec-penama" class="split">
+        <div class="side">
+          <span class="num"><span class="d">4</span></span>
+          <h2 class="h2s" data-i18n="sec_4_title">Maklumat Penama / Pewaris</h2>
+          <p class="sub" data-i18n="nominee_hint">Jumlah peratusan semua penama mestilah 100%.</p>
+        </div>
+        <div class="stack">
+          <div class="group">
+            <div class="row"><label for="bilangan_penama"><span data-i18n="lbl_nominee_count">Berapa Orang Penama?</span>&nbsp;<span class="req">*</span></label>
+              <select id="bilangan_penama" required>
+                <option value="1" data-i18n="opt_1_nominee">1 Penama (100%)</option>
+                <option value="2" data-i18n="opt_2_nominee">2 Penama</option>
+                <option value="3" data-i18n="opt_3_nominee">3 Penama</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- PENAMA 1 -->
+          <div id="nominee_1_section">
+            <p class="glabel" data-i18n="nominee_1_heading">Penama 1</p>
+            <div class="group">
+              <div class="row"><label for="penama_1"><span data-i18n="lbl_nominee_name">Nama Penama</span>&nbsp;<span class="req">*</span></label><input type="text" id="penama_1" required data-i18n-ph="ph_required"></div>
+              <div class="row"><label for="hubungan_penama_1"><span data-i18n="lbl_nominee_relation">Hubungan</span>&nbsp;<span class="req">*</span></label><input type="text" id="hubungan_penama_1" required data-i18n-ph="ph_relation"></div>
+              <div class="row"><label for="peratus_penama_1"><span data-i18n="lbl_nominee_percentage">Peratusan (%)</span>&nbsp;<span class="req">*</span></label><input type="number" id="peratus_penama_1" inputmode="numeric" required min="1" max="100" value="100" data-i18n-ph="ph_pct_1"></div>
+            </div>
+          </div>
+
+          <!-- PENAMA 2 -->
+          <div id="nominee_2_section" style="display: none;">
+            <p class="glabel" data-i18n="nominee_2_heading">Penama 2</p>
+            <div class="group">
+              <div class="row"><label for="penama_2"><span data-i18n="lbl_nominee_name">Nama Penama</span>&nbsp;<span class="req">*</span></label><input type="text" id="penama_2" data-i18n-ph="ph_required"></div>
+              <div class="row"><label for="hubungan_penama_2"><span data-i18n="lbl_nominee_relation">Hubungan</span>&nbsp;<span class="req">*</span></label><input type="text" id="hubungan_penama_2" data-i18n-ph="ph_relation"></div>
+              <div class="row"><label for="peratus_penama_2"><span data-i18n="lbl_nominee_percentage">Peratusan (%)</span>&nbsp;<span class="req">*</span></label><input type="number" id="peratus_penama_2" inputmode="numeric" min="1" max="100" data-i18n-ph="ph_pct_2"></div>
+            </div>
+          </div>
+
+          <!-- PENAMA 3 -->
+          <div id="nominee_3_section" style="display: none;">
+            <p class="glabel" data-i18n="nominee_3_heading">Penama 3</p>
+            <div class="group">
+              <div class="row"><label for="penama_3"><span data-i18n="lbl_nominee_name">Nama Penama</span>&nbsp;<span class="req">*</span></label><input type="text" id="penama_3" data-i18n-ph="ph_required"></div>
+              <div class="row"><label for="hubungan_penama_3"><span data-i18n="lbl_nominee_relation">Hubungan</span>&nbsp;<span class="req">*</span></label><input type="text" id="hubungan_penama_3" data-i18n-ph="ph_relation"></div>
+              <div class="row"><label for="peratus_penama_3"><span data-i18n="lbl_nominee_percentage">Peratusan (%)</span>&nbsp;<span class="req">*</span></label><input type="number" id="peratus_penama_3" inputmode="numeric" min="1" max="100" data-i18n-ph="ph_pct_3"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. REKOD KESIHATAN -->
+      <section id="sec-kesihatan" class="split">
+        <div class="side">
+          <span class="num"><span class="d">5</span></span>
+          <h2 class="h2s" data-i18n="sec_5_title">Rekod Kesihatan &amp; Kemasukan Wad</h2>
+        </div>
+        <div class="stack">
+          <div class="note ok">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+            <span data-i18n="health_notice">Pilih "Tiada" jika anda tidak mempunyai sebarang rekod penyakit atau kemasukan ke wad sebelum ini.</span>
+          </div>
+          <div class="group">
+            <div class="row"><label for="bilangan_rekod"><span data-i18n="lbl_health_count">Jumlah Rekod untuk Diisytiharkan</span>&nbsp;<span class="req">*</span></label>
+              <select id="bilangan_rekod" required>
+                <option value="0" data-i18n="opt_none">Tiada</option>
+                <option value="1" data-i18n="opt_1_record">1 Rekod</option>
+                <option value="2" data-i18n="opt_2_record">2 Rekod</option>
+                <option value="3" data-i18n="opt_3_record">3 Rekod</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- REKOD KESIHATAN 1 -->
+          <div id="rekod_1_section" style="display: none;">
+            <p class="glabel" data-i18n="record_1_heading">Rekod Kesihatan 1</p>
+            <div class="group">
+              <div class="row"><label for="penyakit_1"><span data-i18n="lbl_disease">Penyakit Dihidapi</span>&nbsp;<span class="req">*</span></label><input type="text" id="penyakit_1" data-i18n-ph="ph_required"></div>
+              <div class="row"><label for="tarikh_penyakit_1"><span data-i18n="lbl_disease_date">Bulan/Tahun Disahkan</span>&nbsp;<span class="req">*</span></label><input type="month" id="tarikh_penyakit_1"></div>
+              <div class="row"><label for="hospital_1"><span data-i18n="lbl_hospital">Diwadkan di hospital mana?</span>&nbsp;<span class="req">*</span></label><input type="text" id="hospital_1" data-i18n-ph="ph_required"></div>
+              <div class="row"><label for="hari_wad_1"><span data-i18n="lbl_ward_days">Berapa hari di dalam wad?</span>&nbsp;<span class="req">*</span></label><input type="number" id="hari_wad_1" inputmode="numeric" data-i18n-ph="ph_required"></div>
+              <div class="row col"><label for="jenis_rawatan_1"><span data-i18n="lbl_treatment_type">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan)</span>&nbsp;<span class="req">*</span></label><textarea id="jenis_rawatan_1" data-i18n-ph="ph_treatment"></textarea></div>
+              <div class="row col"><label for="status_pulih_1"><span data-i18n="lbl_current_status">Status Terkini</span>&nbsp;<span class="req">*</span></label>
+                <div class="selw"><span class="selv" aria-hidden="true"></span>
+                  <select id="status_pulih_1">
+                    <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                    <option value="Sudah pulih sepenuhnya" data-i18n="opt_recovered">Sudah pulih sepenuhnya</option>
+                    <option value="Masih mendapatkan rawatan susulan" data-i18n="opt_treatment">Masih mendapatkan rawatan susulan</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- REKOD KESIHATAN 2 -->
+          <div id="rekod_2_section" style="display: none;">
+            <p class="glabel" data-i18n="record_2_heading">Rekod Kesihatan 2</p>
+            <div class="group">
+              <div class="row"><label for="penyakit_2"><span data-i18n="lbl_disease">Penyakit Dihidapi</span>&nbsp;<span class="req">*</span></label><input type="text" id="penyakit_2" data-i18n-ph="ph_required"></div>
+              <div class="row"><label for="tarikh_penyakit_2"><span data-i18n="lbl_disease_date">Bulan/Tahun Disahkan</span>&nbsp;<span class="req">*</span></label><input type="month" id="tarikh_penyakit_2"></div>
+              <div class="row"><label for="hospital_2"><span data-i18n="lbl_hospital">Diwadkan di hospital mana?</span>&nbsp;<span class="req">*</span></label><input type="text" id="hospital_2" data-i18n-ph="ph_required"></div>
+              <div class="row"><label for="hari_wad_2"><span data-i18n="lbl_ward_days">Berapa hari di dalam wad?</span>&nbsp;<span class="req">*</span></label><input type="number" id="hari_wad_2" inputmode="numeric" data-i18n-ph="ph_required"></div>
+              <div class="row col"><label for="jenis_rawatan_2"><span data-i18n="lbl_treatment_type">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan)</span>&nbsp;<span class="req">*</span></label><textarea id="jenis_rawatan_2"></textarea></div>
+              <div class="row col"><label for="status_pulih_2"><span data-i18n="lbl_current_status">Status Terkini</span>&nbsp;<span class="req">*</span></label>
+                <div class="selw"><span class="selv" aria-hidden="true"></span>
+                  <select id="status_pulih_2">
+                    <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                    <option value="Sudah pulih sepenuhnya" data-i18n="opt_recovered">Sudah pulih sepenuhnya</option>
+                    <option value="Masih mendapatkan rawatan susulan" data-i18n="opt_treatment">Masih mendapatkan rawatan susulan</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- REKOD KESIHATAN 3 -->
+          <div id="rekod_3_section" style="display: none;">
+            <p class="glabel" data-i18n="record_3_heading">Rekod Kesihatan 3</p>
+            <div class="group">
+              <div class="row"><label for="penyakit_3"><span data-i18n="lbl_disease">Penyakit Dihidapi</span>&nbsp;<span class="req">*</span></label><input type="text" id="penyakit_3" data-i18n-ph="ph_required"></div>
+              <div class="row"><label for="tarikh_penyakit_3"><span data-i18n="lbl_disease_date">Bulan/Tahun Disahkan</span>&nbsp;<span class="req">*</span></label><input type="month" id="tarikh_penyakit_3"></div>
+              <div class="row"><label for="hospital_3"><span data-i18n="lbl_hospital">Diwadkan di hospital mana?</span>&nbsp;<span class="req">*</span></label><input type="text" id="hospital_3" data-i18n-ph="ph_required"></div>
+              <div class="row"><label for="hari_wad_3"><span data-i18n="lbl_ward_days">Berapa hari di dalam wad?</span>&nbsp;<span class="req">*</span></label><input type="number" id="hari_wad_3" inputmode="numeric" data-i18n-ph="ph_required"></div>
+              <div class="row col"><label for="jenis_rawatan_3"><span data-i18n="lbl_treatment_type">Jenis Rawatan (Ubat-ubatan / Pembedahan / Implan)</span>&nbsp;<span class="req">*</span></label><textarea id="jenis_rawatan_3"></textarea></div>
+              <div class="row col"><label for="status_pulih_3"><span data-i18n="lbl_current_status">Status Terkini</span>&nbsp;<span class="req">*</span></label>
+                <div class="selw"><span class="selv" aria-hidden="true"></span>
+                  <select id="status_pulih_3">
+                    <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                    <option value="Sudah pulih sepenuhnya" data-i18n="opt_recovered">Sudah pulih sepenuhnya</option>
+                    <option value="Masih mendapatkan rawatan susulan" data-i18n="opt_treatment">Masih mendapatkan rawatan susulan</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. SEJARAH KESIHATAN KELUARGA -->
+      <section class="split">
+        <div class="side">
+          <span class="num"><span class="d">6</span></span>
+          <h2 class="h2s" data-i18n="sec_6_title">Sejarah Kesihatan Keluarga (Penyakit Keturunan)</h2>
+        </div>
+        <div class="stack">
+          <div class="group">
+            <div class="row col"><label for="sejarah_keluarga" data-i18n="family_desc" style="line-height:1.45">Adakah dikalangan keluarga terdekat (ibu, ayah atau adik-beradik kandung) disahkan menghidapi penyakit keturunan atau penyakit kritikal (contoh: darah tinggi, kencing manis, kegagalan buah pinggang, serangan jantung, kanser atau lain-lain)? Jika ada, sila nyatakan di bawah.</label><textarea id="sejarah_keluarga" data-i18n-ph="ph_family"></textarea></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. SEJARAH COVID-19 -->
+      <section class="split">
+        <div class="side">
+          <span class="num"><span class="d">7</span></span>
+          <h2 class="h2s" data-i18n="sec_7_title">Sejarah COVID-19</h2>
+        </div>
+        <div class="stack">
+          <div class="group">
+            <div class="row"><label for="positif_covid"><span data-i18n="lbl_covid_status">Pernahkah anda disahkan positif COVID-19?</span>&nbsp;<span class="req">*</span></label>
+              <select id="positif_covid" required>
+                <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                <option value="Ya" data-i18n="opt_yes">Ya</option>
+                <option value="Tidak" data-i18n="opt_no">Tidak</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="group" id="covid_details_section" style="display: none;">
+            <div class="row"><label for="kekerapan_covid"><span data-i18n="lbl_covid_freq">Berapa kali disahkan positif?</span>&nbsp;<span class="req">*</span></label><input type="number" id="kekerapan_covid" inputmode="numeric" min="1" data-i18n-ph="ph_covid_freq"></div>
+            <div class="row"><label for="tarikh_covid"><span data-i18n="lbl_covid_date">Bulan/Tahun disahkan positif</span>&nbsp;<span class="req">*</span></label><input type="month" id="tarikh_covid"></div>
+            <div class="row"><label for="tahap_covid"><span data-i18n="lbl_covid_stage">Tahap COVID-19?</span>&nbsp;<span class="req">*</span></label>
+              <select id="tahap_covid">
+                <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                <option value="Tahap 1">1</option>
+                <option value="Tahap 2">2</option>
+                <option value="Tahap 3">3</option>
+                <option value="Tahap 4">4</option>
+                <option value="Tahap 5">5</option>
+              </select>
+            </div>
+            <div class="row"><label for="masuk_hospital_covid"><span data-i18n="lbl_covid_hosp">Pernah masuk hospital untuk ini?</span>&nbsp;<span class="req">*</span></label>
+              <select id="masuk_hospital_covid">
+                <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                <option value="Ya" data-i18n="opt_yes">Ya</option>
+                <option value="Tidak" data-i18n="opt_no">Tidak</option>
+              </select>
+            </div>
+            <div class="row col" id="rawatan_covid_section" style="display: none;"><label for="rawatan_covid"><span data-i18n="lbl_covid_treatment">Jika Ya, apakah rawatan yang telah dijalankan?</span>&nbsp;<span class="req">*</span></label>
+              <div class="selw"><span class="selv" aria-hidden="true"></span>
+                <select id="rawatan_covid">
+                  <option value="" disabled selected data-i18n="opt_select">Sila Pilih...</option>
+                  <option value="Bantuan Alat Pernafasan" data-i18n="opt_resp">Bantuan Alat Pernafasan</option>
+                  <option value="HDU / ICU / ITU / CCU" data-i18n="opt_icu">HDU, ICU, ITU, CCU</option>
+                  <option value="Ubat Anti-Viral" data-i18n="opt_antiviral">Ubat Anti-Viral</option>
+                  <option value="Kuarantin di Wad atau Pusat Kuarantin" data-i18n="opt_quarantine">Kuarantin di Wad atau Pusat Kuarantin</option>
+                </select>
+              </div>
+            </div>
+            <div class="row col"><label for="kondisi_semasa_covid"><span data-i18n="lbl_covid_current">Sebarang kondisi sekarang disebabkan oleh COVID-19?</span>&nbsp;<span class="req">*</span></label><textarea id="kondisi_semasa_covid" data-i18n-ph="ph_covid_current"></textarea></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. DOKUMEN SOKONGAN -->
+      <section id="sec-dokumen" class="split">
+        <div class="side">
+          <span class="num"><span class="d">8</span></span>
+          <h2 class="h2s" data-i18n="sec_8_title">Dokumen Sokongan</h2>
+        </div>
+        <div class="stack">
+          <div class="group doc">
+            <h3>
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h2l2-2h6l2 2h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg>
+              <span data-i18n="doc_instruction_title">ARAHAN PENTING:</span>
+            </h3>
+            <p><span data-i18n="doc_instruction_desc">Sebagai pengesahan keselamatan identiti, sila sediakan gambar-gambar berikut untuk dihantar</span> <strong data-i18n="doc_chat_text" style="color:var(--fg)">di dalam ruang chat WhatsApp</strong> <span data-i18n="doc_instruction_desc2">selepas anda menekan butang Hantar di bawah:</span></p>
+            <ol>
+              <li><span class="dn"><span class="d">1</span></span><span id="doc_item_1" data-i18n="doc_li_1_mykad">Gambar MyKad (Muka Depan)</span></li>
+              <li><span class="dn"><span class="d">2</span></span><span id="doc_item_2" data-i18n="doc_li_2_mykad">Gambar MyKad (Muka Belakang)</span></li>
+              <li><span class="dn"><span class="d">3</span></span><span id="doc_item_3" data-i18n="doc_li_3_mykad">Gambar Selfie anda memegang MyKad</span></li>
+            </ol>
+          </div>
+
+          <div class="note ok" style="flex-direction:column;gap:6px">
+            <span><b data-i18n="note_label">*Nota:</b> <span id="ekyc_note" data-i18n="ekyc_note_1_mykad">Langkah penyerahan gambar MyKad dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori eKYC (Electronic Know Your Customer) bagi tujuan pengesahan identiti secara digital.</span></span>
+            <a href="https://www.bnm.gov.my/-/pd-ekyc-en" target="_blank" rel="noopener noreferrer" style="font-weight:600" data-i18n="ekyc_link">→ Ketahui lebih lanjut mengenai polisi eKYC BNM</a>
+          </div>
+
+          <p id="wa-popup" role="status" style="margin:0;font-size:14px" hidden><span data-i18n="popup_blocked">WhatsApp tidak dapat dibuka secara automatik.</span> <a id="wa-popup-link" href="#" target="_blank" rel="noopener noreferrer" style="font-weight:600"><span data-i18n="open_wa">Buka WhatsApp</span> ›</a></p>
+
+          <button type="submit" class="btn btn-w" style="min-height:50px">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg>
+            <span data-i18n="btn_submit">Hantar Permohonan Melalui WhatsApp</span>
+          </button>
+        </div>
+      </section>
+    </form>
+
+    <footer>
+      <div>
+        <img src="fsconsultancy-logo.png" alt="fsconsultancy" width="120" height="120">
+        <span data-i18n="footer_reg">Perunding Takaful Berdaftar dengan PruBSN Takaful Berhad.</span>
+      </div>
+      <span>© 2026 Fairuz Samsuddin. <span data-i18n="footer_rights">Hak Cipta Terpelihara.</span> · <span data-i18n="footer_portal">Portal Servis Rasmi Fairuz Samsuddin</span></span>
+    </footer>
+  </main>
+
+  <!-- Sticky glass action bar -->
+  <div class="abar lgl">
+    <a class="btn btn-t" href="#sec-dokumen" data-i18n="bar_docs">Dokumen</a>
+    <button type="submit" form="takafulForm" class="btn">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg>
+      <span data-i18n="bar_submit">Hantar Permohonan</span>
+    </button>
+  </div>
+
+  <!-- Alert (nominee percentage check) -->
+  <div class="overlay" id="custom-alert" hidden>
+    <div class="sheet lgl alert" role="alertdialog" aria-modal="true" aria-labelledby="custom-alert-title" aria-describedby="custom-alert-msg">
+      <span class="alert-i"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v6M12 17h.01"/></svg></span>
+      <h3 id="custom-alert-title" style="margin:14px 0 6px;font-size:20px" data-i18n="alert_pct_title">Semak Peratusan Penama</h3>
+      <p id="custom-alert-msg" style="margin:0 0 20px;font-size:15px;line-height:1.45;color:var(--mut2)"></p>
+      <button type="button" class="btn btn-w" id="custom-alert-close">Tutup / Close</button>
+    </div>
+  </div>
+
+  <script>
         // Dual-Language Dictionary Data
         const translations = {
             ms: {
-                page_title: "Pendaftaran Takaful - TAKAFUL SERVICES - Fairuz Samsuddin",
+                page_title: "REO Form - TAKAFUL SERVICES - Fairuz Samsuddin",
                 brand_title: "TAKAFUL SERVICES",
                 brand_sub: "by Fairuz Samsuddin",
                 nav_personal: "Peribadi",
                 nav_nominee: "Penama",
                 nav_health: "Kesihatan",
                 nav_documents: "Dokumen",
-                page_heading: "BORANG PENDAFTARAN TAKAFUL",
+                hero_kicker: "Pendaftaran Jarak Jauh",
+                hero_h1_a: "Borang Pendaftaran",
+                hero_h1_b: "Takaful.",
                 form_notice: "Sila lengkapkan butiran di bawah dengan tepat untuk melancarkan proses permohonan Takaful anda.",
-                sec_1_title: "1. Maklumat Peribadi",
+                sec_1_title: "Maklumat Peribadi",
                 lbl_fullname: "Nama Penuh (Seperti dalam MyKad/Passport)",
                 lbl_ic: "No. IC",
                 lbl_passport: "No. Pasport",
@@ -659,18 +606,19 @@
                 lbl_cig_count: "Berapa batang sehari?",
                 lbl_cig_years: "Berapa tahun merokok?",
                 lbl_vape_years: "Berapa tahun vape?",
-                sec_2_title: "2. Maklumat Pekerjaan",
+                sec_2_title: "Maklumat Pekerjaan",
                 lbl_employer: "Nama Majikan / Syarikat",
                 lbl_occupation: "Jawatan",
                 lbl_job_desc: "Keterangan Ringkas Pekerjaan",
                 lbl_employer_address: "Alamat Majikan",
                 lbl_annual_income: "Pendapatan Tahunan (RM)",
-                sec_3_title: "3. Maklumat Kewangan & Pembayaran",
+                sec_3_title: "Maklumat Kewangan & Pembayaran",
                 lbl_bank_name: "Nama Bank (Untuk tuntutan)",
                 lbl_bank_acc: "No. Akaun Bank",
                 lbl_acc_type: "Jenis Akaun",
                 lbl_payment_method: "Cara Bayaran Bulanan",
-                sec_4_title: "4. Maklumat Penama / Pewaris",
+                sec_4_title: "Maklumat Penama / Pewaris",
+                nominee_hint: "Jumlah peratusan semua penama mestilah 100%.",
                 lbl_nominee_count: "Berapa Orang Penama?",
                 opt_1_nominee: "1 Penama (100%)",
                 opt_2_nominee: "2 Penama",
@@ -681,7 +629,7 @@
                 lbl_nominee_name: "Nama Penama",
                 lbl_nominee_relation: "Hubungan",
                 lbl_nominee_percentage: "Peratusan (%)",
-                sec_5_title: "5. Rekod Kesihatan & Kemasukan Wad",
+                sec_5_title: "Rekod Kesihatan & Kemasukan Wad",
                 health_notice: "Pilih \"Tiada\" jika anda tidak mempunyai sebarang rekod penyakit atau kemasukan ke wad sebelum ini.",
                 lbl_health_count: "Jumlah Rekod untuk Diisytiharkan",
                 opt_none: "Tiada",
@@ -699,9 +647,9 @@
                 lbl_current_status: "Status Terkini",
                 opt_recovered: "Sudah pulih sepenuhnya",
                 opt_treatment: "Masih mendapatkan rawatan susulan",
-                sec_6_title: "6. Sejarah Kesihatan Keluarga (Penyakit Keturunan)",
+                sec_6_title: "Sejarah Kesihatan Keluarga (Penyakit Keturunan)",
                 family_desc: "Adakah dikalangan keluarga terdekat (ibu, ayah atau adik-beradik kandung) disahkan menghidapi penyakit keturunan atau penyakit kritikal (contoh: darah tinggi, kencing manis, kegagalan buah pinggang, serangan jantung, kanser atau lain-lain)? Jika ada, sila nyatakan di bawah.",
-                sec_7_title: "7. Sejarah COVID-19",
+                sec_7_title: "Sejarah COVID-19",
                 lbl_covid_status: "Pernahkah anda disahkan positif COVID-19?",
                 lbl_covid_freq: "Berapa kali disahkan positif?",
                 lbl_covid_date: "Bulan/Tahun disahkan positif",
@@ -713,7 +661,7 @@
                 opt_icu: "HDU, ICU, ITU, CCU",
                 opt_antiviral: "Ubat Anti-Viral",
                 opt_quarantine: "Kuarantin di Wad atau Pusat Kuarantin",
-                sec_8_title: "8. Dokumen Sokongan",
+                sec_8_title: "Dokumen Sokongan",
                 doc_instruction_title: "ARAHAN PENTING:",
                 doc_instruction_desc: "Sebagai pengesahan keselamatan identiti, sila sediakan gambar-gambar berikut untuk dihantar",
                 doc_chat_text: "di dalam ruang chat WhatsApp",
@@ -729,6 +677,11 @@
                 ekyc_note_1_passport: "Langkah penyerahan gambar pasport, visa dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori eKYC (Electronic Know Your Customer) bagi tujuan pengesahan identiti secara digital.",
                 ekyc_link: "→ Ketahui lebih lanjut mengenai polisi eKYC BNM",
                 btn_submit: "Hantar Permohonan Melalui WhatsApp",
+                bar_docs: "Dokumen",
+                bar_submit: "Hantar Permohonan",
+                popup_blocked: "WhatsApp tidak dapat dibuka secara automatik.",
+                open_wa: "Buka WhatsApp",
+                alert_pct_title: "Semak Peratusan Penama",
                 footer_reg: "Perunding Takaful Berdaftar dengan PruBSN Takaful Berhad.",
                 footer_rights: "Hak Cipta Terpelihara.",
                 footer_portal: "Portal Servis Rasmi Fairuz Samsuddin",
@@ -751,19 +704,41 @@
                 opt_debitcard: "Kad Debit",
                 opt_creditcard: "Kad Kredit",
                 opt_yes: "Ya",
-                opt_no: "Tidak"
+                opt_no: "Tidak",
+                ph_required: "Wajib",
+                ph_ic: "Contoh: 090724-14-2784",
+                ph_passport: "Contoh: A1234567",
+                ph_phone: "Contoh: 0123456789",
+                ph_height: "Contoh: 170",
+                ph_weight: "Contoh: 70",
+                ph_cig_count: "Contoh: 10",
+                ph_cig_years: "Contoh: 5",
+                ph_vape_years: "Contoh: 3",
+                ph_job_desc: "Contoh: Membuat kerja-kerja admin di pejabat...",
+                ph_income: "Contoh: 45000",
+                ph_bank: "Contoh: Maybank",
+                ph_relation: "Contoh: Isteri / Suami / Anak",
+                ph_pct_1: "Contoh: 100",
+                ph_pct_2: "Contoh: 50",
+                ph_pct_3: "Contoh: 30",
+                ph_treatment: "Contoh: Makan ubat darah tinggi setiap hari...",
+                ph_family: "Contoh: Bapa - Kencing Manis, Ibu - Darah Tinggi. (Tulis 'Tiada' jika tidak berkaitan)",
+                ph_covid_freq: "Contoh: 2",
+                ph_covid_current: "Contoh: Kerap sesak nafas. (Tulis 'Tiada' jika tidak berkaitan)"
             },
             en: {
-                page_title: "Takaful Registration - TAKAFUL SERVICES - Fairuz Samsuddin",
+                page_title: "REO Form - TAKAFUL SERVICES - Fairuz Samsuddin",
                 brand_title: "TAKAFUL SERVICES",
                 brand_sub: "by Fairuz Samsuddin",
                 nav_personal: "Personal",
                 nav_nominee: "Nominee",
                 nav_health: "Health",
                 nav_documents: "Documents",
-                page_heading: "TAKAFUL REGISTRATION FORM",
+                hero_kicker: "Remote Enrollment",
+                hero_h1_a: "Takaful",
+                hero_h1_b: "Registration Form.",
                 form_notice: "Please complete the details below accurately to facilitate your Takaful application process.",
-                sec_1_title: "1. Personal Information",
+                sec_1_title: "Personal Information",
                 lbl_fullname: "Full Name (As in MyKad/Passport)",
                 lbl_ic: "IC No.",
                 lbl_passport: "Passport No.",
@@ -780,18 +755,19 @@
                 lbl_cig_count: "How many sticks per day?",
                 lbl_cig_years: "How many years smoking?",
                 lbl_vape_years: "How many years vaping?",
-                sec_2_title: "2. Occupation Information",
+                sec_2_title: "Occupation Information",
                 lbl_employer: "Employer / Company Name",
                 lbl_occupation: "Job Title",
                 lbl_job_desc: "Brief Job Description",
                 lbl_employer_address: "Employer Address",
                 lbl_annual_income: "Annual Income (RM)",
-                sec_3_title: "3. Financial & Payment Information",
+                sec_3_title: "Financial & Payment Information",
                 lbl_bank_name: "Bank Name (For claims)",
                 lbl_bank_acc: "Bank Account No.",
                 lbl_acc_type: "Account Type",
                 lbl_payment_method: "Monthly Payment Method",
-                sec_4_title: "4. Nominee / Beneficiary Information",
+                sec_4_title: "Nominee / Beneficiary Information",
+                nominee_hint: "The total percentage for all nominees must be 100%.",
                 lbl_nominee_count: "Number of Nominees?",
                 opt_1_nominee: "1 Nominee (100%)",
                 opt_2_nominee: "2 Nominees",
@@ -802,7 +778,7 @@
                 lbl_nominee_name: "Nominee Name",
                 lbl_nominee_relation: "Relationship",
                 lbl_nominee_percentage: "Percentage (%)",
-                sec_5_title: "5. Health Records & Hospitalization",
+                sec_5_title: "Health Records & Hospitalization",
                 health_notice: "Select \"None\" if you do not have any prior medical records or hospitalizations.",
                 lbl_health_count: "Number of Records to Declare",
                 opt_none: "None",
@@ -820,9 +796,9 @@
                 lbl_current_status: "Current Status",
                 opt_recovered: "Fully recovered",
                 opt_treatment: "Still receiving follow-up treatment",
-                sec_6_title: "6. Family Health History (Hereditary Diseases)",
+                sec_6_title: "Family Health History (Hereditary Diseases)",
                 family_desc: "Do any immediate family members (mother, father, or biological siblings) suffer from hereditary or critical illnesses (e.g., hypertension, diabetes, kidney failure, heart attack, cancer, etc.)? If yes, please specify below.",
-                sec_7_title: "7. COVID-19 History",
+                sec_7_title: "COVID-19 History",
                 lbl_covid_status: "Have you ever tested positive for COVID-19?",
                 lbl_covid_freq: "How many times tested positive?",
                 lbl_covid_date: "Month/Year tested positive",
@@ -834,7 +810,7 @@
                 opt_icu: "HDU, ICU, ITU, CCU",
                 opt_antiviral: "Anti-Viral Medication",
                 opt_quarantine: "Quarantine in Ward or Quarantine Centre",
-                sec_8_title: "8. Supporting Documents",
+                sec_8_title: "Supporting Documents",
                 doc_instruction_title: "IMPORTANT INSTRUCTION:",
                 doc_instruction_desc: "For identity security verification, please prepare the following images to send",
                 doc_chat_text: "inside the WhatsApp chat",
@@ -850,6 +826,11 @@
                 ekyc_note_1_passport: "This passport, visa and selfie image submission step is part of the mandatory eKYC (Electronic Know Your Customer) process for digital identity verification.",
                 ekyc_link: "→ Learn more about BNM's eKYC policy",
                 btn_submit: "Submit Application via WhatsApp",
+                bar_docs: "Documents",
+                bar_submit: "Submit Application",
+                popup_blocked: "WhatsApp could not open automatically.",
+                open_wa: "Open WhatsApp",
+                alert_pct_title: "Check Nominee Percentage",
                 footer_reg: "Registered Takaful Consultant with PruBSN Takaful Berhad.",
                 footer_rights: "All Rights Reserved.",
                 footer_portal: "Official Service Portal of Fairuz Samsuddin",
@@ -872,81 +853,47 @@
                 opt_debitcard: "Debit Card",
                 opt_creditcard: "Credit Card",
                 opt_yes: "Yes",
-                opt_no: "No"
+                opt_no: "No",
+                ph_required: "Required",
+                ph_ic: "Example: 090724-14-2784",
+                ph_passport: "Example: A1234567",
+                ph_phone: "Example: 0123456789",
+                ph_height: "Example: 170",
+                ph_weight: "Example: 70",
+                ph_cig_count: "Example: 10",
+                ph_cig_years: "Example: 5",
+                ph_vape_years: "Example: 3",
+                ph_job_desc: "Example: Performing admin tasks in the office...",
+                ph_income: "Example: 45000",
+                ph_bank: "Example: Maybank",
+                ph_relation: "Example: Wife / Husband / Child",
+                ph_pct_1: "Example: 100",
+                ph_pct_2: "Example: 50",
+                ph_pct_3: "Example: 30",
+                ph_treatment: "Example: Taking high blood pressure medication daily...",
+                ph_family: "Example: Father - Diabetes, Mother - High Blood Pressure. (Write 'None' if not applicable)",
+                ph_covid_freq: "Example: 2",
+                ph_covid_current: "Example: Frequent shortness of breath. (Write 'None' if not applicable)"
             }
         };
 
         let currentLang = 'ms';
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'ms' ? 'en' : 'ms';
-            document.getElementById('langText').innerText = currentLang === 'ms' ? 'EN' : 'BM';
-            document.getElementById('htmlTag').setAttribute('lang', currentLang);
-
-            // Update page title
-            if (translations[currentLang]['page_title']) {
-                document.getElementById('pageTitle').innerText = translations[currentLang]['page_title'];
-            }
-
-            // Update all elements with data-translate attribute
-            const elements = document.querySelectorAll('[data-translate]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translations[currentLang][key]) {
-                    el.innerText = translations[currentLang][key];
-                }
+        function applyLang(next) {
+            currentLang = next;
+            const t = translations[currentLang];
+            document.documentElement.setAttribute('lang', currentLang);
+            document.title = t.page_title;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const v = t[el.getAttribute('data-i18n')];
+                if (v != null) el.textContent = v;
             });
-
-            // Update dynamic placeholders based on language
-            if (currentLang === 'en') {
-                document.getElementById('ic').placeholder = "Example: 090724-14-2784";
-                document.getElementById('passport').placeholder = "Example: A1234567";
-                document.getElementById('tarikh_lahir').placeholder = "";
-                document.getElementById('no_tel').placeholder = "Example: 0123456789";
-                document.getElementById('tinggi').placeholder = "Example: 170";
-                document.getElementById('berat').placeholder = "Example: 70";
-                document.getElementById('bilangan_rokok').placeholder = "Example: 10";
-                document.getElementById('tahun_merokok').placeholder = "Example: 5";
-                document.getElementById('tahun_vape').placeholder = "Example: 3";
-                document.getElementById('majikan').placeholder = "";
-                document.getElementById('jawatan').placeholder = "";
-                document.getElementById('keterangan_kerja').placeholder = "Example: Performing admin tasks in the office...";
-                document.getElementById('pendapatan').placeholder = "Example: 45000";
-                document.getElementById('nama_bank').placeholder = "Example: Maybank";
-                document.getElementById('no_akaun').placeholder = "";
-                document.getElementById('hubungan_penama_1').placeholder = "Example: Wife / Husband / Child";
-                document.getElementById('peratus_penama_1').placeholder = "Example: 100";
-                document.getElementById('penyakit_1').placeholder = "";
-                document.getElementById('hospital_1').placeholder = "";
-                document.getElementById('jenis_rawatan_1').placeholder = "Example: Taking high blood pressure medication daily...";
-                document.getElementById('sejarah_keluarga').placeholder = "Example: Father - Diabetes, Mother - High Blood Pressure. (Write 'None' if not applicable)";
-                document.getElementById('kekerapan_covid').placeholder = "Example: 2";
-                document.getElementById('kondisi_semasa_covid').placeholder = "Example: Frequent shortness of breath. (Write 'None' if not applicable)";
-            } else {
-                document.getElementById('ic').placeholder = "Contoh: 090724-14-2784";
-                document.getElementById('passport').placeholder = "Contoh: A1234567";
-                document.getElementById('tarikh_lahir').placeholder = "";
-                document.getElementById('no_tel').placeholder = "Contoh: 0123456789";
-                document.getElementById('tinggi').placeholder = "Contoh: 170";
-                document.getElementById('berat').placeholder = "Contoh: 70";
-                document.getElementById('bilangan_rokok').placeholder = "Contoh: 10";
-                document.getElementById('tahun_merokok').placeholder = "Contoh: 5";
-                document.getElementById('tahun_vape').placeholder = "Contoh: 3";
-                document.getElementById('majikan').placeholder = "";
-                document.getElementById('jawatan').placeholder = "";
-                document.getElementById('keterangan_kerja').placeholder = "Contoh: Membuat kerja-kerja admin di pejabat...";
-                document.getElementById('pendapatan').placeholder = "Contoh: 45000";
-                document.getElementById('nama_bank').placeholder = "Contoh: Maybank";
-                document.getElementById('no_akaun').placeholder = "";
-                document.getElementById('hubungan_penama_1').placeholder = "Contoh: Isteri / Suami / Anak";
-                document.getElementById('peratus_penama_1').placeholder = "Contoh: 100";
-                document.getElementById('penyakit_1').placeholder = "";
-                document.getElementById('hospital_1').placeholder = "";
-                document.getElementById('jenis_rawatan_1').placeholder = "Contoh: Makan ubat darah tinggi setiap hari...";
-                document.getElementById('sejarah_keluarga').placeholder = "Contoh: Bapa - Kencing Manis, Ibu - Darah Tinggi. (Tulis 'Tiada' jika tidak berkaitan)";
-                document.getElementById('kekerapan_covid').placeholder = "Contoh: 2";
-                document.getElementById('kondisi_semasa_covid').placeholder = "Contoh: Kerap sesak nafas. (Tulis 'Tiada' jika tidak berkaitan)";
-            }
+            document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+                const v = t[el.getAttribute('data-i18n-ph')];
+                if (v != null) el.placeholder = v;
+            });
+            document.querySelectorAll('[data-lang]').forEach(b => b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === currentLang)));
+            syncSelects();
         }
 
         // Dynamic Identity Setup (IC vs Passport)
@@ -956,7 +903,7 @@
             const passportContainer = document.getElementById('passport_container');
             const icInput = document.getElementById('ic');
             const passportInput = document.getElementById('passport');
-            
+
             // Document Instruction Elements
             const docItem1 = document.getElementById('doc_item_1');
             const docItem2 = document.getElementById('doc_item_2');
@@ -967,30 +914,30 @@
                 icContainer.style.display = 'none';
                 icInput.required = false;
                 icInput.value = ''; // Clean up past data
-                
-                passportContainer.style.display = 'block';
+
+                passportContainer.style.display = '';
                 passportInput.required = true;
 
                 // Update document attributes to Passport keys
-                docItem1.setAttribute('data-translate', 'doc_li_1_passport');
-                docItem2.setAttribute('data-translate', 'doc_li_2_passport');
-                docItem3.setAttribute('data-translate', 'doc_li_3_passport');
-                ekycNote.setAttribute('data-translate', 'ekyc_note_1_passport');
+                docItem1.setAttribute('data-i18n', 'doc_li_1_passport');
+                docItem2.setAttribute('data-i18n', 'doc_li_2_passport');
+                docItem3.setAttribute('data-i18n', 'doc_li_3_passport');
+                ekycNote.setAttribute('data-i18n', 'ekyc_note_1_passport');
 
             } else if (warganegara === 'Malaysia' || warganegara === 'Penduduk Tetap') {
                 passportContainer.style.display = 'none';
                 passportInput.required = false;
                 passportInput.value = ''; // Clean up past data
-                
-                icContainer.style.display = 'block';
+
+                icContainer.style.display = '';
                 icInput.required = true;
 
                 // Revert document attributes to MyKad keys
-                docItem1.setAttribute('data-translate', 'doc_li_1_mykad');
-                docItem2.setAttribute('data-translate', 'doc_li_2_mykad');
-                docItem3.setAttribute('data-translate', 'doc_li_3_mykad');
-                ekycNote.setAttribute('data-translate', 'ekyc_note_1_mykad');
-                
+                docItem1.setAttribute('data-i18n', 'doc_li_1_mykad');
+                docItem2.setAttribute('data-i18n', 'doc_li_2_mykad');
+                docItem3.setAttribute('data-i18n', 'doc_li_3_mykad');
+                ekycNote.setAttribute('data-i18n', 'ekyc_note_1_mykad');
+
             } else {
                 icContainer.style.display = 'none';
                 icInput.required = false;
@@ -998,18 +945,17 @@
                 passportInput.required = false;
             }
 
-            // Apply translation immediately without needing to toggle the language button
-            if (docItem1) docItem1.innerText = translations[currentLang][docItem1.getAttribute('data-translate')];
-            if (docItem2) docItem2.innerText = translations[currentLang][docItem2.getAttribute('data-translate')];
-            if (docItem3) docItem3.innerText = translations[currentLang][docItem3.getAttribute('data-translate')];
-            if (ekycNote) ekycNote.innerText = translations[currentLang][ekycNote.getAttribute('data-translate')];
+            // Apply translation immediately without needing to toggle the language
+            [docItem1, docItem2, docItem3, ekycNote].forEach(el => {
+                el.textContent = translations[currentLang][el.getAttribute('data-i18n')];
+            });
         }
 
         // IC formatting and Auto-DOB
         document.getElementById('ic').addEventListener('input', function(e) {
-            let rawVal = e.target.value.replace(/\D/g, ''); 
+            let rawVal = e.target.value.replace(/\D/g, '');
             let formattedVal = rawVal;
-            
+
             if (rawVal.length > 6) {
                 formattedVal = rawVal.substring(0, 6) + '-' + rawVal.substring(6);
             }
@@ -1027,10 +973,10 @@
                     let currentYear = new Date().getFullYear();
                     let currentTwoDigitYear = currentYear % 100;
                     let numYy = parseInt(yy);
-                    
+
                     let fullYear = (numYy <= currentTwoDigitYear) ? (2000 + numYy) : (1900 + numYy);
                     let formattedDate = `${fullYear}-${mm}-${dd}`;
-                    
+
                     document.getElementById('tarikh_lahir').value = formattedDate;
                 }
             }
@@ -1042,13 +988,13 @@
             const jenisField = document.getElementById('jenis_merokok');
 
             if (isMerokok) {
-                section.style.display = 'block';
+                section.style.display = '';
                 jenisField.required = true;
             } else {
                 section.style.display = 'none';
                 jenisField.required = false;
                 jenisField.value = '';
-                updateJenisMerokokFields(); 
+                updateJenisMerokokFields();
             }
         }
 
@@ -1061,12 +1007,12 @@
             const tahunVape = document.getElementById('tahun_vape');
 
             if (jenis === 'Rokok') {
-                rokokSection.style.display = 'grid'; 
+                rokokSection.style.display = '';
                 vapeSection.style.display = 'none';
                 bilRokok.required = true; tahunRokok.required = true;
                 tahunVape.required = false; tahunVape.value = '';
             } else if (jenis === 'Vape') {
-                vapeSection.style.display = 'block';
+                vapeSection.style.display = '';
                 rokokSection.style.display = 'none';
                 tahunVape.required = true;
                 bilRokok.required = false; bilRokok.value = '';
@@ -1086,9 +1032,9 @@
                 const p = document.getElementById(`penama_${i}`);
                 const h = document.getElementById(`hubungan_penama_${i}`);
                 const pct = document.getElementById(`peratus_penama_${i}`);
-                
+
                 if (count >= i) {
-                    section.style.display = 'block';
+                    section.style.display = '';
                     p.required = true; h.required = true; pct.required = true;
                 } else {
                     section.style.display = 'none';
@@ -1097,7 +1043,7 @@
                 }
             }
             if(count === 1) document.getElementById('peratus_penama_1').value = "100";
-            else document.getElementById('peratus_penama_1').value = ""; 
+            else document.getElementById('peratus_penama_1').value = "";
         }
 
         function updateHealthFields() {
@@ -1105,9 +1051,9 @@
             for (let i = 1; i <= 3; i++) {
                 const section = document.getElementById(`rekod_${i}_section`);
                 const fields = ['penyakit_', 'tarikh_penyakit_', 'hospital_', 'hari_wad_', 'jenis_rawatan_', 'status_pulih_'].map(id => document.getElementById(id + i));
-                
+
                 if (count >= i) {
-                    section.style.display = 'block';
+                    section.style.display = '';
                     fields.forEach(f => f.required = true);
                 } else {
                     section.style.display = 'none';
@@ -1120,9 +1066,9 @@
             const isPositif = document.getElementById('positif_covid').value === 'Ya';
             const section = document.getElementById('covid_details_section');
             const requiredFields = ['kekerapan_covid', 'tarikh_covid', 'tahap_covid', 'masuk_hospital_covid', 'kondisi_semasa_covid'];
-            
+
             if (isPositif) {
-                section.style.display = 'block';
+                section.style.display = '';
                 requiredFields.forEach(id => document.getElementById(id).required = true);
             } else {
                 section.style.display = 'none';
@@ -1142,10 +1088,36 @@
             const field = document.getElementById('rawatan_covid');
 
             if (isHospital) {
-                section.style.display = 'block'; field.required = true;
+                section.style.display = ''; field.required = true;
             } else {
                 section.style.display = 'none'; field.required = false; field.value = '';
             }
+        }
+
+        // Mirror the chosen option into the wrapping label of long-option selects
+        function syncSelects() {
+            document.querySelectorAll('.selw').forEach(w => {
+                const sel = w.querySelector('select'), opt = sel.options[sel.selectedIndex];
+                const v = w.querySelector('.selv');
+                v.textContent = opt ? opt.textContent : '';
+                v.classList.toggle('empty', !sel.value);
+            });
+        }
+
+        // Alert sheet
+        let lastFocus = null;
+        function showAlert(msg) {
+            const box = document.getElementById('custom-alert');
+            document.getElementById('custom-alert-msg').textContent = msg;
+            lastFocus = document.activeElement;
+            box.hidden = false;
+            document.body.classList.add('lock');
+            setTimeout(() => document.getElementById('custom-alert-close').focus(), 30);
+        }
+        function closeAlert() {
+            document.getElementById('custom-alert').hidden = true;
+            document.body.classList.remove('lock');
+            if (lastFocus && lastFocus.focus) lastFocus.focus();
         }
 
         function submitToWhatsApp(event) {
@@ -1156,14 +1128,14 @@
             if (nomineeCount >= 3) totalPercentage += parseInt(document.getElementById('peratus_penama_3').value) || 0;
 
             if (totalPercentage !== 100) {
-                const alertMsg = (currentLang === 'ms') 
+                const alertMsg = (currentLang === 'ms')
                     ? `Jumlah peratusan penama mestilah genap 100%. (Jumlah sekarang: ${totalPercentage}%). Sila periksa semula.`
                     : `Total nominee percentage must equal 100%. (Current total: ${totalPercentage}%). Please check again.`;
-                alert(alertMsg);
+                showAlert(alertMsg);
                 return;
             }
 
-            const agentPhone = "60176213432"; 
+            const agentPhone = "60176213432";
             const val = (id) => document.getElementById(id).value || (currentLang === 'ms' ? "Tiada/Tidak Berkaitan" : "None/Not Applicable");
 
             // Determine Identity (IC vs Passport)
@@ -1173,7 +1145,7 @@
 
             if (warganegara === 'Bukan Warganegara') {
                 identityType = (currentLang === 'ms') ? `No. Pasport: ${val("passport")}` : `Passport No.: ${val("passport")}`;
-                documentInstruction = (currentLang === 'ms') 
+                documentInstruction = (currentLang === 'ms')
                     ? "_Sila lampirkan Pasport (Muka Surat Butiran), Visa & Selfie sambil memegang Pasport (Muka Surat Butiran) di dalam chat ini untuk tujuan pengesahan eKYC._"
                     : "_Please attach Passport (Details Page), Visa & Selfie holding Passport (Details Page) in this chat for eKYC verification purposes._";
             } else {
@@ -1185,7 +1157,7 @@
 
             const nama = val("nama"), tarikhLahir = val("tarikh_lahir"), noTel = val("no_tel"), emel = val("emel"), alamat = val("alamat");
             const agama = val("agama"), tinggi = val("tinggi"), berat = val("berat");
-            
+
             const merokokStatus = val("merokok");
             let merokokDetails = merokokStatus;
             if (merokokStatus === "Merokok" || merokokStatus === "Smoker") {
@@ -1197,10 +1169,10 @@
             const majikan = val("majikan"), jawatan = val("jawatan"), ketKerja = val("keterangan_kerja"), alamatMajikan = val("alamat_majikan"), pendapatan = val("pendapatan");
             const namaBank = val("nama_bank"), noAkaun = val("no_akaun"), jenisAkaun = val("jenis_akaun"), caraBayaran = val("cara_bayaran");
 
-            let penamaDetails = (currentLang === 'ms') 
+            let penamaDetails = (currentLang === 'ms')
                 ? `Bilangan Penama: ${nomineeCount}\n[Penama 1] Nama: ${val("penama_1")} | Hubungan: ${val("hubungan_penama_1")} | Bahagian: ${val("peratus_penama_1")}%\n`
                 : `Number of Nominees: ${nomineeCount}\n[Nominee 1] Name: ${val("penama_1")} | Relationship: ${val("hubungan_penama_1")} | Share: ${val("peratus_penama_1")}%\n`;
-            
+
             if (nomineeCount >= 2) {
                 penamaDetails += (currentLang === 'ms')
                     ? `[Penama 2] Nama: ${val("penama_2")} | Hubungan: ${val("hubungan_penama_2")} | Bahagian: ${val("peratus_penama_2")}%\n`
@@ -1225,7 +1197,7 @@
             const sejarahKeluarga = val("sejarah_keluarga");
             const positifCovid = val("positif_covid");
             let covidDetails = (currentLang === 'ms') ? `Pernah positif COVID-19: ${positifCovid}\n` : `Ever tested positive for COVID-19: ${positifCovid}\n`;
-            
+
             if (positifCovid === "Ya" || positifCovid === "Yes") {
                 covidDetails += (currentLang === 'ms')
                     ? `Kekerapan Positif: ${val("kekerapan_covid")} kali\nBulan/Tahun Positif: ${val("tarikh_covid")}\nTahap: ${val("tahap_covid")}\nDimasukkan ke Hospital: ${val("masuk_hospital_covid")}\n`
@@ -1236,29 +1208,41 @@
                 covidDetails += (currentLang === 'ms') ? `Kondisi Semasa akibat COVID-19: ${val("kondisi_semasa_covid")}\n` : `Current condition due to COVID-19: ${val("kondisi_semasa_covid")}\n`;
             }
 
-            const whatsappMessage = (currentLang === 'ms') 
+            const whatsappMessage = (currentLang === 'ms')
                 ? `*PERMOHONAN PRUBSN - REMOTE ENROLLMENT*\n\n*1. MAKLUMAT PERIBADI*\nNama: ${nama}\n${identityType}\nTarikh Lahir: ${tarikhLahir}\nNo. Tel: ${noTel}\nEmel: ${emel}\nAlamat: ${alamat}\nWarganegara: ${warganegara}\nAgama: ${agama}\nTinggi: ${tinggi} cm\nBerat: ${berat} kg\nStatus Merokok: ${merokokDetails}\n\n*2. MAKLUMAT PEKERJAAN*\nMajikan: ${majikan}\nJawatan: ${jawatan}\nDeskripsi Tugas: ${ketKerja}\nAlamat Majikan: ${alamatMajikan}\nPendapatan Tahunan: RM ${pendapatan}\n\n*3. MAKLUMAT BANK & BAYARAN*\nNama Bank (Tuntutan): ${namaBank}\nNo. Akaun: ${noAkaun}\nJenis Akaun: ${jenisAkaun}\nCara Bayaran Bulanan: ${caraBayaran}\n\n*4. MAKLUMAT PENAMA*\n${penamaDetails}\n*5. REKOD KESIHATAN*\n${healthDetails}\n*6. SEJARAH KESIHATAN KELUARGA*\nRekod / Penyakit Keturunan: ${sejarahKeluarga}\n\n*7. SEJARAH COVID-19*\n${covidDetails}\n*8. DOKUMEN*\n${documentInstruction}`
                 : `*PRUBSN APPLICATION - REMOTE ENROLLMENT*\n\n*1. PERSONAL INFORMATION*\nName: ${nama}\n${identityType}\nDate of Birth: ${tarikhLahir}\nPhone No.: ${noTel}\nEmail: ${emel}\nAddress: ${alamat}\nCitizenship: ${warganegara}\nReligion: ${agama}\nHeight: ${tinggi} cm\nWeight: ${berat} kg\nSmoking Status: ${merokokDetails}\n\n*2. OCCUPATION INFORMATION*\nEmployer: ${majikan}\nJob Title: ${jawatan}\nJob Description: ${ketKerja}\nEmployer Address: ${alamatMajikan}\nAnnual Income: RM ${pendapatan}\n\n*3. FINANCIAL & PAYMENT INFO*\nBank Name (Claims): ${namaBank}\nAccount No.: ${noAkaun}\nAccount Type: ${jenisAkaun}\nMonthly Payment Method: ${caraBayaran}\n\n*4. NOMINEE INFORMATION*\n${penamaDetails}\n*5. HEALTH RECORDS*\n${healthDetails}\n*6. FAMILY HEALTH HISTORY*\nRecords / Hereditary Diseases: ${sejarahKeluarga}\n\n*7. COVID-19 HISTORY*\n${covidDetails}\n*8. DOCUMENTS*\n${documentInstruction}`;
 
-            window.open(`https://wa.me/${agentPhone}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+            const url = `https://wa.me/${agentPhone}?text=${encodeURIComponent(whatsappMessage)}`;
+            const w = window.open(url, '_blank');
+            document.getElementById('wa-popup-link').href = url;
+            document.getElementById('wa-popup').hidden = !!w;
         }
-        
-        // Scroll Animation Observer setup
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
 
-            document.querySelectorAll('.reveal-element').forEach((el) => {
-                observer.observe(el);
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-lang]').forEach(b => {
+                b.addEventListener('click', () => applyLang(b.getAttribute('data-lang')));
             });
+
+            document.getElementById('warganegara').addEventListener('change', updateIdentityFields);
+            document.getElementById('merokok').addEventListener('change', updateMerokokFields);
+            document.getElementById('jenis_merokok').addEventListener('change', updateJenisMerokokFields);
+            document.getElementById('bilangan_penama').addEventListener('change', updateNomineeFields);
+            document.getElementById('bilangan_rekod').addEventListener('change', updateHealthFields);
+            document.getElementById('positif_covid').addEventListener('change', updateCovidFields);
+            document.getElementById('masuk_hospital_covid').addEventListener('change', updateCovidHospitalFields);
+            document.getElementById('takafulForm').addEventListener('submit', submitToWhatsApp);
+            // Runs after the field handlers above, so it also catches selects they reset
+            document.addEventListener('change', syncSelects);
+
+            const alertBox = document.getElementById('custom-alert');
+            document.getElementById('custom-alert-close').addEventListener('click', closeAlert);
+            alertBox.addEventListener('click', e => { if (e.target === alertBox) closeAlert(); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape' && !alertBox.hidden) closeAlert(); });
+
+            // Language from URL (?lang=en or #en)
+            const q = new URLSearchParams(window.location.search);
+            applyLang(q.get('lang') === 'en' || window.location.hash === '#en' ? 'en' : 'ms');
         });
-    </script>
+  </script>
 </body>
 </html>
