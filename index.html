@@ -17,50 +17,50 @@
     :root{color-scheme:light;--bg:#f5f5f7;--card:#fff;--fg:#1d1d1f;--mut:#6e6e73;--mut2:#424245;--hero1:#86868b;--line:#d2d2d7;--line2:#e5e5ea;--teal:#008183;--tealT:#00696b;--red:#D9000D;--tint:#e2f3f3;--tintFg:#00605f;--amberBg:#fff8ec;--amberFg:#8a4b00;--amberIc:#a35a00;--redBg:#fde8e9;--redFg:#a8000a;--glass:rgba(255,255,255,.62);--glassB:rgba(255,255,255,.85);--fill:rgba(118,118,128,.14);--sheet:rgba(245,245,247,.94);--sf:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Inter,system-ui,"Segoe UI",Roboto,sans-serif}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-    body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sf);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;line-height:1.4}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sf);letter-spacing:0;-webkit-font-smoothing:antialiased;line-height:1.4}
     body.lock{overflow:hidden}
     a{color:var(--tealT);text-decoration:none}a:hover{text-decoration:underline}
     img{max-width:100%}
     [hidden]{display:none!important}
     :focus-visible{outline:3px solid rgba(0,129,131,.45);outline-offset:2px}
-    .wrap{max-width:1000px;margin:0 auto;padding:0 22px}
-    .lgl{background:var(--glass);-webkit-backdrop-filter:blur(30px) saturate(190%);backdrop-filter:blur(30px) saturate(190%);border:1px solid var(--glassB);box-shadow:inset 0 1px 0 var(--glassB),0 12px 34px rgba(0,0,0,.10)}
+    .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+    .lgl{background:var(--card);border:1px solid rgba(29,29,31,.08)}
 
     /* nav */
-    .nav{position:sticky;top:calc(10px + env(safe-area-inset-top,0px));z-index:40;max-width:1040px;width:calc(100% - 24px);margin:10px auto 0;padding:7px 8px 7px 12px;border-radius:999px;display:flex;align-items:center;gap:10px}
-    .brand{display:flex;align-items:center;gap:10px;flex:none;color:var(--fg)}.brand:hover{text-decoration:none}
-    .brand img{width:34px;height:34px;border-radius:9px;background:#fff;object-fit:contain}
-    .brand b{display:block;font-size:14px;letter-spacing:-.01em;color:var(--red)}
+    .nav{position:sticky;top:calc(12px + env(safe-area-inset-top,0px));z-index:40;max-width:1040px;width:calc(100% - 24px);margin:12px auto 0;padding:8px 8px 8px 12px;border-radius:16px;display:flex;align-items:center;gap:8px}
+    .brand{display:flex;align-items:center;gap:8px;flex:none;color:var(--fg)}.brand:hover{text-decoration:none}
+    .brand img{width:34px;height:34px;border-radius:8px;background:#fff;object-fit:contain}
+    .brand b{display:block;font-size:14px;font-weight:600;color:var(--fg)}
     .brand small{display:block;font-size:12px;color:var(--mut)}
     .navlinks{display:flex;gap:2px;margin-left:auto;min-width:0}
-    .navlinks a{color:var(--fg);font-size:13px;padding:8px 10px;border-radius:999px;white-space:nowrap}.navlinks a:hover{background:var(--fill);text-decoration:none}
+    .navlinks a{color:var(--fg);font-size:13px;padding:8px 12px;border-radius:8px;white-space:nowrap}.navlinks a:hover{background:var(--fill);text-decoration:none}
     .navr{display:flex;gap:6px;align-items:center;flex:none}
 
     /* controls */
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 24px;border-radius:999px;background:var(--teal);color:#fff;font:500 16px var(--sf);border:0;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 6px 18px rgba(0,129,131,.3)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 24px;border-radius:10px;background:var(--teal);color:#fff;font:500 16px var(--sf);border:0;cursor:pointer;transition:background-color .15s ease-out}
     .btn:hover{background:#00706f;color:#fff;text-decoration:none}
-    .btn-s{min-height:36px;padding:0 14px;font-size:13px;font-weight:600}
-    .btn-t{background:transparent;color:var(--tealT);box-shadow:none}.btn-t:hover{background:var(--fill);color:var(--tealT)}
+    .btn-s{min-height:36px;padding:0 16px;font-size:13px;font-weight:500;border-radius:8px}
+    .btn-t{background:transparent;color:var(--tealT);box-shadow:none;padding:0 16px}.btn-t:hover{background:var(--fill);color:var(--tealT)}
     .btn-w{width:100%}
     .seg{display:inline-flex;background:var(--fill);padding:2px;border-radius:999px}
-    .seg button{border:0;background:transparent;color:var(--fg);font:600 13px var(--sf);padding:7px 14px;border-radius:999px;cursor:pointer;min-height:32px}
-    .seg button[aria-pressed="true"]{background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+    .seg button{border:0;background:transparent;color:var(--fg);font:500 13px var(--sf);padding:7px 12px;border-radius:999px;cursor:pointer;min-height:32px}
+    .seg button[aria-pressed="true"]{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.12)}
     .ic{width:18px;height:18px;flex:none}
 
     /* type */
-    .kk{margin:0 0 8px;font-size:14px;font-weight:600;color:var(--tealT)}
-    .h2s{margin:0;font-size:28px;line-height:1.12;letter-spacing:-.035em;font-weight:700}
+    .kk{margin:0 0 8px;font-size:14px;font-weight:500;color:var(--tealT)}
+    .h2s{margin:0;font-size:28px;line-height:1.16;letter-spacing:-.02em;font-weight:500}
     .sub{margin:12px 0 0;font-size:15px;line-height:1.45;color:var(--mut)}
 
     /* layout */
-    .split{display:grid;grid-template-columns:260px minmax(0,1fr);column-gap:44px;padding:52px 0;border-top:.5px solid var(--line);scroll-margin-top:80px}
+    .split{display:grid;grid-template-columns:260px minmax(0,1fr);column-gap:48px;padding:48px 0;border-top:.5px solid var(--line);scroll-margin-top:80px}
     .split>.side{position:sticky;top:96px;align-self:start}
     .stack{display:flex;flex-direction:column;gap:16px}
-    .group{background:var(--card);border-radius:18px;overflow:hidden;margin:0;padding:0;list-style:none}
-    .glabel{margin:0 0 8px 18px;font-size:13px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.02em}
+    .group{background:var(--card);border-radius:16px;overflow:hidden;margin:0;padding:0;list-style:none}
+    .glabel{margin:0 0 8px 16px;font-size:13px;font-weight:500;color:var(--mut)}
 
     /* iOS grouped rows */
-    .row{display:flex;align-items:center;gap:12px;min-height:56px;padding:4px 18px;border-bottom:.5px solid var(--line)}
+    .row{display:flex;align-items:center;gap:12px;min-height:56px;padding:4px 16px;border-bottom:.5px solid var(--line)}
     .row:last-child{border-bottom:0}
     .row:focus-within{background:var(--tint);box-shadow:inset 3px 0 0 var(--teal)}
     .row label{flex:0 1 auto;font-size:16px;color:var(--fg);padding:12px 0}
@@ -86,46 +86,45 @@
     .req{color:var(--red);font-weight:600}
     input,select,textarea{scroll-margin-top:110px;scroll-margin-bottom:110px}
 
-    .note{background:var(--amberBg);border-radius:16px;padding:14px 16px;display:flex;gap:10px;font-size:14px;line-height:1.5;color:var(--fg)}
+    .note{background:var(--amberBg);border-radius:16px;padding:16px;display:flex;gap:12px;font-size:14px;line-height:1.5;color:var(--fg)}
     .note.ok{background:var(--tint)}
     .note .ic{color:var(--amberIc);margin-top:1px}
     .note.ok .ic{color:var(--tintFg)}
     /* digit badges: trim the digit to cap height so flex centres the glyph, not the line box */
     .d{display:block;line-height:1;text-box:trim-both cap alphabetic}
-    .num{flex:none;width:32px;height:32px;border-radius:999px;background:var(--tint);color:var(--tintFg);font-size:15px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px}
+    .num{flex:none;width:32px;height:32px;border-radius:999px;background:var(--tint);color:var(--tintFg);font-size:15px;font-weight:500;line-height:1;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px}
 
     /* hero */
-    .hero{text-align:center;padding:64px 0 52px}
-    .hero-k{margin:0 0 10px;font-size:16px;font-weight:600;color:var(--red)}
-    .hero h1{margin:0 auto 20px;max-width:860px;font-size:clamp(40px,6.2vw,64px);line-height:1.04;letter-spacing:-.04em;font-weight:700}
-    .hero h1 span:first-child{color:var(--hero1)}
-    .hero-d{margin:0 auto;max-width:640px;font-size:clamp(17px,2.1vw,20px);line-height:1.45;color:var(--mut2)}
-    .hero-b{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+    .hero{text-align:left;padding:64px 0 48px}
+    .hero-k{margin:0 0 12px;font-size:16px;font-weight:500;color:var(--tealT)}
+    .hero h1{margin:0 0 20px;max-width:760px;font-size:clamp(36px,5.6vw,60px);line-height:1.08;letter-spacing:-.025em;font-weight:500}
+    .hero-d{margin:0;max-width:640px;font-size:clamp(17px,2.1vw,20px);line-height:1.45;color:var(--mut2)}
+    .hero-b{display:flex;gap:8px;justify-content:flex-start;flex-wrap:wrap;margin-top:28px}
 
     /* documents */
-    .doc{padding:22px}
-    .doc h3{margin:0 0 8px;font-size:17px;font-weight:600;display:flex;align-items:center;gap:10px}
+    .doc{padding:24px}
+    .doc h3{margin:0 0 8px;font-size:17px;font-weight:500;display:flex;align-items:center;gap:8px}
     .doc h3 .ic{color:var(--tealT)}
     .doc p{margin:0;font-size:15px;line-height:1.5;color:var(--mut2)}
     .doc ol{margin:14px 0 0;padding:0;list-style:none}
     .doc li{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:.5px solid var(--line2);font-size:15px}
-    .doc .dn{flex:none;width:26px;height:26px;border-radius:999px;background:var(--tint);color:var(--tintFg);font-size:13px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;justify-content:center}
+    .doc .dn{flex:none;width:26px;height:26px;border-radius:999px;background:var(--tint);color:var(--tintFg);font-size:13px;font-weight:500;line-height:1;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;justify-content:center}
 
-    footer{padding:28px 0 120px;border-top:.5px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--mut)}
+    footer{padding:32px 0 120px;border-top:.5px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--mut)}
     footer img{width:120px;height:auto;display:block;margin-bottom:8px}
 
     /* sticky action bar */
-    .abar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;gap:6px;max-width:calc(100% - 24px);padding:6px;border-radius:999px}
+    .abar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;gap:8px;max-width:calc(100% - 24px);padding:8px;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
     .abar .btn{font-size:15px;white-space:nowrap}
 
     /* sheets */
-    .overlay{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.32);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px}
-    .sheet{width:100%;max-width:560px;max-height:calc(100vh - 32px);overflow:auto;border-radius:30px;background:var(--sheet)}
-    .alert{max-width:360px;border-radius:26px;padding:28px 24px 20px;text-align:center}
+    .overlay{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;padding:16px}
+    .sheet{width:100%;max-width:560px;max-height:calc(100vh - 32px);overflow:auto;border-radius:20px;background:var(--sheet)}
+    .alert{max-width:360px;border-radius:20px;padding:28px 24px 20px;text-align:center}
     .alert-i{display:inline-flex;width:52px;height:52px;border-radius:999px;background:var(--redBg);color:var(--redFg);align-items:center;justify-content:center}
 
     @media(max-width:860px){
-      .nav{flex-wrap:wrap;border-radius:24px;padding:8px 8px 4px 10px;row-gap:2px}
+      .nav{flex-wrap:wrap;border-radius:16px;padding:8px 8px 4px 10px;row-gap:2px}
       .navr{margin-left:auto}
       .navlinks{order:3;flex-basis:100%;margin-left:-6px;overflow-x:auto;scrollbar-width:none}
       .navlinks::-webkit-scrollbar{display:none}
@@ -188,7 +187,7 @@
     <!-- Hero -->
     <header class="hero">
       <p class="hero-k" data-i18n="hero_kicker">Pendaftaran Jarak Jauh</p>
-      <h1><span data-i18n="hero_h1_a">Borang Pendaftaran</span> <span data-i18n="hero_h1_b">Takaful.</span></h1>
+      <h1><span data-i18n="hero_h1_a">Borang pendaftaran</span> <span data-i18n="hero_h1_b">takaful</span></h1>
       <p class="hero-d" data-i18n="form_notice">Sila lengkapkan butiran di bawah dengan tepat untuk melancarkan proses permohonan Takaful anda.</p>
     </header>
 
@@ -587,11 +586,11 @@
                 nav_nominee: "Penama",
                 nav_health: "Kesihatan",
                 nav_documents: "Dokumen",
-                hero_kicker: "Pendaftaran Jarak Jauh",
-                hero_h1_a: "Borang Pendaftaran",
-                hero_h1_b: "Takaful.",
+                hero_kicker: "Pendaftaran jarak jauh",
+                hero_h1_a: "Borang pendaftaran",
+                hero_h1_b: "takaful",
                 form_notice: "Sila lengkapkan butiran di bawah dengan tepat untuk melancarkan proses permohonan Takaful anda.",
-                sec_1_title: "Maklumat Peribadi",
+                sec_1_title: "Maklumat peribadi",
                 lbl_fullname: "Nama Penuh (Seperti dalam MyKad/Passport)",
                 lbl_ic: "No. IC",
                 lbl_passport: "No. Pasport",
@@ -608,18 +607,18 @@
                 lbl_cig_count: "Berapa batang sehari?",
                 lbl_cig_years: "Berapa tahun merokok?",
                 lbl_vape_years: "Berapa tahun vape?",
-                sec_2_title: "Maklumat Pekerjaan",
+                sec_2_title: "Maklumat pekerjaan",
                 lbl_employer: "Nama Majikan / Syarikat",
                 lbl_occupation: "Jawatan",
                 lbl_job_desc: "Keterangan Ringkas Pekerjaan",
                 lbl_employer_address: "Alamat Majikan",
                 lbl_annual_income: "Pendapatan Tahunan (RM)",
-                sec_3_title: "Maklumat Kewangan & Pembayaran",
+                sec_3_title: "Maklumat kewangan & pembayaran",
                 lbl_bank_name: "Nama Bank (Untuk tuntutan)",
                 lbl_bank_acc: "No. Akaun Bank",
                 lbl_acc_type: "Jenis Akaun",
                 lbl_payment_method: "Cara Bayaran Bulanan",
-                sec_4_title: "Maklumat Penama / Pewaris",
+                sec_4_title: "Maklumat penama / pewaris",
                 nominee_hint: "Jumlah peratusan semua penama mestilah 100%.",
                 lbl_nominee_count: "Berapa Orang Penama?",
                 opt_1_nominee: "1 Penama (100%)",
@@ -631,16 +630,16 @@
                 lbl_nominee_name: "Nama Penama",
                 lbl_nominee_relation: "Hubungan",
                 lbl_nominee_percentage: "Peratusan (%)",
-                sec_5_title: "Rekod Kesihatan & Kemasukan Wad",
+                sec_5_title: "Rekod kesihatan & kemasukan wad",
                 health_notice: "Pilih \"Tiada\" jika anda tidak mempunyai sebarang rekod penyakit atau kemasukan ke wad sebelum ini.",
                 lbl_health_count: "Jumlah Rekod untuk Diisytiharkan",
                 opt_none: "Tiada",
                 opt_1_record: "1 Rekod",
                 opt_2_record: "2 Rekod",
                 opt_3_record: "3 Rekod",
-                record_1_heading: "Rekod Kesihatan 1",
-                record_2_heading: "Rekod Kesihatan 2",
-                record_3_heading: "Rekod Kesihatan 3",
+                record_1_heading: "Rekod kesihatan 1",
+                record_2_heading: "Rekod kesihatan 2",
+                record_3_heading: "Rekod kesihatan 3",
                 lbl_disease: "Penyakit Dihidapi",
                 lbl_disease_date: "Bulan/Tahun Disahkan",
                 lbl_hospital: "Diwadkan di hospital mana?",
@@ -649,7 +648,7 @@
                 lbl_current_status: "Status Terkini",
                 opt_recovered: "Sudah pulih sepenuhnya",
                 opt_treatment: "Masih mendapatkan rawatan susulan",
-                sec_6_title: "Sejarah Kesihatan Keluarga (Penyakit Keturunan)",
+                sec_6_title: "Sejarah kesihatan keluarga (penyakit keturunan)",
                 family_desc: "Adakah dikalangan keluarga terdekat (ibu, ayah atau adik-beradik kandung) disahkan menghidapi penyakit keturunan atau penyakit kritikal (contoh: darah tinggi, kencing manis, kegagalan buah pinggang, serangan jantung, kanser atau lain-lain)? Jika ada, sila nyatakan di bawah.",
                 sec_7_title: "Sejarah COVID-19",
                 lbl_covid_status: "Pernahkah anda disahkan positif COVID-19?",
@@ -663,7 +662,7 @@
                 opt_icu: "HDU, ICU, ITU, CCU",
                 opt_antiviral: "Ubat Anti-Viral",
                 opt_quarantine: "Kuarantin di Wad atau Pusat Kuarantin",
-                sec_8_title: "Dokumen Sokongan",
+                sec_8_title: "Dokumen sokongan",
                 doc_instruction_title: "ARAHAN PENTING:",
                 doc_instruction_desc: "Sebagai pengesahan keselamatan identiti, sila sediakan gambar-gambar berikut untuk dihantar",
                 doc_chat_text: "di dalam ruang chat WhatsApp",
@@ -678,7 +677,7 @@
                 ekyc_note_1_mykad: "Langkah penyerahan gambar MyKad dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori eKYC (Electronic Know Your Customer) bagi tujuan pengesahan identiti secara digital.",
                 ekyc_note_1_passport: "Langkah penyerahan gambar pasport, visa dan swafoto (selfie) ini adalah sebahagian daripada proses mandatori eKYC (Electronic Know Your Customer) bagi tujuan pengesahan identiti secara digital.",
                 ekyc_link: "→ Ketahui lebih lanjut mengenai polisi eKYC BNM",
-                btn_submit: "Hantar Permohonan Melalui WhatsApp",
+                btn_submit: "Hantar permohonan melalui WhatsApp",
                 bar_docs: "Dokumen",
                 bar_submit: "Hantar Permohonan",
                 popup_blocked: "WhatsApp tidak dapat dibuka secara automatik.",
@@ -687,7 +686,7 @@
                 footer_reg: "Perunding Takaful Berdaftar dengan PruBSN Takaful Berhad.",
                 footer_rights: "Hak Cipta Terpelihara.",
                 footer_portal: "Portal Servis Rasmi Fairuz Samsuddin",
-                opt_select: "Sila Pilih...",
+                opt_select: "Sila pilih",
                 opt_malaysia: "Malaysia",
                 opt_pr: "Penduduk Tetap",
                 opt_foreigner: "Bukan Warganegara",
@@ -716,14 +715,14 @@
                 ph_cig_count: "Contoh: 10",
                 ph_cig_years: "Contoh: 5",
                 ph_vape_years: "Contoh: 3",
-                ph_job_desc: "Contoh: Membuat kerja-kerja admin di pejabat...",
+                ph_job_desc: "Contoh: Membuat kerja-kerja admin di pejabat",
                 ph_income: "Contoh: 45000",
                 ph_bank: "Contoh: Maybank",
                 ph_relation: "Contoh: Isteri / Suami / Anak",
                 ph_pct_1: "Contoh: 100",
                 ph_pct_2: "Contoh: 50",
                 ph_pct_3: "Contoh: 30",
-                ph_treatment: "Contoh: Makan ubat darah tinggi setiap hari...",
+                ph_treatment: "Contoh: Makan ubat darah tinggi setiap hari",
                 ph_family: "Contoh: Bapa - Kencing Manis, Ibu - Darah Tinggi. (Tulis 'Tiada' jika tidak berkaitan)",
                 ph_covid_freq: "Contoh: 2",
                 ph_covid_current: "Contoh: Kerap sesak nafas. (Tulis 'Tiada' jika tidak berkaitan)"
@@ -736,11 +735,11 @@
                 nav_nominee: "Nominee",
                 nav_health: "Health",
                 nav_documents: "Documents",
-                hero_kicker: "Remote Enrollment",
+                hero_kicker: "Remote enrollment",
                 hero_h1_a: "Takaful",
-                hero_h1_b: "Registration Form.",
+                hero_h1_b: "registration form",
                 form_notice: "Please complete the details below accurately to facilitate your Takaful application process.",
-                sec_1_title: "Personal Information",
+                sec_1_title: "Personal information",
                 lbl_fullname: "Full Name (As in MyKad/Passport)",
                 lbl_ic: "IC No.",
                 lbl_passport: "Passport No.",
@@ -757,18 +756,18 @@
                 lbl_cig_count: "How many sticks per day?",
                 lbl_cig_years: "How many years smoking?",
                 lbl_vape_years: "How many years vaping?",
-                sec_2_title: "Occupation Information",
+                sec_2_title: "Occupation information",
                 lbl_employer: "Employer / Company Name",
                 lbl_occupation: "Job Title",
                 lbl_job_desc: "Brief Job Description",
                 lbl_employer_address: "Employer Address",
                 lbl_annual_income: "Annual Income (RM)",
-                sec_3_title: "Financial & Payment Information",
+                sec_3_title: "Financial & payment information",
                 lbl_bank_name: "Bank Name (For claims)",
                 lbl_bank_acc: "Bank Account No.",
                 lbl_acc_type: "Account Type",
                 lbl_payment_method: "Monthly Payment Method",
-                sec_4_title: "Nominee / Beneficiary Information",
+                sec_4_title: "Nominee / beneficiary information",
                 nominee_hint: "The total percentage for all nominees must be 100%.",
                 lbl_nominee_count: "Number of Nominees?",
                 opt_1_nominee: "1 Nominee (100%)",
@@ -780,16 +779,16 @@
                 lbl_nominee_name: "Nominee Name",
                 lbl_nominee_relation: "Relationship",
                 lbl_nominee_percentage: "Percentage (%)",
-                sec_5_title: "Health Records & Hospitalization",
+                sec_5_title: "Health records & hospitalization",
                 health_notice: "Select \"None\" if you do not have any prior medical records or hospitalizations.",
                 lbl_health_count: "Number of Records to Declare",
                 opt_none: "None",
                 opt_1_record: "1 Record",
                 opt_2_record: "2 Records",
                 opt_3_record: "3 Records",
-                record_1_heading: "Health Record 1",
-                record_2_heading: "Health Record 2",
-                record_3_heading: "Health Record 3",
+                record_1_heading: "Health record 1",
+                record_2_heading: "Health record 2",
+                record_3_heading: "Health record 3",
                 lbl_disease: "Condition / Disease",
                 lbl_disease_date: "Month/Year Diagnosed",
                 lbl_hospital: "Hospital Admitted",
@@ -798,7 +797,7 @@
                 lbl_current_status: "Current Status",
                 opt_recovered: "Fully recovered",
                 opt_treatment: "Still receiving follow-up treatment",
-                sec_6_title: "Family Health History (Hereditary Diseases)",
+                sec_6_title: "Family health history (hereditary diseases)",
                 family_desc: "Do any immediate family members (mother, father, or biological siblings) suffer from hereditary or critical illnesses (e.g., hypertension, diabetes, kidney failure, heart attack, cancer, etc.)? If yes, please specify below.",
                 sec_7_title: "COVID-19 History",
                 lbl_covid_status: "Have you ever tested positive for COVID-19?",
@@ -812,7 +811,7 @@
                 opt_icu: "HDU, ICU, ITU, CCU",
                 opt_antiviral: "Anti-Viral Medication",
                 opt_quarantine: "Quarantine in Ward or Quarantine Centre",
-                sec_8_title: "Supporting Documents",
+                sec_8_title: "Supporting documents",
                 doc_instruction_title: "IMPORTANT INSTRUCTION:",
                 doc_instruction_desc: "For identity security verification, please prepare the following images to send",
                 doc_chat_text: "inside the WhatsApp chat",
@@ -827,7 +826,7 @@
                 ekyc_note_1_mykad: "This MyKad and selfie image submission step is part of the mandatory eKYC (Electronic Know Your Customer) process for digital identity verification.",
                 ekyc_note_1_passport: "This passport, visa and selfie image submission step is part of the mandatory eKYC (Electronic Know Your Customer) process for digital identity verification.",
                 ekyc_link: "→ Learn more about BNM's eKYC policy",
-                btn_submit: "Submit Application via WhatsApp",
+                btn_submit: "Submit application via WhatsApp",
                 bar_docs: "Documents",
                 bar_submit: "Submit Application",
                 popup_blocked: "WhatsApp could not open automatically.",
@@ -836,7 +835,7 @@
                 footer_reg: "Registered Takaful Consultant with PruBSN Takaful Berhad.",
                 footer_rights: "All Rights Reserved.",
                 footer_portal: "Official Service Portal of Fairuz Samsuddin",
-                opt_select: "Please Select...",
+                opt_select: "Please select",
                 opt_malaysia: "Malaysia",
                 opt_pr: "Permanent Resident",
                 opt_foreigner: "Foreigner",
@@ -865,14 +864,14 @@
                 ph_cig_count: "Example: 10",
                 ph_cig_years: "Example: 5",
                 ph_vape_years: "Example: 3",
-                ph_job_desc: "Example: Performing admin tasks in the office...",
+                ph_job_desc: "Example: Performing admin tasks in the office",
                 ph_income: "Example: 45000",
                 ph_bank: "Example: Maybank",
                 ph_relation: "Example: Wife / Husband / Child",
                 ph_pct_1: "Example: 100",
                 ph_pct_2: "Example: 50",
                 ph_pct_3: "Example: 30",
-                ph_treatment: "Example: Taking high blood pressure medication daily...",
+                ph_treatment: "Example: Taking high blood pressure medication daily",
                 ph_family: "Example: Father - Diabetes, Mother - High Blood Pressure. (Write 'None' if not applicable)",
                 ph_covid_freq: "Example: 2",
                 ph_covid_current: "Example: Frequent shortness of breath. (Write 'None' if not applicable)"
